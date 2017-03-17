@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "browser-sync": "^2.18.8",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "jasmine": "^2.5.3"
   }
 }
