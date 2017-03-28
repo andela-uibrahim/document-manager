@@ -5,7 +5,7 @@ node_js: "6"
 # safelist
 branches:
   only:
-    - develop
+    - development
 script:
   - npm test
 before_install:
