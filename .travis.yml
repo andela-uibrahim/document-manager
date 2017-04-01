@@ -2,6 +2,9 @@ sudo: required
 dist: trusty
 language: node_js
 node_js: "6"
+env:
+- DEV_DBURL=postgres://andeladeveloper:postgres@localhost:5432/doc-man
+- TEST_DBURL=postgres://andeladeveloper:postgres@localhost:5432/doc-man-test
 # safelist
 branches:
   only:
