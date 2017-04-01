@@ -1,10 +1,6 @@
-'use strict';
-
 module.exports = {
-  up: function (queryInterface, Sequelize) {
-
-
-  return queryInterface.addColumn(
+  up(queryInterface, Sequelize) {
+    return queryInterface.addColumn(
       'documents',
       'UserId',
       {
@@ -12,7 +8,7 @@ module.exports = {
         allowNull: false
       }
     );
-  
+
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -22,8 +18,8 @@ module.exports = {
     */
   },
 
-  down: function (queryInterface, Sequelize) {
-    
+  down(queryInterface, Sequelize) {
+
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.

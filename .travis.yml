@@ -7,18 +7,18 @@ services:
 addons:
   - postgresql: "9.6"
 env:
- - DEV_DBURL=postgres://andeladeveloper:postgres@localhost:5432/doc-man
- - TEST_DBURL=postgres://andeladeveloper:postgres@localhost:5432/doc-man-test
-# safelist
+ - TEST_DBURL=postgres://postgres@localhost:5432/doc-man-test
 branches:
   only:
     - development
+before_script:
+  - psql -c 'create database doc-man-test;' -U postgres
+
 script:
   - npm test
 before_install:
  - export CHROME_BIN=/usr/bin/google-chrome
  - export DISPLAY=:99.0
  - sh -e /etc/init.d/xvfb start
- - psql -c 'create database travis_ci_test;' -U postgres
 after_success:
  - npm run coverage

@@ -1,5 +1,5 @@
 import chai from 'chai';
-import model from '../../models';
+import model from './index';
 import data from '../helper/helper';
 
 const Role = model.Role;
