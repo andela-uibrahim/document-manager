@@ -7,12 +7,12 @@ services:
 addons:
   - postgresql: "9.6"
 env:
- - TEST_DBURL=postgres://postgres@localhost:5432/doc-man-test
+ - TEST_DBURL=postgres://postgres@localhost:5432/doc_man_test
 branches:
   only:
     - development
 before_script:
-  - psql -c 'create database doc-man-test;' -U postgres
+  - psql -c 'create database doc_man_test;' -U postgres
 
 script:
   - npm test
