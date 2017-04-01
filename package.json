@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node node_modules/gulp/bin/gulp",
-    "test": "NODE_ENV=test nyc --reporter=lcov mocha server/test/**/*.js --compilers js:babel-register --slow 5000",
+    "test": "NODE_ENV=test sequelize db:migrate && nyc --reporter=lcov mocha server/test/**/*.js --compilers js:babel-register --slow 5000",
     "coverage": " cat ./coverage/lcov.info | node_modules/.bin/coveralls"
   },
   "repository": {
