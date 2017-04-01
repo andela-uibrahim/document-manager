@@ -4,11 +4,11 @@ language: node_js
 node_js: "6"
 services:
   - postgresql
+addons:
+  - postgresql: "9.6"
 env:
  - DEV_DBURL=postgres://andeladeveloper:postgres@localhost:5432/doc-man
  - TEST_DBURL=postgres://andeladeveloper:postgres@localhost:5432/doc-man-test
-addons:
- - postgresql: "9.6"
 # safelist
 branches:
   only:
@@ -19,6 +19,6 @@ before_install:
  - export CHROME_BIN=/usr/bin/google-chrome
  - export DISPLAY=:99.0
  - sh -e /etc/init.d/xvfb start
- - psql -c 'create database doc-man;' -U postgres
+ - psql -c 'create database travis_ci_test;' -U postgres
 after_success:
  - npm run coverage
