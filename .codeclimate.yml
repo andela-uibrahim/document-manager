@@ -17,6 +17,6 @@ engines:
     enabled: true
 ratings:
   paths:
-  - "server/docMan.js"
+  - "server/test/**/*.js"
 exclude_paths:
 - node_modules/

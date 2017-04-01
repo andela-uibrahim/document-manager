@@ -5,6 +5,9 @@ export default (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: {
+        msg: 'This username is already taken.'
+      },
       validate: {
         notEmpty: {
           msg: ' username field is empty'
@@ -41,6 +44,9 @@ export default (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: {
+        msg: 'This email is already taken.'
+      },
       validate: {
         notEmpty: {
           msg: 'email field is empty'
@@ -52,7 +58,7 @@ export default (sequelize, DataTypes) => {
       }
     },
     password: {
-      type: DataTypes.VIRTUAL,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: {
@@ -81,7 +87,7 @@ export default (sequelize, DataTypes) => {
             allowNull: false
           }
         });
-        User.hasMany(models.Document, {
+        User.hasMany(models.document, {
           foreignKey: 'UserId'
         });
       }

@@ -5,13 +5,20 @@ export default (sequelize, DataTypes) => {
       defaultValue: 'regular',
       allowNull: false,
       validate: {
-        isIn: [['admin', 'regular']]
+        isIn: {
+          args: [['admin', 'regular']],
+          msg: 'role can only be admin or regular'
+        }
       }
     }
   }, {
     classMethods: {
       associate: (models) => {
-        Role.hasMany(models.User);
+        Role.hasMany(models.User, {
+          foreignKey: {
+            name: 'RoleId',
+          }
+        });
       }
     }
   });
