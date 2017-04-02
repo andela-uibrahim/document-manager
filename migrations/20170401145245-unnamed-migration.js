@@ -5,7 +5,7 @@ module.exports = {
       'RoleId',
       {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       }
     );
   },
