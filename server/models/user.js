@@ -77,6 +77,10 @@ export default (sequelize, DataTypes) => {
       beforeCreate: (user) => {
         const salt = bcrypt.genSaltSync();
         user.password = bcrypt.hashSync(user.password, salt);
+      },
+      beforeUpdate: (user) => {
+        const salt = bcrypt.genSaltSync();
+        user.password = bcrypt.hashSync(user.password, salt);
       }
     },
     classMethods: {
@@ -91,7 +95,18 @@ export default (sequelize, DataTypes) => {
           foreignKey: 'UserId'
         });
       }
-    }
+    },
+    instanceMethods: {
+      /**
+       * verify plain password against user's hashed password
+       * @method
+       * @param {String} password password to be encrypted
+       * @returns {Boolean} Validity of passowrd
+       */
+      PasswordMatched(password) {
+        return bcrypt.compareSync(password, this.password);
+      }
+    },
   });
   return User;
 };
