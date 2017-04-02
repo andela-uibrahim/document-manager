@@ -1,9 +1,5 @@
 export default (sequelize, DataTypes) => {
   const document = sequelize.define('document', {
-    creatorId: {
-      allowNull: false,
-      type: DataTypes.INTEGER
-    },
     title: {
       allowNull: false,
       type: DataTypes.STRING,
@@ -19,11 +15,22 @@ export default (sequelize, DataTypes) => {
     access: {
       defaultValue: 'private',
       type: DataTypes.STRING,
+      validate: {
+        isIn: {
+          args: [['public', 'private', 'role']],
+          msg: 'access can only be public, private and role'
+        }
+      }
     },
   }, {
     classMethods: {
       associate(models) {
-        // associations can be defined here
+        document.belongsTo(models.User, {
+          foreignKey: {
+            name: 'UserId',
+            allowNull: false
+          }
+        });
       }
     }
   });

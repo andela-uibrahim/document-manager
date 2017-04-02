@@ -1,20 +1,22 @@
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
-import configuration from '../config/config';
+import configuration from '../../config/config';
 
-const config = configuration.development;
+const config = configuration.test;
 
 const basename = path.basename(module.filename);
 const db = {};
 const sequelize = new Sequelize(config.url, config);
 
+
 fs
-  .readdirSync(__dirname)
+  .readdirSync(path.join(__dirname, '../../models'))
   .filter(file => (file.indexOf('.') !== 0) && (file !== basename) &&
     (file.slice(-3) === '.js'))
   .forEach((file) => {
-    const model = sequelize.import(path.join(__dirname, file));
+    const model = sequelize
+    .import(path.join(path.join(__dirname, '../../models'), file));
     db[model.name] = model;
   });
 

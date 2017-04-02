@@ -2,10 +2,18 @@ sudo: required
 dist: trusty
 language: node_js
 node_js: "6"
-# safelist
+services:
+  - postgresql
+addons:
+  - postgresql: "9.6"
+env:
+ - TEST_DBURL=postgres://postgres@localhost:5432/doc_man_test
 branches:
   only:
     - development
+before_script:
+  - psql -c 'create database doc_man_test;' -U postgres
+
 script:
   - npm test
 before_install:
