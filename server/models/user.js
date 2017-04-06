@@ -91,7 +91,19 @@ export default (sequelize, DataTypes) => {
           foreignKey: 'UserId'
         });
       }
-    }
+
+    },
+    instanceMethods: {
+    /**
+     * verify plain password against user's hashed password
+     * @method
+     * @param {String} password password to be encrypted
+     * @returns {Boolean} Validity of passowrd
+     */
+      passwordMatched(password) {
+        return bcrypt.compareSync(password, this.password);
+      }
+    },
   });
   return User;
 };

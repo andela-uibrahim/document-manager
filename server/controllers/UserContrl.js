@@ -1,9 +1,55 @@
-const user = require('../models/user');
-const document = require('../models/document');
+/* eslint import/no-extraneous-dependencies: 0 */
+/* eslint import/no-unresolved: 0 */
+import jwt from 'jsonwebtoken';
+import model from '../models';
+import Authenticate from '../middleware/authenticator';
 
-console.log(user);
-console.log(document);
+const Users = model.User;
+const SECRET_KEY = process.env.SECRET || 'thisisademosecret';
 
-export default {
-
-};
+/**
+ * Controller for Users
+ */
+class UserController {
+    /**
+     * Method to set the various document routes
+     * @param{Object} req - Server req
+     * @return{Object} return req parameters
+     */
+  static postreq(req) {
+    return (
+        req.body &&
+        req.body.username &&
+        req.body.firstname &&
+        req.body.lastname &&
+        req.body.password &&
+        req.body.email
+    );
+  }
+  /**
+   * Method used to create new user
+   * @param{Object} req - Server req
+   * @param{Object} res - Server res
+   * @returns{Void} return Void
+   */
+  static createUser(req, res) {
+    if (UserController.postreq(req)) {
+      return Users
+        .create(req.body).then(user => res.status(201).send({
+          success: true,
+          message: 'User successfully signed up',
+          RoleId: 2,
+          token: Authenticate.generateToken(user)
+        })).catch(error => res.status(409).send({
+          success: false,
+          message: error.message,
+          error: error.errors[0].message
+        }));
+    }
+    res.status(400).send({
+      success: false,
+      message: 'You did not input your field properly'
+    });
+  }
+}
+export default UserController;
