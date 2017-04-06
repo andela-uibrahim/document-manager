@@ -18,4 +18,11 @@ router.route('/login')
 router.route('/logout')
   .post(UserController.logoutUser);
 
+router.route('/:id')
+  .get(Authenticator.authenticateUser,
+  Authenticator.authenticateAdmin, UserController.fetchUser)
+  .delete(Authenticator.authenticateUser,
+  Authenticator.authenticateAdmin, UserController.deleteUser)
+  .put(Authenticator.authenticateUser, UserController.updateUser);
+
 export default router;
