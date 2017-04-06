@@ -12,5 +12,10 @@ router.route('/')
     .get(Authenticator.authenticateUser,
         Authenticator.authenticateAdmin, UserController.fetchAllUsers)
     .post(UserController.createUser);
+router.route('/login')
+  .post(UserController.loginUser);
+
+router.route('/logout')
+  .post(UserController.logoutUser);
 
 export default router;
