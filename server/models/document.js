@@ -7,9 +7,6 @@ export default (sequelize, DataTypes) => {
         notEmpty: {
           msg: 'title field is empty'
         }
-      },
-      set(value) {
-        this.setDataValue('title', value.trim());
       }
     },
     content: {
