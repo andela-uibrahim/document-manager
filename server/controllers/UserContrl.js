@@ -105,5 +105,89 @@ class UserController {
       });
   }
 
+  /**
+ * Method used to fetch user by their ID
+ * @param{Object} req - Server req
+ * @param{Object} res - Server res
+ * @returns{Void} return Void
+ */
+  static fetchUser(req, res) {
+    Users.findOne({ where: { id: req.params.id } })
+      .then((user) => {
+        if (user) {
+          res.status(200).send(user);
+        } else {
+          res.status(404).send({
+            success: false,
+            message: 'User not found'
+          });
+        }
+      });
+  }
+
+   /**
+   * Method used to Update user info
+   * @param{Object} req - Server req
+   * @param{Object} res - Server res
+   * @returns{Void} return Void
+   */
+  static updateUser(req, res) {
+    const UserId = req.decoded.UserId;
+    let RoleId;
+    Users.findById(UserId).then((user) => {
+      RoleId = user.RoleId;
+    });
+    Users.findOne({
+      where: { id: req.params.id }
+    }).then((user) => {
+      if (user) {
+        if (UserId === user.id || RoleId === 1) {
+          user.update(req.body)
+            .then(updatedUser => res.status(201).send(updatedUser));
+        } else {
+          res.status(401).send({
+            success: false,
+            message: 'Unauthorized'
+          });
+        }
+      } else {
+        res.status(404).send({
+          success: false,
+          message: 'User not found'
+        });
+      }
+    }).catch((error) => {
+      res.status(401).send({
+        success: false,
+        message: error.message
+      });
+    });
+  }
+
+/**
+ * Method used to delete user
+ * only accessible to admin
+ * @param{Object} req - Server req
+ * @param{Object} res - Server res
+ * @returns{Void} return Void
+ */
+  static deleteUser(req, res) {
+    Users.findOne({ where: { id: req.params.id } })
+      .then((user) => {
+        if (user) {
+          user.destroy()
+            .then(() => res.status(200).send({
+              success: true,
+              message: 'User Successfully deleted from database'
+            }));
+        } else {
+          res.status(404).send({
+            success: false,
+            message: 'User not found'
+          });
+        }
+      });
+  }
+
 }
 export default UserController;
