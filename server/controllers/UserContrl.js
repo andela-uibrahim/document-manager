@@ -51,5 +51,46 @@ class UserController {
       message: 'You did not input your field properly'
     });
   }
+
+ /**
+   * Method used to login a user
+   * @param{Object} req - Server req
+   * @param{Object} res - Server res
+   * @returns{Void} return Void
+   */
+  static loginUser(req, res) {
+    Users.findOne({ where: { email: req.body.email } })
+      .then((user) => {
+        if (user && user.passwordMatched(req.body.password)) {
+          const token = jwt.sign({
+            UserId: user.id,
+            RoleId: user.RoleId
+          }, SECRET_KEY, { expiresIn: 86400 });
+          res.status(201).send({
+            message: 'login successfully',
+            token,
+            expiresIn: 86400
+          });
+        } else {
+          res.status(401).send({
+            success: false,
+            message: 'Failed to Authenticate User, Invalid Credentials'
+          });
+        }
+      });
+  }
+  /**
+   * Method used to logout user
+   * @param{Object} req - Server req
+   * @param{Object} res - Server res
+   * @returns{Void} return Void
+   */
+  static logoutUser(req, res) {
+    res.send({
+      success: true,
+      message: 'User logged out successfully'
+    });
+  }
+
 }
 export default UserController;
