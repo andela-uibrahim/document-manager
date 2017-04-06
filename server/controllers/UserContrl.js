@@ -92,5 +92,18 @@ class UserController {
     });
   }
 
+/**
+ * Method used to fetch all users
+ * @param{Object} req - Server req
+ * @param{Object} res - Server res
+ * @returns{Void} return Void
+ */
+  static fetchAllUsers(req, res) {
+    Users.findAll({})
+      .then((users) => {
+        res.status(201).send(users);
+      });
+  }
+
 }
 export default UserController;
