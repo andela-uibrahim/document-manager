@@ -25,4 +25,9 @@ router.route('/:id')
   Authenticator.authenticateAdmin, UserController.deleteUser)
   .put(Authenticator.authenticateUser, UserController.updateUser);
 
+router.route('/admin')
+  .post(Authenticator.authenticateUser,
+  Authenticator.authenticateAdmin, UserController.createAdmin);
+
+
 export default router;
