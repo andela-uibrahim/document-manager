@@ -3,3 +3,28 @@
 /.nyc_output
 /.env
 npm-debug.log
+/server/controllers/RoleContrl.js
+/server/controllers/DocContrl.js
+/server/controllers/helper
+/server/routes/document.js
+/server/routes/role.js
+
+router.route('/admin')
+  .post(Authenticator.authenticateUser,
+  Authenticator.authenticateAdmin, UserController.createAdmin);
+
+router.route('/:id')
+  .get(Authenticator.authenticateUser,
+  Authenticator.authenticateAdmin, UserController.fetchUser)
+  .delete(Authenticator.authenticateUser,
+  Authenticator.authenticateAdmin, UserController.deleteUser)
+  .put(Authenticator.authenticateUser, UserController.updateUser);
+
+router.route('/:id/documents')
+  .get(Authenticator.authenticateUser, DocumentController.fetchUserDocument);
+
+router.route('/login')
+  .post(UserController.loginUser);
+
+router.route('/logout')
+  .post(UserController.logoutUser);

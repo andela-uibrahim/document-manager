@@ -2,11 +2,12 @@
   "name": "document-manager",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node node_modules/gulp/bin/gulp",
     "test": "NODE_ENV=test sequelize db:migrate && nyc --reporter=lcov mocha tests/**/**/*.js --compilers js:babel-register --slow 5000",
-    "coverage": " cat ./coverage/lcov.info | node_modules/.bin/coveralls"
+    "coverage": " cat ./coverage/lcov.info | node_modules/.bin/coveralls",
+    "nodemon": "babel-watch server/server.js"
   },
   "repository": {
     "type": "git",

@@ -103,7 +103,7 @@ export default (sequelize, DataTypes) => {
        * @param {String} password password to be encrypted
        * @returns {Boolean} Validity of passowrd
        */
-      PasswordMatched(password) {
+      passwordMatched(password) {
         return bcrypt.compareSync(password, this.password);
       }
     },

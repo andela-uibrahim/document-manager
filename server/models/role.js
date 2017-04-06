@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: 'regular',
       allowNull: false,
+      unique: true,
       validate: {
         isIn: {
           args: [['admin', 'regular']],
