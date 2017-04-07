@@ -30,5 +30,8 @@ router.route('/admin')
   .post(Authenticator.authenticateUser,
   Authenticator.authenticateAdmin, UserController.createAdmin);
 
+router.route('/:id/documents')
+  .get(Authenticator.authenticateUser, DocumentController.fetchUserDocument);
+
 
 export default router;
