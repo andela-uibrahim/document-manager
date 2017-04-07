@@ -152,7 +152,7 @@ class UserController {
       where: { id: req.params.id }
     }).then((user) => {
       if (user) {
-        if (UserId === user.id && RoleId === 1) {
+        if (RoleId === 1) {
           user.update(req.body)
             .then(updatedUser => res.status(201).send(updatedUser));
         } else if (UserId === user.id && RoleId === 2) {

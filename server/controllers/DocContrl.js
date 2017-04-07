@@ -126,7 +126,64 @@ class DocumentController {
       }
     }).catch(error => res.status(401).send(error));
   }
-                                                                                                      
+
+  /**
+ * Fetch specific document in the database
+ * Admin has access to all the documents
+ * Users only have access to their private documents
+ * and all other public documents.
+ * @param{Object} req - Server req
+ * @param{Object} res - Server res
+ * @return {Void} - returns Void
+ */
+  static fetchDocument(req, res) {
+    const UserId = req.decoded.UserId;
+    const RoleId = req.decoded.RoleId;
+    Documents.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [{
+        model: Users,
+        attributes: ['RoleId']
+      }]
+    }).then((result) => {
+      const document = result || null;
+      if (document) {
+        if (RoleId === 1) {
+          res.status(200).send({
+            success: true,
+            message: 'Document found',
+            document
+          });
+        } else if ((document.access === 'public') ||
+        (document.User.RoleId === RoleId && document.access !== 'private')) {
+          res.status(200).send({
+            success: true,
+            message: 'Document Found',
+            document
+          });
+        } else if (document.access === 'private' &&
+        document.UserID === UserId) {
+          res.status(200).send({
+            success: true,
+            message: 'Document Found',
+            document
+          });
+        } else {
+          res.status(401).send({
+            success: false,
+            message: 'You cannot access this document'
+          });
+        }
+      } else {
+        res.status(404).send({
+          success: false,
+          message: `Document with id ${req.params.id} not found in the database`
+        });
+      }
+    });
+  }
 
 }
 export default DocumentController;
