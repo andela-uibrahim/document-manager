@@ -58,16 +58,15 @@ class Authenticator {
    * @return{Void} - returns Void
    */
   static authenticateAdmin(req, res, next) {
-    model.User.findById(req.decoded.UserId).then((user) => {
-      if (user.RoleId === 1) {
-        next();
-      } else {
-        res.status(401).send({
-          success: false,
-          message: 'You are not permitted to perform this operation'
-        });
-      }
-    });
+    const RoleId = req.decoded.RoleId;
+    if (RoleId === 1) {
+      next();
+    } else {
+      res.status(401).send({
+        success: false,
+        message: 'You are not permitted to perform this operation'
+      });
+    }
   }
 }
 export default Authenticator;
