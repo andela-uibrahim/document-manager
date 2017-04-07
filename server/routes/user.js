@@ -12,6 +12,7 @@ router.route('/')
   .get(Authenticator.authenticateUser,
      Authenticator.authenticateAdmin, UserController.fetchAllUsers)
   .post(UserController.createUser);
+
 router.route('/login')
   .post(UserController.loginUser);
 
