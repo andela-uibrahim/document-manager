@@ -141,9 +141,17 @@ class UserController {
       where: { id: req.params.id }
     }).then((user) => {
       if (user) {
-        if (UserId === user.id || RoleId === 1) {
+        if (UserId === user.id && RoleId === 1) {
           user.update(req.body)
             .then(updatedUser => res.status(201).send(updatedUser));
+        } else if (UserId === user.id && RoleId === 2) {
+          user.update({
+            firstname: user.firstname,
+            lastname: user.lastname,
+            username: user.username,
+            id: user.id
+          })
+          .then(updatedUser => res.status(201).send(updatedUser));
         } else {
           res.status(401).send({
             success: false,
@@ -187,6 +195,34 @@ class UserController {
           });
         }
       });
+  }
+
+  /**
+ * Method used to create admin user, only accessible to admin user(s).
+ * @param{Object} req - Server req
+ * @param{Object} res - Server res
+ * @returns{Void} return Void
+ */
+  static createAdmin(req, res) {
+    Users.create({
+      username: req.body.username,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      password: req.body.password,
+      email: req.body.email,
+      RoleId: 1
+    }).then((adminUser) => {
+      res.status(201).send({
+        success: false,
+        message: 'Admin user successfully created',
+        RoleId: adminUser.RoleId,
+        token: Authenticate.generateToken(adminUser)
+      });
+    }).catch(error => res.status(409).send({
+      success: false,
+      message: error.message,
+      error: error.errors[0].message
+    }));
   }
 
 }
