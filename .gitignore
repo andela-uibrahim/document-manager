@@ -3,9 +3,5 @@
 /.nyc_output
 /.env
 npm-debug.log
-/server/controllers/RoleContrl.js
-/server/controllers/DocContrl.js
-/server/controllers/helper
-/server/routes/document.js
-/server/routes/role.js
+/server/controllers/helperuser
 /file.js

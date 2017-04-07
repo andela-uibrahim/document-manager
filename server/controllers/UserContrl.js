@@ -35,13 +35,20 @@ class UserController {
   static createUser(req, res) {
     if (UserController.postreq(req)) {
       return Users
-        .create(req.body).then(user => res.status(201).send({
+        .create({
+          username: req.body.username,
+          password: req.body.password,
+          email: req.body.email,
+          firstname: req.body.firstname,
+          lastname: req.body.lastname,
+          RoleId: 2
+        }).then(user => res.status(201).send({
           success: true,
           message: 'User successfully signed up',
-          RoleId: 2,
+          RoleId: user.RoleId,
           token: Authenticate.generateToken(user)
         })).catch(error => res.status(409).send({
-          success: false,
+          success: UserController.postreq(req),
           message: error.message,
           error: error.errors[0].message
         }));
@@ -59,7 +66,11 @@ class UserController {
    * @returns{Void} return Void
    */
   static loginUser(req, res) {
-    Users.findOne({ where: { email: req.body.email } })
+    Users.findOne({
+      where: {
+        email: req.body.email
+      }
+    })
       .then((user) => {
         if (user && user.passwordMatched(req.body.password)) {
           const token = jwt.sign({
