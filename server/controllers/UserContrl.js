@@ -72,6 +72,7 @@ class UserController {
       }
     })
       .then((user) => {
+        console.log(user);
         if (user && user.passwordMatched(req.body.password)) {
           const token = jwt.sign({
             UserId: user.id,
@@ -144,23 +145,29 @@ class UserController {
    */
   static updateUser(req, res) {
     const UserId = req.decoded.UserId;
-    let RoleId;
-    Users.findById(UserId).then((user) => {
-      RoleId = user.RoleId;
-    });
+    const RoleId = req.decoded.RoleId;
     Users.findOne({
       where: { id: req.params.id }
     }).then((user) => {
       if (user) {
-        if (UserId === user.id && RoleId === 1) {
-          user.update(req.body)
+        if (RoleId === 1) {
+          user.update({
+            firstname: req.body.firstname || user.firstname,
+            lastname: req.body.lastname || user.lastname,
+            email: req.body.email || user.email,
+            password: req.body.password || user.password,
+            username: req.body.username || user.username,
+            RoleId: req.body.RoleId || user.RoleId,
+          })
             .then(updatedUser => res.status(201).send(updatedUser));
         } else if (UserId === user.id && RoleId === 2) {
           user.update({
-            firstname: user.firstname,
-            lastname: user.lastname,
-            username: user.username,
-            id: user.id
+            firstname: req.body.firstname || user.firstname,
+            lastname: req.body.lastname || user.lastname,
+            email: req.body.email || user.email,
+            password: req.body.password || user.password,
+            username: req.body.username || user.username,
+            RoleId: user.RoleId,
           })
           .then(updatedUser => res.status(201).send(updatedUser));
         } else {

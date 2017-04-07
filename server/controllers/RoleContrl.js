@@ -35,7 +35,7 @@ class RoleController {
     });
   }
   /**
-   * Method to createa fetch a Role
+   * Method to fetch a Role
    * @param{Object} request - Request Object
    * @param{Object} response - Response Object
    * @return{Void} - Returns void
