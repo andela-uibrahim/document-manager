@@ -112,7 +112,7 @@ class DocumentController {
         id: req.params.id
       }
     }).then((document) => {
-      if (document.UserID === OwnerId || RoleId === 1) {
+      if (document.UserId === OwnerId || RoleId === 1) {
         document.destroy()
         .then(() => res.status(201).send({
           success: true,
@@ -164,7 +164,7 @@ class DocumentController {
             document
           });
         } else if (document.access === 'private' &&
-        document.UserID === UserId) {
+        document.UserId === UserId) {
           res.status(200).send({
             success: true,
             message: 'Document Found',
@@ -184,6 +184,48 @@ class DocumentController {
       }
     });
   }
-
+/**
+ * Fetch all the documents belonging to a particular user
+ * Users have access to their own documents
+ * and all other public and role access documents
+ * @param{Object} req - Server req
+ * @param{Object} res - Server res
+ * @return{Void} - return Void
+ */
+  static fetchUserDocument(req, res) {
+    const queryId = req.params.id;
+    const UserId = req.decoded.UserId;
+    const RoleId = req.decoded.RoleId;
+    if (UserId === queryId || RoleId === 1) {
+      Documents.findAll({
+        where: {
+          UserId: queryId
+        }
+      }).then((document) => {
+        if (document.length < 1) {
+          return res.status(404).send({
+            success: false,
+            message: 'No documents found'
+          });
+        }
+        return res.status(200).send(document);
+      });
+    } else {
+      Documents.findAll({
+        where: {
+          UserId: queryId,
+          access: 'public'
+        }
+      }).then((document) => {
+        if (document.length < 1) {
+          return res.status(404).send({
+            success: false,
+            message: 'No documents found'
+          });
+        }
+        return res.status(200).send(document);
+      });
+    }
+  }
 }
 export default DocumentController;
