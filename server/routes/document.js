@@ -8,11 +8,11 @@ import Authenticate from '../middleware/authenticator';
 const router = express.Router();
 
 router.route('/')
-    //.get(Authenticate.authenticateUser, DocumentController.fetchDocument)
+    //.get(Authenticate.authenticateUser, DocumentController.fetchDocuments)
     .post(Authenticate.authenticateUser, DocumentController.createDocument);
 
 router.route('/:id')
-   // .get(Authenticate.authenticateUser, DocumentController.fetchDocuments)
+    .get(Authenticate.authenticateUser, DocumentController.fetchDocument)
     .put(Authenticate.authenticateUser, DocumentController.updateDocument)
     .delete(Authenticate.authenticateUser, DocumentController.deleteDocument);
 
