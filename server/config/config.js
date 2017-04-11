@@ -11,13 +11,11 @@ const configuration = {
     url: process.env.TEST_DBURL,
     dialect: 'postgres',
     log: false
-  },
-  travis: {
-    url: process.env.TEST_DBURL,
-    dialect: 'postgres',
-    log: false
   }
 };
+console.log('======>>>>', process.NODE_ENV);
+const q = configuration[process.env.NODE_ENV || 'development'];
+console.log('======>>>>', q);
 
-module.exports = configuration[process.env.NODE_ENV || 'development'];
+module.exports = q;
 

@@ -6,6 +6,7 @@ import config from '../config/config';
 
 const basename = path.basename(module.filename);
 const db = {};
+console.log('======>>', config.url);
 const sequelize = new Sequelize(config.url, config);
 
 fs
