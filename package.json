@@ -6,7 +6,7 @@
   "scripts": {
     "start": "gulp",
     "test": "NODE_ENV=test sequelize db:migrate && nyc --reporter=lcov mocha tests/server/**/*.js --compilers js:babel-register --slow 5000",
-    "coverage": " cat ./coverage/lcov.info | node_modules/.bin/coveralls",
+    "coverage": "cat ./coverage/lcov.info | coveralls",
     "nodemon": "babel-watch server/server.js"
   },
   "repository": {
@@ -31,6 +31,7 @@
     "babel-core": "^6.24.0",
     "babel-preset-es2015": "^6.24.0",
     "chai": "^3.5.0",
+    "coveralls": "^2.13.0",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
@@ -65,7 +66,8 @@
   },
   "nyc": {
     "exclude": [
-      "tests/**/**/*.js","server/controllers/helper/*.js"
+      "tests/**/**/*.js",
+      "server/controllers/helper/*.js"
     ]
   }
 }
