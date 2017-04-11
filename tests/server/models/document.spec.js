@@ -1,5 +1,5 @@
 import chai from 'chai';
-import model from './index';
+import model from '../../../server/models/index';
 import data from '../helper/helper';
 
 const document = model.document;
@@ -11,14 +11,13 @@ describe('Document.create', () => {
     document.create({})
         .catch((error) => {
           error.errors[0].message.should.equal('title cannot be null');
-          error.errors[1].message.should.equal('UserId cannot be null');
           done();
         });
   });
 
   it('should create a public document when access is public', (done) => {
-    document.create(data.publicDoc).then((user) => {
-      expect(user.access).equal('public');
+    document.create(data.publicDoc).then((doc) => {
+      expect(doc.access).equal('public');
       done();
     });
   });

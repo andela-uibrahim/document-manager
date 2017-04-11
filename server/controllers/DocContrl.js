@@ -227,5 +227,109 @@ class DocumentController {
       });
     }
   }
+
+/**
+ * Fetch specific document in the database
+ * Admin has access to all the documents
+ * Users only have access to their private
+ * documents and all other public documents.
+ * @param{Object} req - Server req
+ * @param{Object} res - Server res
+ * @return {Void} - returns Void
+ */
+  static fetchDocuments(req, res) {
+    let searchQuery = req.query.search;
+    const searchLimit = req.query.limit;
+    const UserId = req.decoded.UserId;
+    const RoleId = req.decoded.RoleId;
+    const queryBuilder = {
+      attributes: ['id', 'UserId', 'access', 'title', 'content', 'createdAt'],
+      order: '"createdAt" DESC',
+      include: [{
+        model: Users,
+        attributes: ['RoleId']
+      }]
+    };
+    queryBuilder.offset = (req.query.offset > 0) ? req.query.offset : 0;
+    if (searchLimit) {
+      queryBuilder.limit = searchLimit;
+    }
+    searchQuery = DocumentHelper.sanitizeString(searchQuery);
+
+    if (RoleId === 1) {
+      if (searchQuery) {
+        queryBuilder.where = {
+          $or:
+          [
+            {
+              title: { $like: `%${searchQuery}%` }
+            }, {
+              content: { $like: `%${searchQuery}%` }
+            }
+          ]
+        };
+      }
+      Documents.findAndCountAll(queryBuilder)
+        .then((results) => {
+          if (results.count < 1) {
+            res.status(404).send({
+              success: false,
+              message: 'No Document Found'
+            });
+          } else {
+            res.status(200).send({
+              success: true,
+              results
+            });
+          }
+        });
+    } else {
+      if (searchQuery) {
+        queryBuilder.where = {
+          $or:
+          [
+            {
+              title: { $like: `%${searchQuery}%` }
+            },
+            {
+              content: { $like: `%${searchQuery}%` }
+            }
+          ],
+          $and: {
+            $or:
+            [
+              { access: 'public' },
+              { UserId, }
+            ]
+          }
+        };
+      }
+      Documents.findAndCountAll(queryBuilder).then((results) => {
+        const accessibleDocuments = results.rows.filter((document) => {
+          if ((document.access === 'public') ||
+               (document.User.RoleId === RoleId &&
+               document.access !== 'private')) {
+            return true;
+          } else if (document.access === 'private' &&
+                document.UserId === UserId) {
+            return true;
+          }
+          return false;
+        });
+
+        const offset = queryBuilder.offset;
+        const limit = queryBuilder.limit;
+
+        const pagination = DocumentHelper
+          .paginateResult(accessibleDocuments, offset, limit);
+
+        res.status(200).send({
+          success: true,
+          results: accessibleDocuments,
+          pagination
+        });
+      });
+    }
+  }
 }
 export default DocumentController;
