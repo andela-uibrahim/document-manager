@@ -13,7 +13,7 @@ const configuration = {
     log: false
   },
   travis: {
-    url: 'postgres://postgres@localhost:5432/doc_man_test',
+    url: process.env.TEST_DBURL,
     dialect: 'postgres',
     log: false
   }
