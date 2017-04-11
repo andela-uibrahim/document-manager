@@ -13,7 +13,7 @@ const configuration = {
     log: false
   }
 };
-console.log('======>>>>', process.NODE_ENV);
+
 const q = configuration[process.env.NODE_ENV || 'development'];
 console.log('======>>>>', q);
 
