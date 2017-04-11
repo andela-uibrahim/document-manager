@@ -12,7 +12,7 @@ class IndexRoute {
  * @return{Void} return void
  */
   static Index(app) {
-    app.get('*', (req, res) => {
+    app.all('*', (req, res) => {
       res.status(200).send({
         message: 'welcome to document management api'
       });

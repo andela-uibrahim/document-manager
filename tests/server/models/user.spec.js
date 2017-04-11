@@ -1,5 +1,5 @@
 import chai from 'chai';
-import model from './index';
+import model from '../../../server/models/index';
 import data from '../helper/helper';
 
 const User = model.User;
@@ -16,7 +16,7 @@ describe('User Model', () => {
     });
 
     it('should create new user', (done) => {
-      User.create(data.adminUser)
+      User.create(data.user2)
         .then((createdUser) => {
           user = createdUser;
           done();
@@ -26,7 +26,7 @@ describe('User Model', () => {
 
     it('should not store the real password but the hatched one ',
      () => {
-       expect(user.password).to.not.equal(data.adminUser.password);
+       expect(user.password).to.not.equal(data.user.password);
      });
   });
 
@@ -42,10 +42,10 @@ describe('User Model', () => {
     });
 
     it('created user should have firstname,lastname and email', () => {
-      expect(user.firstname).equal(data.adminUser.firstname);
-      expect(user.lastname).equal(data.adminUser.lastname);
-      expect(user.username).equal(data.adminUser.username);
-      expect(user.email).equal(data.adminUser.email);
+      expect(user.firstname).equal(data.user2.firstname);
+      expect(user.lastname).equal(data.user2.lastname);
+      expect(user.username).equal(data.user2.username);
+      expect(user.email).equal(data.user2.email);
     });
 
     it('requires name fields to create a user', (done) => {
@@ -61,7 +61,7 @@ describe('User Model', () => {
     });
 
     it('ensures a user can only be created once', (done) => {
-      User.create(data.adminUser)
+      User.create(data.user2)
         .catch((error) => {
           error.errors[0].message.should
           .equal('This username is already taken.');

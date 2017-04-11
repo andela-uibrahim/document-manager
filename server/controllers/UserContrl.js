@@ -229,11 +229,13 @@ class UserController {
         RoleId: adminUser.RoleId,
         token: Authenticate.generateToken(adminUser)
       });
-    }).catch(error => res.status(409).send({
-      success: false,
-      message: error.message,
-      error: error.errors[0].message
-    }));
+    }).catch((error) => {
+      res.status(409).send({
+        success: false,
+        message: error.message,
+        error: error.errors[0].message
+      });
+    });
   }
 
 }

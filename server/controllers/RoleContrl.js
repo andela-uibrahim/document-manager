@@ -13,7 +13,7 @@ class RoleController {
   static postRole(request) {
     return (
       request.body &&
-      request.body.title
+      request.body.role
     );
   }
   /**
@@ -26,12 +26,12 @@ class RoleController {
     if (RoleController.postRole(request)) {
       return Roles
         .create({
-          title: request.body.title
+          role: request.body.role
         }).then(role => response.status(201).send(role));
     }
     response.status(404).send({
       success: false,
-      message: 'Error! request.body.title not found'
+      message: 'Error! request.body.role not found'
     });
   }
   /**

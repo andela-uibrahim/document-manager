@@ -1,43 +1,65 @@
 import faker from 'faker';
 
 export default {
-  adminUser: {
-    username: faker.internet.userName(),
-    email: faker.internet.email(),
-    firstname: faker.name.firstName(),
-    lastname: faker.name.lastName(),
-    password: 'kratus043',
-    RoleId: 2,
+  newRole1: {
+    role: faker.company.catchPhrase(),
   },
-  newRole: {
-    role: 'admin',
+  newRole2: {
+    role: faker.company.catchPhrase(),
+  },
+  fakeUser: {
+    email: 'admin@admin.com',
+    password: faker.internet.password(),
   },
   publicDoc: {
     title: faker.random.word(),
     content: faker.lorem.paragraph(),
     access: 'public',
-    UserId: 2,
   },
   privateDoc: {
     title: faker.random.word(),
     content: faker.lorem.paragraph(),
-    UserId: 2,
+    access: 'private'
   },
   user: {
     username: faker.internet.userName(),
-    email: faker.internet.email(),
+    email: 'test@test.com',
     firstname: faker.name.firstName(),
     lastname: faker.name.lastName(),
-    password: faker.internet.password(),
+    password: process.env.USER_PASSWORD,
     RoleId: 2
   },
-  user2: {
+  regularUser: {
     username: faker.internet.userName(),
     email: faker.internet.email(),
     firstname: faker.name.firstName(),
     lastname: faker.name.lastName(),
-    password: faker.internet.password(),
+    password: process.env.USER_PASSWORD,
     RoleId: 2
+  },
+  newAdmin: {
+    username: faker.internet.userName(),
+    email: faker.internet.email(),
+    firstname: faker.name.firstName(),
+    lastname: faker.name.lastName(),
+    password: process.env.USER_PASSWORD,
+    RoleId: 1
+  },
+  user2: {
+    username: 'jane',
+    email: 'jane@john.com',
+    firstname: 'john',
+    lastname: 'alimi',
+    password: 'userPassword',
+    RoleId: 2
+  },
+  admin: {
+    username: faker.internet.userName(),
+    email: 'admin@admin.com',
+    firstname: faker.name.firstName(),
+    lastname: faker.name.lastName(),
+    password: process.env.ADMIN_PASSWORD,
+    RoleId: 1
   },
   sharedDoc: {
     title: faker.company.catchPhrase(),
@@ -46,7 +68,6 @@ export default {
   },
   shared: {
     email: faker.internet.email(),
-    canEdit: true,
   },
   invalid: {
     emailEmpty: {
@@ -64,7 +85,6 @@ export default {
     },
     emptyEmail: {
       email: '',
-      canEdit: true,
       documentId: 1
     },
     noName: {
@@ -124,8 +144,10 @@ export default {
       UserId: 5,
     },
     nullEmail: {
-      canEdit: true,
       documentId: 1
     },
+    invalidToken: {
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjYsImlhdCI6MTQ4ODkyNzU1OSwiZXhwIjoxNDg5MDEzOTU5fQ.knnZeLlKhXkGX3AYeT3lUgJQlMqOVueDQC6BGkSgbY4'
+    }
   }
 };

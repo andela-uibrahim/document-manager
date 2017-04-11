@@ -5,7 +5,6 @@ module.exports = {
       'UserId',
       {
         type: Sequelize.INTEGER,
-        allowNull: false
       }
     );
 

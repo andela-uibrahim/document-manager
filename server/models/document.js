@@ -28,7 +28,6 @@ export default (sequelize, DataTypes) => {
         document.belongsTo(models.User, {
           foreignKey: {
             name: 'UserId',
-            allowNull: false
           }
         });
       }

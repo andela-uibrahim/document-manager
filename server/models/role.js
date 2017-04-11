@@ -5,12 +5,6 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 'regular',
       allowNull: false,
       unique: true,
-      validate: {
-        isIn: {
-          args: [['admin', 'regular']],
-          msg: 'role can only be admin or regular'
-        }
-      }
     }
   }, {
     classMethods: {
