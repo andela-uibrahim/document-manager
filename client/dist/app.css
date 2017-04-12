@@ -1,0 +1,15 @@
+body {
+    height: 700px;
+    width: 100%;
+    background: url('./images/background.jpg');
+}
+.navbar {
+    background-color: #000620;
+    border-radius: 5px;
+}
+.welcome {
+    text-align: center;
+    margin-top: 180px;
+    color: white;
+
+}
