@@ -33,6 +33,4 @@ router.route('/admin')
 router.route('/:id/documents')
   .get(Authenticator.authenticateUser, DocumentController.fetchUserDocument);
 
-router.get('/tokenHealth', Authenticator.isValidToken);
-
 export default router;
