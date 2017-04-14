@@ -242,6 +242,7 @@ class DocumentController {
     const searchLimit = req.query.limit;
     const UserId = req.decoded.UserId;
     const RoleId = req.decoded.RoleId;
+
     const queryBuilder = {
       attributes: ['id', 'UserId', 'access', 'title', 'content', 'createdAt'],
       order: '"createdAt" DESC',
@@ -254,10 +255,10 @@ class DocumentController {
     if (searchLimit) {
       queryBuilder.limit = searchLimit;
     }
-    searchQuery = DocumentHelper.sanitizeString(searchQuery);
 
     if (RoleId === 1) {
       if (searchQuery) {
+        searchQuery = DocumentHelper.sanitizeString(searchQuery);
         queryBuilder.where = {
           $or:
           [
@@ -277,14 +278,20 @@ class DocumentController {
               message: 'No Document Found'
             });
           } else {
+            const offset = queryBuilder.offset;
+            const limit = queryBuilder.limit;
+            const pagination = DocumentHelper
+             .paginateResult(results, offset, limit);
             res.status(200).send({
               success: true,
-              results
+              results,
+              pagination
             });
           }
         });
     } else {
       if (searchQuery) {
+        searchQuery = DocumentHelper.sanitizeString(searchQuery);
         queryBuilder.where = {
           $or:
           [
@@ -305,7 +312,7 @@ class DocumentController {
         };
       }
       Documents.findAndCountAll(queryBuilder).then((results) => {
-        const accessibleDocuments = results.rows.filter((document) => {
+        results.rows = results.rows.filter((document) => {
           if ((document.access === 'public') ||
                (document.User.RoleId === RoleId &&
                document.access !== 'private')) {
@@ -321,11 +328,11 @@ class DocumentController {
         const limit = queryBuilder.limit;
 
         const pagination = DocumentHelper
-          .paginateResult(accessibleDocuments, offset, limit);
+          .paginateResult(results, offset, limit);
 
         res.status(200).send({
           success: true,
-          results: accessibleDocuments,
+          results,
           pagination
         });
       });

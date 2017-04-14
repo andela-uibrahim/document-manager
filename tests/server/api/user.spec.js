@@ -1,7 +1,7 @@
 import supertest from 'supertest';
 import chai from 'chai';
 import dotenv from 'dotenv';
-import app from '../../../server/server';
+import app from '../../../server';
 import testData from '../helper/helper';
 import db from '../../../server/models';
 

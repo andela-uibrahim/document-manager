@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import model from '../models';
 
 const SECRET_KEY = process.env.SECRET || 'thisisademosecret';
 /**
@@ -38,6 +37,21 @@ class Authenticator {
       });
     }
   }
+  
+  /**
+   * Method to check a token's validity
+   * @param {Object} req - The req Object
+   * @param {Object} res - The res Object
+   * @return {Void} - Returns void
+   */
+  static isValidToken (req, res) {
+    return jwt.verify(Authenticator.generateToken(req, res),
+     SECRET_KEY, (err) => {
+      return err ? res.status(401).json({ err: 'Token expired' }) :
+       res.status(200).json({ message: 'token ok' });
+    });
+  }
+
   /**
    * Method to generate a token for a user
    * @param{Object} user - User Object
@@ -46,7 +60,8 @@ class Authenticator {
   static generateToken(user) {
     return jwt.sign({
       UserId: user.id,
-      RoleId: user.RoleId
+      RoleId: user.RoleId,
+      user: user.username
     }, SECRET_KEY, { expiresIn: 86400 });
   }
   /**

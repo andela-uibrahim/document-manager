@@ -75,7 +75,8 @@ class UserController {
         if (user && user.passwordMatched(req.body.password)) {
           const token = jwt.sign({
             UserId: user.id,
-            RoleId: user.RoleId
+            RoleId: user.RoleId,
+            user: user.username
           }, SECRET_KEY, { expiresIn: 86400 });
           res.status(201).send({
             message: 'login successfully',

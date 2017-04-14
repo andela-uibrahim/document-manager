@@ -12,7 +12,7 @@ class IndexRoute {
  * @return{Void} return void
  */
   static Index(app) {
-    app.all('*', (req, res) => {
+    app.all('/api/*', (req, res) => {
       res.status(200).send({
         message: 'welcome to document management api'
       });
@@ -24,7 +24,7 @@ class IndexRoute {
  * @return{Void} return void
  */
   static Roles(app) {
-    app.use('/roles', RolesRoute);
+    app.use('/api/roles', RolesRoute);
   }
 /**
  * Users Route
@@ -32,7 +32,7 @@ class IndexRoute {
  * @return{Void} return void
  */
   static Users(app) {
-    app.use('/users', UsersRoute);
+    app.use('/api/users', UsersRoute);
   }
 /**
  * Documents Route
@@ -40,7 +40,7 @@ class IndexRoute {
  * @return{Void} return void
  */
   static Documents(app) {
-    app.use('/documents', DocumentsRoute);
+    app.use('/api/documents', DocumentsRoute);
   }
 
 }

@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": "airbnb-base",
+  "extends": ["airbnb-base", "eslint:recommended", "plugin:import/errors", "plugin:import/warnings"],
   "plugins": [
     "react",
     "jsx-a11y",
@@ -10,6 +10,13 @@
     "node": true,
     "es6": true,
     "mocha": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "rules": {
     "one-var": 0,
