@@ -9,7 +9,6 @@ export default (token, offset, limit) => {
       }
     })
       .then((response) => {
-           console.log(response.data.results);
         dispatch({
           type: actionTypes.PAGINATED_DOCUMENTS,
           documents: response.data.results.rows,

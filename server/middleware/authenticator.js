@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import model from '../models';
 
 const SECRET_KEY = process.env.SECRET || 'thisisademosecret';
 /**
