@@ -1,35 +1,59 @@
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: './client/src/index.html',
+  filename: 'index.html',
+  inject: 'body'
+});
 
 module.exports = {
+  devtool: 'cheap-module-eval-source-map',
   entry: [
-    './client/src/index'
+    './client/src/index.jsx'
   ],
+  
   module: {
     loaders: [
       {
-        test: /\.js?$/,
-        loader: 'babel',
+        test: /\.js$/,
+        loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
           presets: ['react']
         }
       },
       {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      { 
+        test: /\.jsx$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/ 
+      },
+      { 
         test: /\.css$/,
-        loader: 'css-loader'
-      }, {
-        test: /\.(png|jpg)$/,
+        loader: ['style-loader','css-loader'] 
+      },
+      { 
+        test: /\.(jpg|png|svg|jpeg)$/,
+        loader: 'url-loader' 
+      },
+      { 
+        test: /\.(ttf|eot|woff|woff2)$/,
         loader: 'file-loader'
       }
     ]
   },
+  target: 'web',
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['.js']
   },
   output: {
-    path: path.join(__dirname, 'client/dist/'),
-    publicPath: '/app/',
+    path: path.resolve('client/dist'),
     filename: 'bundle.js'
   },
   devServer: {
@@ -37,8 +61,7 @@ module.exports = {
     hot: true
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    HtmlWebpackPluginConfig,
+    new ExtractTextPlugin('styles.css')
   ]
 };

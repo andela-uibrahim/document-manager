@@ -22,7 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(express.static(path.join(__dirname, 'client/dist')));
 
-app.get('/app/*', (req, res) => {
+app.all('/', (req, res) => {
   res.sendFile(`${__dirname}/client/dist/index.html`);
 });
 // Log requests to the console.
