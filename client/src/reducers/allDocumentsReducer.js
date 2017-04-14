@@ -19,7 +19,7 @@ export default function allDocumentsReducer(state = initialState, action) {
           return document.id !== action.documentid;
         }) });
     case actionTypes.VIEW_DOCUMENT:
-      return Object.assign({}, state, { documents: action.documents });  
+      return Object.assign({}, state, { document: action.document });  
     case actionTypes.DOCUMENT_CREATED:
       return Object.assign({}, state, 
       { createStatus: action.status, documents: action.documents });

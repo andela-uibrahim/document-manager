@@ -5,13 +5,13 @@ export default (token, documentid) =>  {
   return function (dispatch) {
     return axios.get(`/api/documents/${documentid}`, {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: token
       }
     })
       .then((response) => {
         dispatch({
           type: actionTypes.VIEW_DOCUMENT,
-          document: response.data
+          document: response.data.document
         });
       }).catch((err) => {
         dispatch({

@@ -4,7 +4,6 @@ import React, { Component, PropTypes } from 'react';
 import Header from './Header.jsx';
 import Sidebar from './Sidebar.jsx';
 import newDocument from '../actions/documentManagement/newDocument';
-import validateToken from '../actions/authentication/validateToken';
 
 
 const ResponseMessage = (props) => {
@@ -115,9 +114,6 @@ class CreateDocument extends Component {
   }
 }
 
-// CreateDocument.propTypes = {
-//   CheckToken: PropTypes.func
-// };
 
 CreateDocument.contextTypes = {
   router: PropTypes.object
@@ -132,7 +128,6 @@ const mapStoreToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     CreateDocument: documentDetails => dispatch(newDocument(documentDetails)),
-    // CheckToken: () => dispatch(validateToken())
   };
 };
 
