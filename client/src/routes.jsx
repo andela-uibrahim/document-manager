@@ -6,6 +6,8 @@ import UserDashBoard from './components/UserDashBoard.component.jsx';
 import ViewDocument from './components/ViewDocument.component.jsx';
 import CreateDocument from './components/CreateDocument.jsx';
 import EditDocument from './components/EditDocument.jsx';
+import CreateRole from './components/CreateRole.jsx';
+import ViewAllRoles from './components/ViewAllRoles.jsx';
 
 
 export default(
@@ -18,5 +20,7 @@ export default(
     <Route path="/view-document/:id" component={ViewDocument} />
     <Route path="/create-document" component={CreateDocument} />
     <Route path="/edit-document/:id" component={EditDocument} />
+    <Route path="/create-role" component={CreateRole} />
+    <Route path="/roles" component={ViewAllRoles} />
   </Route>
 );
