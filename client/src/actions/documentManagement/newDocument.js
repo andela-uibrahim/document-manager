@@ -13,7 +13,7 @@ export default (details) => {
       .then(() => {
         dispatch({
           type: actionTypes.DOCUMENT_CREATED,
-          status: 'success'
+          status: 'success',
         });
         browserHistory.push('/');
       }).catch((err) => {
