@@ -50,12 +50,14 @@ class ViewAllDocuments extends Component {
       browserHistory.push('/');
     }
     return (
+      
       <div className="row dashboardContainer col s12">
         <Header />
         <Sidebar />
         <div className="col s12 workspace ">
           <div className="row workspace-header">
-            <h4 className="col s8">All Documents</h4><div className="col s4">
+            <h4 className="col s8">All Documents</h4>
+            <div className="col s4">
               <input
                 className="col s10"
                 type="text"
@@ -71,7 +73,7 @@ class ViewAllDocuments extends Component {
           <div className="col m10" /><div className="col m2">
             <Link onClick={this.refreshDocuments}>
               <i className="material-icons  refresh-list-btn">
-                settings_backup_restore</i></Link></div>
+            autorenew</i></Link></div>
           <DocumentList
             deleteDocument={this.props.deleteDocument}
             userid={this.state.userid}
