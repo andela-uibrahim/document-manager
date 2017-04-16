@@ -3,8 +3,7 @@ import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 import logoutAction from '../actions/authentication/logoutAction';
-
-
+import logo from '../images/file.png'
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -34,8 +33,9 @@ class Header extends Component {
     if (window.localStorage.getItem('token')) {
       return (
         <div className="navbar-fixed">
-          <nav>
+          <nav className="blue darken-2">
             <div className="nav-wrapper">
+             <Link to="/" className="brand-logo"><img src={logo} alt="logo" /></Link>
               <ul id="loggedinNav">
                 <li>{this.state.username}</li>
                 <li><Link id="logout" onClick={this.logout}>Sign Out</Link></li>
@@ -53,9 +53,9 @@ class Header extends Component {
     }
     return (
       <div className="navbar-fixed">
-        <nav>
+        <nav className="blue darken-2">
           <div className="nav-wrapper">
-            <Link to="/" className="brand-logo">logo</Link>
+            <Link to="/" className="brand-logo"><img src={logo} alt="logo" /></Link>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li><a href="./">Home</a></li>
               <li><Link to="/about">About Us</Link></li>
@@ -73,6 +73,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 const mapStoreToProps = (state) => {
+  // console.log('fdsfdsx', state);
   return {
     user: state.user
   };

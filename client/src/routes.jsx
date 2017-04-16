@@ -8,11 +8,15 @@ import CreateDocument from './components/CreateDocument.jsx';
 import EditDocument from './components/EditDocument.jsx';
 import CreateRole from './components/CreateRole.jsx';
 import ViewAllRoles from './components/ViewAllRoles.jsx';
+import ViewAllUsers from './components/ViewAllUsers.jsx';
+import EditUser from './components/editUser.jsx';
+import CreateUser from './components/CreateUser.jsx';
 
 
 export default(
   <Route path="/">
     <IndexRoute component={LoginPage} />
+    <Route path="/users/:id" component={EditUser} />
     <Route path="/login" component={LoginPage} />
     <Route path="/register" component={SignUpPage} />
     <Route path="/dashboard" component={UserDashBoard} />
@@ -22,5 +26,9 @@ export default(
     <Route path="/edit-document/:id" component={EditDocument} />
     <Route path="/create-role" component={CreateRole} />
     <Route path="/roles" component={ViewAllRoles} />
+    <Route path="/users" component={ViewAllUsers} />
+    <Route path="/create-user" component={CreateUser} />
+
+    
   </Route>
 );

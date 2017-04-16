@@ -33,9 +33,27 @@ export default class Sidebar extends Component {
               <p className="col s10 action_desc">Create A Document</p>
             </Link>
           </li>
+          <li>
+              <Link to={`/users/${jwtDecode(this.state.token).UserId}`} className="col s12 menu_link">
+                <div className="col s2">
+                  <center className="circle useractions">
+                    <i className="material-icons">note_add</i></center>
+                  </div>
+                <p className="col s10 action_desc">Edit My profile</p>
+              </Link>
+            </li>
           { jwtDecode(this.state.token).RoleId === 1 ?
           (
             <div>
+            <li>
+                <Link to="/create-user" className="col s12 menu_link">
+                  <div className="col s2">
+                    <center className="circle useractions">
+                      <i className="material-icons">note_add</i></center>
+                  </div>
+                  <p className="col s10 action_desc">Create User</p>
+                </Link>
+              </li>
               <li>
                 <Link to="/users" className="col s12 menu_link">
                   <div className="col s2">
@@ -66,7 +84,6 @@ export default class Sidebar extends Component {
             </div>
           ) : <span />}
         </ul>
-
       </div >
     );
   }

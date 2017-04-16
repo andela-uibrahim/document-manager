@@ -3,6 +3,7 @@
 import jwt from 'jsonwebtoken';
 import model from '../models';
 import Authenticate from '../middleware/authenticator';
+import DocumentHelper from './helper/DocHelper';
 
 const Users = model.User;
 const SECRET_KEY = process.env.SECRET || 'thisisademosecret';
@@ -111,9 +112,27 @@ class UserController {
  * @returns{Void} return Void
  */
   static fetchAllUsers(req, res) {
-    Users.findAll({})
+    let queryParams = {
+      limit: 10,
+      offset: 0
+    };
+    if (req.query.limit && req.query.offset) {
+      queryParams = {
+        limit: req.query.limit,
+        offset: req.query.offset
+      };
+    }
+    Users.findAndCountAll({})
       .then((users) => {
-        res.status(201).send(users);
+        const paginateResult = DocumentHelper
+        .paginateResult(users, queryParams.offset, queryParams.limit);
+        res.status(201).send({
+          users: users.rows,
+          pageCount: paginateResult.pageCount
+         });
+      })
+      .catch((err) => {
+        res.status(500).send({ error: err.message });
       });
   }
 
@@ -145,10 +164,7 @@ class UserController {
    */
   static updateUser(req, res) {
     const UserId = req.decoded.UserId;
-    let RoleId;
-    Users.findById(UserId).then((user) => {
-      RoleId = user.RoleId;
-    });
+    let RoleId = req.decoded.RoleId
     Users.findOne({
       where: { id: req.params.id }
     }).then((user) => {
@@ -157,12 +173,8 @@ class UserController {
           user.update(req.body)
             .then(updatedUser => res.status(201).send(updatedUser));
         } else if (UserId === user.id && RoleId === 2) {
-          user.update({
-            firstname: user.firstname,
-            lastname: user.lastname,
-            username: user.username,
-            id: user.id
-          })
+          const updateProps = Object.keys(req.body);        
+          user.update(req.body, {fields: updateProps})
           .then(updatedUser => res.status(201).send(updatedUser));
         } else {
           res.status(401).send({
