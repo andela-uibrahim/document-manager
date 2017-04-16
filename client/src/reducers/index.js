@@ -6,8 +6,6 @@ import allRolesReducer from './allRolesReducer';
 import allUsersReducer from './allUsersReducer';
 import viewUserReducer from './viewUserReducer';
 
-
-
 const rootReducer = combineReducers({
   loginReducer,
   signUpReducer,

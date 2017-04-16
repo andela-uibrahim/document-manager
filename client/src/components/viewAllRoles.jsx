@@ -12,34 +12,16 @@ class ViewAllRoles extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      limit: 10,
-      searchTerms: '',
       token: window.localStorage.getItem('token')
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.searchRole = this.searchRole.bind(this);
-    this.refreshRoles = this.refreshRoles.bind(this);
   }
 
   componentWillMount() {
     if (this.state.token) {
-      this.setState({ userid: jwtDecode(this.state.token).UserId });
-      const offset = 0;
       this.props.viewRoles(this.state.token);
     }
   }
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
 
-  searchRole() {
-    this.props.searchRole(this.state.token, this.state.searchTerms);
-  }
-
-  refreshRoles() {
-    const offset = 0;
-    this.props.paginateRoles(this.state.token, offset, this.state.limit);
-  }
 
   render() {
     if (!window.localStorage.getItem('token')) {
@@ -65,14 +47,11 @@ class ViewAllRoles extends Component {
 
 ViewAllRoles.PropTypes = {
   roles: React.PropTypes.array.isRequired,
-  paginateRoles: React.PropTypes.func.isRequired
 };
 
 const mapStoreToProps = (state) => {
   return {
     roles: state.allRolesReducer.roles,
-    pageCount: state.allRolesReducer.pageCount,
-    paginated: state.allRolesReducer.paginated
   };
 };
 

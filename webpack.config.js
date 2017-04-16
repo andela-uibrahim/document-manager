@@ -62,6 +62,6 @@ module.exports = {
   },
   plugins: [
     HtmlWebpackPluginConfig,
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('stylesheet.css')
   ]
 };

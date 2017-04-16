@@ -5,3 +5,9 @@
 npm-debug.log
 /server/controllers/helperuser
 /file.js
+**/*.DS_Store
+/client/.DS_Store
+/client/dist/bundle.js
+/client/src/.DS_Store
+/webpack.config.js
+/client/src/images/file.png
