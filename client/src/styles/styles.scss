@@ -1,7 +1,5 @@
 $white: white;
-$color_monte_carlo_approx: #80cbc4;
-$teal: teal;
-$color_eastern_blue_approx: lightseagreen;
+$blue: #191970;
 $white_80: rgba(255, 255, 255, 0.8);
 
 //urls
@@ -11,7 +9,7 @@ $url_0: url(../images/background.jpg);
 //original selectors
 //body, html
 %extend_1 {
-	background: $url_0;
+	background: #B5BEB2;
 	background-size: cover;
 	padding: 0 !important;
 	margin: 0 !important;
@@ -37,34 +35,32 @@ html {
 }
 nav {
 	padding: 0 15px 0 15px !important;
-	background: $color_monte_carlo_approx !important;
 }
 .forgot-password {
 	float: right;
 	padding-right: 10px;
-	color: $teal;
+	color: $blue;
 	&:hover {
-		color: $color_eastern_blue_approx;
+		color: $blue;
 	}
 }
 #btn_login {
 	color: $white !important;
 	font-weight: bold;
 	&:hover {
-		background: $teal !important;
+		background: $blue !important;
 	}
 }
 .changeLogin {
 	float: right;
 	padding-right: 10px;
 	a {
-		color: $teal;
+		color: $blue;
 	}
 }
 #loggedinNav {
 	float: right;
 	a {
-		color: $teal;
 		font-weight: bold;
 		&:hover {
 			background: transparent;
@@ -73,14 +69,13 @@ nav {
 	}
 }
 .sidebar {
-	background: $teal;
+	background: $blue;
 	position: absolute;
 	z-index:1000;
 }
 .workspace {
 	height:auto;;
 	padding:20px;
-	background: white;
 }
 
 .workspace .panel{
@@ -90,6 +85,7 @@ nav {
 	padding:40px;
 	margin-bottom: 40px;
 	height:auto;
+	background: $white;
 
 }
 .loginerror {
@@ -103,7 +99,7 @@ nav {
 	}
 }
 .brand-logo img {
-	width: 100px;
+	width: 50px;
 	height: 50px;
 	margin: 6px;
 }
@@ -115,7 +111,7 @@ nav {
 
 .useractions i{
 	margin-top:12px !important;
-	color: lightseagreen;
+	color: $blue;
 }
 
 
@@ -139,8 +135,9 @@ a {
 
  .workspace-header{
 	 width:80%;
-	margin:0 auto;
-margin-top:80px !important;
+	 margin:0 auto;
+   margin-top:80px !important;
+   background:$white;
  }
 
 #collapse_btn{
@@ -180,7 +177,7 @@ padding-top:50px !important;
 }
 
 .doc_list a:hover{
-	color:teal;
+	color:$blue;
 }
 
 .doc_list th, .doc_list td {
@@ -194,11 +191,11 @@ padding-top:50px !important;
 }
 
 .refresh-list-btn {
-	color:teal !important;
+	color:$white !important;
 }
 
 .refresh-list-btn:hover{
-	color:lightseagreen !important;
+	color:$blue !important;
 }
 
 .userRoleSelect{

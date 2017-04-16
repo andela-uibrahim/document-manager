@@ -32,6 +32,7 @@ const RoleList = ({ roles, deleteRole }) => {
         <tr>
           <th>Role</th>
           <th>Create on</th>
+          <th>Delete Role</th>
         </tr>
       </thead>
 

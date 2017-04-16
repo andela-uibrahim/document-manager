@@ -11,7 +11,6 @@ export default (details) => {
       }
     })
       .then((role) => {
-           console.log(role);
         dispatch({
           type: actionTypes.ROLE_CREATED,
           role,
