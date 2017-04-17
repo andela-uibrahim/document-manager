@@ -22,9 +22,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(express.static(path.join(__dirname, 'client/dist')));
 
-app.all('/', (req, res) => {
-  res.sendFile(`${__dirname}/client/dist/index.html`);
-});
 // Log requests to the console.
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -33,7 +30,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 routes.Roles(app);
 routes.Documents(app);
 routes.Users(app);
+routes.Search(app);
 routes.Index(app);
+
+app.all('*', (req, res) => {
+  res.sendFile(`${__dirname}/client/dist/index.html`);
+});
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 app.set('port', port);

@@ -44,7 +44,7 @@ class Header extends Component {
 
               </ul>
             </div>
-            <Link data-activates="slide-out" className="btn" id="collapse_btn">
+            <Link data-activates="slide-out" className="btn blue darken-2" id="collapse_btn">
               <i className="material-icons">view_headline</i></Link>
           </nav>
         </div>

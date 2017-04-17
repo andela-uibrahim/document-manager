@@ -105,6 +105,8 @@ class UserController {
     });
   }
 
+
+
 /**
  * Method used to fetch all users
  * @param{Object} req - Server req

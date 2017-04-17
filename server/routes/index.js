@@ -1,6 +1,7 @@
 import DocumentsRoute from './document';
 import RolesRoute from './role';
 import UsersRoute from './user';
+import SearchRoute from './search';
 
 /**
  * IndexRoute contains all the routes for the api
@@ -34,6 +35,16 @@ class IndexRoute {
   static Users(app) {
     app.use('/api/users', UsersRoute);
   }
+
+  /**
+ * Users Route
+ * @param{Object} app express app
+ * @return{Void} return void
+ */
+  static Search(app) {
+    app.use('/api/search', SearchRoute);
+  }
+
 /**
  * Documents Route
  * @param{Object} app express app

@@ -65,7 +65,7 @@ class ViewAllDocuments extends Component {
                 name="searchTerms"
                 placeholder="Search..."
                 onChange={this.handleChange} />
-              <button className="btn col s2" id="searchBtn" onClick={this.searchDocument}>
+              <button className="btn col s2 blue darken-2" id="searchBtn" onClick={this.searchDocument}>
                 <i className="material-icons">search</i>
               </button>
             </div>
