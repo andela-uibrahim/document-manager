@@ -5,7 +5,7 @@ export default (token, userid) => {
   return (dispatch) => {
     return axios.get(`/api/v1/users/${userid}`, {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: token
       }
     })
       .then((response) => {
