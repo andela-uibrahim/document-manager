@@ -5,7 +5,7 @@ import jwtDecode from 'jwt-decode';
 import React, { Component } from 'react';
 import Header from './Header.jsx';
 import Sidebar from './Sidebar.jsx';
-import DocumentList from './DocumentList.component.jsx';
+import DocumentList from './DocumentList.jsx';
 import deleteDocumentAction from '../actions/documentManagement/deleteDocument';
 import paginateDocumentAction from '../actions/documentManagement/paginateDocument';
 import searchDocumentAction from '../actions/documentManagement/searchDocument';

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import actionTypes from '../actionTypes';
 
+
+
 export default (token) => {
   return (dispatch) => {
     return axios.get('/api/search/documents', {

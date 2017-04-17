@@ -14,8 +14,8 @@ const client = supertest.agent(app);
 describe('Document ==> \n', () => {
   let adminToken, regularToken;
   before((done) => {
-    db.User.create(testData.admin).then((user) => {
-      client.post('/users/login')
+    db.User.create(testData.admin).then(() => {
+      client.post('/api/users/login')
         .send({
           email: testData.admin.email,
           password: testData.admin.password
@@ -28,8 +28,8 @@ describe('Document ==> \n', () => {
   });
 
   before((done) => {
-    db.User.create(testData.user).then((user) => {
-      client.post('/users/login')
+    db.User.create(testData.user).then(() => {
+      client.post('/api/users/login')
         .send({
           email: testData.user.email,
           password: testData.user.password
@@ -53,7 +53,7 @@ describe('Document ==> \n', () => {
 
   describe('Admin', () => {
     it('should only allow user with a valid token to create Roles', (done) => {
-      client.post('/roles')
+      client.post('/api/roles')
         .set({ 'x-access-token': adminToken })
         .send(testData.newRole1)
         .end((error, res) => {
@@ -61,8 +61,9 @@ describe('Document ==> \n', () => {
           done();
         });
     });
-    it('should return 404 status code if the role value is not inputed', (done) => {
-      client.post('/roles')
+    it(`should return 404 status code if the role
+     value is not inputed`, (done) => {
+      client.post('/api/roles')
         .set({ 'x-access-token': adminToken })
         .send({})
         .end((error, res) => {
@@ -71,7 +72,7 @@ describe('Document ==> \n', () => {
         });
     });
     it('should be able to fetch all the roles in the database', (done) => {
-      client.get('/roles')
+      client.get('/api/roles')
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
           expect(res.status).to.equal(201);
@@ -88,7 +89,7 @@ describe('Document ==> \n', () => {
     //     });
     // });
     it('should return params 401 for invalid request params', (done) => {
-      client.delete('/roles/400')
+      client.delete('/api/roles/400')
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
           expect(res.status).to.equal(404);
@@ -96,7 +97,7 @@ describe('Document ==> \n', () => {
         });
     });
     it('should return params 401 for invalid request params', (done) => {
-      client.delete('/roles/4e')
+      client.delete('/api/roles/4e')
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
           expect(res.status).to.equal(401);
@@ -107,7 +108,7 @@ describe('Document ==> \n', () => {
 
   describe('Regular User', () => {
     it('should not be allowed to create Roles', (done) => {
-      client.post('/roles')
+      client.post('/api/roles')
         .set({ 'x-access-token': regularToken })
         .send(testData.newRole1)
         .end((error, res) => {
@@ -116,7 +117,7 @@ describe('Document ==> \n', () => {
         });
     });
     it('should not be able to fetch all the roles in the database', (done) => {
-      client.get('/roles')
+      client.get('/api/roles')
         .set({ 'x-access-token': regularToken })
         .end((error, res) => {
           expect(res.status).to.equal(401);
@@ -124,7 +125,7 @@ describe('Document ==> \n', () => {
         });
     });
     it('should be able to delete roles from the table', (done) => {
-      client.delete('/roles/3')
+      client.delete('/api/roles/3')
         .set({ 'x-access-token': regularToken })
         .end((error, res) => {
           expect(res.status).to.equal(401);
@@ -133,7 +134,7 @@ describe('Document ==> \n', () => {
         });
     });
     it('should return params 401 for invalid request params', (done) => {
-      client.delete('/roles/4')
+      client.delete('/api/roles/4')
         .set({ 'x-access-token': regularToken })
         .end((error, res) => {
           expect(res.status).to.equal(401);
@@ -141,7 +142,7 @@ describe('Document ==> \n', () => {
         });
     });
     it('should return params 401 for invalid request params', (done) => {
-      client.delete('/roles/4e')
+      client.delete('/api/roles/4e')
         .set({ 'x-access-token': regularToken })
         .end((error, res) => {
           expect(res.status).to.equal(401);

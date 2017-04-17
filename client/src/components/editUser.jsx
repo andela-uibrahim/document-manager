@@ -7,7 +7,7 @@ import Sidebar from './Sidebar.jsx';
 import editUserAction from '../actions/userManagement/editUser';
 
 
-const confirmUpdateUser = (callback, userId) => {
+const confirmUpdateUser = (callback,token, userData, userId) => {
   swal({
     title: 'Are you sure?',
     text: 'Would you like to change this user\'s details',
@@ -20,8 +20,13 @@ const confirmUpdateUser = (callback, userId) => {
   },
     (deletionConfirmed) => {
       if (deletionConfirmed) {
-        callback(userId);
+        callback(token, userData, userId);
         swal('Updated!', 'The user\'s details has been updated.', 'success');
+         if (jwtDecode(token).RoleId === 1) {
+          browserHistory.push('/users');
+        } else {
+          browserHistory.push('/');
+        }
       } else {
         swal('Cancelled!', 'The user\'s details was not changed.', 'error');
       }
@@ -41,25 +46,12 @@ class EditUser extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.props.editUser(this.state.token, this.state, this.props.params.id)
-      .then(() => {
-        if (jwtDecode(this.state.token).RoleId === 1) {
-          browserHistory.push('/users');
-        } else {
-          browserHistory.push('/');
-        }
-      });
-
-  }
 
   render() {
 
@@ -68,7 +60,10 @@ class EditUser extends Component {
         <Header />
         <Sidebar />
         <div className="col s2 l4 " />
-        <form className="col s8 l4 loginForm" onSubmit={this.handleSubmit} >
+        <form className="col s8 l4 loginForm" onSubmit={(e) => {
+            e.preventDefault();
+            confirmUpdateUser(this.props.editUser, this.state.token, this.state, this.props.params.id);
+            }} >
           <div className="row">
             <div className="input-field col s12">
               <input
