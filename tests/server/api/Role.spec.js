@@ -14,7 +14,7 @@ const client = supertest.agent(app);
 describe('Document ==> \n', () => {
   let adminToken, regularToken;
   before((done) => {
-    db.User.create(testData.admin).then((user) => {
+    db.User.create(testData.admin).then(() => {
       client.post('/api/users/login')
         .send({
           email: testData.admin.email,
@@ -28,7 +28,7 @@ describe('Document ==> \n', () => {
   });
 
   before((done) => {
-    db.User.create(testData.user).then((user) => {
+    db.User.create(testData.user).then(() => {
       client.post('/api/users/login')
         .send({
           email: testData.user.email,
@@ -61,7 +61,8 @@ describe('Document ==> \n', () => {
           done();
         });
     });
-    it('should return 404 status code if the role value is not inputed', (done) => {
+    it(`should return 404 status code if the role
+     value is not inputed`, (done) => {
       client.post('/api/roles')
         .set({ 'x-access-token': adminToken })
         .send({})

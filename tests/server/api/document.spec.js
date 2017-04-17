@@ -16,7 +16,7 @@ describe('document ==> \n', () => {
   let adminToken, regularToken;
   before((done) => {
     db.sequelize.query('TRUNCATE "documents" RESTART IDENTITY');
-    db.User.create(testData.admin).then((user) => {
+    db.User.create(testData.admin).then(() => {
       client.post('/api/users/login')
         .send({
           email: testData.admin.email,
@@ -30,7 +30,7 @@ describe('document ==> \n', () => {
   });
 
   before((done) => {
-    db.User.create(testData.user).then((user) => {
+    db.User.create(testData.user).then(() => {
       client.post('/api/users/login')
         .send({
           email: testData.user.email,
@@ -84,7 +84,8 @@ describe('document ==> \n', () => {
               });
           });
       });
-    it('User should not be able to create documents if document fields are not inputed properly', (done) => {
+    it(`User should not be able to create documents if document
+     fields are not inputed properly`, (done) => {
       client.post('/api/documents')
         .send(testData.documentInvalid)
         .set({ 'x-access-token': regularToken })
@@ -93,7 +94,8 @@ describe('document ==> \n', () => {
           done();
         });
     });
-    it('Should return error with status code 400 when the inputed document fields are not valid', (done) => {
+    it(`Should return error with status code 400 when
+      the inputed document fields are not valid`, (done) => {
       client.post('/api/documents')
         .send(testData.documentNotValid)
         .set({ 'x-access-token': regularToken })
@@ -117,7 +119,8 @@ describe('document ==> \n', () => {
             });
         });
     });
-    it('should not authorize access to private documents if user has an invalid token', (done) => {
+    it(`should not authorize access to private documents
+     if user has an invalid token`, (done) => {
       client.get('/api/documents/1')
         .set({ 'x-access-token': regularToken })
         .end((error, res) => {
@@ -125,7 +128,8 @@ describe('document ==> \n', () => {
           done();
         });
     });
-    it('should not authorize access to public documents if user has no token', (done) => {
+    it(`should not authorize access to public documents
+     if user has no token`, (done) => {
       client.get('/api/documents/2')
         .end((error, res) => {
           expect(res.status).to.equal(401);
@@ -141,7 +145,8 @@ describe('document ==> \n', () => {
         });
     });
 
-    it('Other User cannot access document that has access level of private', (done) => {
+    it(`Other User cannot access document that has access 
+    level of private`, (done) => {
       client.get('/api/documents/1')
         .set({ 'x-access-token': regularToken })
         .end((error, res) => {
@@ -164,7 +169,8 @@ describe('document ==> \n', () => {
     });
   });
   describe('Update: ==>\n', () => {
-    it('User should be able to update their document information', (done) => {
+    it(`User should be able to update their document
+     information`, (done) => {
       client.put('/api/documents/3')
         .set({ 'x-access-token': regularToken })
         .send(testData.privateDoc)
@@ -173,7 +179,8 @@ describe('document ==> \n', () => {
           done();
         });
     });
-    it('User without access should not be able to update other users documents', (done) => {
+    it(`User without access should not be able to update
+     other users documents`, (done) => {
       client.put('/api/documents/4')
         .set({ 'x-access-token': regularToken })
         .send(testData.documentPrivate3)
@@ -182,7 +189,8 @@ describe('document ==> \n', () => {
           done();
         });
     });
-    it('Should not authorize update and return status code 401 for invalid request parameter', (done) => {
+    it(`Should not authorize update and return status code 401
+     for invalid request parameter`, (done) => {
       client.put('/api/documents/w')
         .set({ 'x-access-token': regularToken })
         .end((error, res) => {
@@ -190,7 +198,8 @@ describe('document ==> \n', () => {
           done();
         });
     });
-    it('Should not authorize update and return status code 401 for invalid update parameters', (done) => {
+    it(`Should not authorize update and return status code 401
+     for invalid update parameters`, (done) => {
       client.put('/api/documents/4')
         .send(testData.documentNotValid)
         .set({ 'x-access-token': regularToken })
@@ -217,7 +226,8 @@ describe('document ==> \n', () => {
           done();
         });
     });
-    it('Should not authorize delete and return status code 401 for invalid request parameter ', (done) => {
+    it(`Should not authorize delete and return status code 401
+     for invalid request parameter `, (done) => {
       client.delete('/api/documents/w')
         .set({ 'x-access-token': regularToken })
         .end((error, res) => {
@@ -236,7 +246,8 @@ describe('document ==> \n', () => {
     //       done();
     //     });
     // });
-    it('Admin should be able to get all the documents belonging to a particular user', (done) => {
+    it(`Admin should be able to get all the documents
+     belonging to a particular user`, (done) => {
       client.post('/api/documents')
         .set({ 'x-access-token': regularToken })
         .send(testData.documentPublic1)
@@ -249,7 +260,8 @@ describe('document ==> \n', () => {
             });
         });
     });
-    it('Admin should receive a 404 status res if the user has no documents', (done) => {
+    it(`Admin should receive a 404 status res if the
+     user has no documents`, (done) => {
       client.get('/api/users/9/documents')
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
@@ -257,7 +269,8 @@ describe('document ==> \n', () => {
           done();
         });
     });
-    it('Regular Users should be able to access public documents only', (done) => {
+    it(`Regular Users should be able to access public
+     documents only`, (done) => {
       client.get('/api/users/2/documents')
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
@@ -265,7 +278,8 @@ describe('document ==> \n', () => {
           done();
         });
     });
-    it('Regular Users should be able to access public documents only', (done) => {
+    it(`Regular Users should be able to access public
+     documents only`, (done) => {
       client.get('/api/users/1/documents')
         .set({ 'x-access-token': regularToken })
         .end((error, res) => {

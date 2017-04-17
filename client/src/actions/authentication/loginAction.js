@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import actionTypes from '../actionTypes';
@@ -22,7 +23,7 @@ export default (credentials) => {
       }).catch((error) => {
         dispatch({
           type: actionTypes.LOGIN_ERROR,
-          message: 'Invalid credentials'
+          message: error.message
         });
       });
   };

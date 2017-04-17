@@ -12,7 +12,7 @@ const client = supertest.agent(app);
 describe('Users ==> \n', () => {
   let adminToken, regularToken;
   before((done) => {
-    db.User.create(testData.admin).then(user => {
+    db.User.create(testData.admin).then(() => {
       client.post('/api/users/login')
         .send({
           email: testData.admin.email,
@@ -26,7 +26,7 @@ describe('Users ==> \n', () => {
   });
 
   before((done) => {
-    db.User.create(testData.user).then(user => {
+    db.User.create(testData.user).then(() => {
       client.post('/api/users/login')
         .send({
           email: testData.user.email,
@@ -67,7 +67,8 @@ describe('Users ==> \n', () => {
             done();
           });
         });
-    it('should return a status code of 201 when a regular user has been successfully created',
+    it(`should return a status code of 201 when a regular user has
+     been successfully created`,
         (done) => {
           client.post('/api/users')
             .set({ 'x-access-token': adminToken })
@@ -148,7 +149,8 @@ describe('Users ==> \n', () => {
           done();
         });
     });
-    it('should return a status code of 404 for invalid delete parameter or if user not found', (done) => {
+    it(`should return a status code of 404 for invalid delete parameter
+     or if user not found`, (done) => {
       client.delete('/api/users/100')
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
@@ -172,7 +174,8 @@ describe('Users ==> \n', () => {
   });
 
   describe('login', () => {
-    it('Should allow login for only CORRECT details of an Admin user', (done) => {
+    it(`Should allow login for only CORRECT details of
+     an Admin user`, (done) => {
       client.post('/api/users/login')
         .send({
           email: testData.admin.email,
@@ -202,7 +205,8 @@ describe('Users ==> \n', () => {
     });
   });
   describe('Catch all route', () => {
-    it('For invalid GET URl, it should redirect user back to the homepage', (done) => {
+    it(`For invalid GET URl, it should redirect user back
+     to the homepage`, (done) => {
       client.get('/asjhbcnsincewe')
         .end((error, res) => {
           expect(res.status).to.equal(200);
