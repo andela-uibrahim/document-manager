@@ -7,7 +7,7 @@ import Sidebar from './Sidebar.jsx';
 import editUserAction from '../actions/userManagement/editUser';
 
 
-const confirmUpdateRole = (callback, roleId, userId) => {
+const confirmUpdateUser = (callback, userId) => {
   swal({
     title: 'Are you sure?',
     text: 'Would you like to change this user\'s details',
@@ -20,7 +20,7 @@ const confirmUpdateRole = (callback, roleId, userId) => {
   },
     (deletionConfirmed) => {
       if (deletionConfirmed) {
-        callback(roleId, userId);
+        callback(userId);
         swal('Updated!', 'The user\'s details has been updated.', 'success');
       } else {
         swal('Cancelled!', 'The user\'s details was not changed.', 'error');
@@ -142,7 +142,6 @@ class EditUser extends Component {
 
 
 const mapStoreToProps = (state) => {
-  console.log('newsttttt', state)
   return {
     user: state.allUsersReducer.user,
     status: state.allUsersReducer.status

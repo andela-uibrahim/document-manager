@@ -3,7 +3,7 @@ import actionTypes from '../actionTypes';
 
 export default (token, documentName) => {
   return (dispatch) => {
-    return axios.get(`/api/documents/?search=${documentName}`, {
+    return axios.get(`/api/search/documents/?search=${documentName}`, {
       headers: {
         Authorization: token
       }

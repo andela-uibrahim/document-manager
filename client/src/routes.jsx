@@ -11,11 +11,15 @@ import ViewAllRoles from './components/ViewAllRoles.jsx';
 import ViewAllUsers from './components/ViewAllUsers.jsx';
 import EditUser from './components/editUser.jsx';
 import CreateUser from './components/CreateUser.jsx';
+import ChangePassword from './components/ChangePassword.jsx';
 
+const redirect = (path) => {
+  return window.location.href = '/';
+}
 
 export default(
-  <Route path="/">
-    <IndexRoute component={LoginPage} />
+  <Route >
+    <Route path="/" component={LoginPage} />
     <Route path="/users/:id" component={EditUser} />
     <Route path="/login" component={LoginPage} />
     <Route path="/register" component={SignUpPage} />
@@ -28,7 +32,7 @@ export default(
     <Route path="/roles" component={ViewAllRoles} />
     <Route path="/users" component={ViewAllUsers} />
     <Route path="/create-user" component={CreateUser} />
-
-    
+    <Route path="/change-password/:id" component={ChangePassword} />
+    <Route path="*" onEnter={redirect} />
   </Route>
 );

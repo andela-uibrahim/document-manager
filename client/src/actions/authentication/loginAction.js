@@ -22,7 +22,7 @@ export default (credentials) => {
       }).catch((error) => {
         dispatch({
           type: actionTypes.LOGIN_ERROR,
-          message: error.response.data.error
+          message: 'Invalid credentials'
         });
       });
   };

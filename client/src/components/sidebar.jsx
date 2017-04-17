@@ -42,6 +42,16 @@ export default class Sidebar extends Component {
                 <p className="col s10 action_desc">Edit My profile</p>
               </Link>
             </li>
+            <li>
+            <Link to={`/change-password/${jwtDecode(this.state.token).UserId}`} className="col s12 menu_link">
+              <div className="col s2">
+                <center className="circle useractions">
+                  <i className="material-icons">note_add</i></center>
+              </div>
+              <p className="col s10 action_desc">Change my password</p>
+            </Link>
+          </li>
+          
           { jwtDecode(this.state.token).RoleId === 1 ?
           (
             <div>
