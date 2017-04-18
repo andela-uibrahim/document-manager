@@ -4,13 +4,13 @@ $white_80: rgba(255, 255, 255, 0.8);
 $ash_color: #B5BEB2;
 
 //urls
-$url_0: url(../images/background.jpg);
+$url_0: url(../images/background.jpeg);
 
 //@extend-elements
 //original selectors
 //body, html
 %extend_1 {
-	background: $ash_color;
+	background: $url_0;
 	background-size: cover;
 	padding: 0 !important;
 	margin: 0 !important;
@@ -68,8 +68,17 @@ nav {
 			background: transparent;
 			color: $white;
 		}
-	}
+	};
 }
+
+.title {
+	color: black;
+	margin-top: 2px;
+	&:hover {
+			color: $blue;
+		}
+}
+
 .sidebar {
 	background: $blue;
 	position: absolute;
@@ -212,6 +221,14 @@ padding-top:50px !important;
 
 .doc_content div {
 	padding:25px !important;
+}
+.user_doc {
+	background: $white_80;
+	background-size: cover;
+	padding: 0 !important;
+	margin: 0 !important;
+	overflow-y: scroll;
+	min-height: 800px !important;
 }
 
 .login-feedback{

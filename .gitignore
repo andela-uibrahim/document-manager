@@ -7,4 +7,5 @@ npm-debug.log
 /client/.DS_Store
 /client/dist/bundle.js
 /client/src/.DS_Store
-client/src/images/file.png
+/client/src/images/file.png
+/doc/

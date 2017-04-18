@@ -203,6 +203,7 @@ class DocumentController {
         }
       }).then((document) => {
         if (document.length < 1) {
+          console.log('i came hrere')
           return res.status(404).send({
             success: false,
             message: 'No documents found'

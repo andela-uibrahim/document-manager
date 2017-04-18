@@ -5,6 +5,7 @@ import React, { Component, PropTypes } from 'react';
 import Header from './Header.jsx';
 import Sidebar from './Sidebar.jsx';
 import viewDocumentAction from '../actions/documentManagement/viewDocument';
+import cardimage from '../images/cardimage.jpeg';
 
 class ViewDocument extends Component {
   constructor(props) {
@@ -24,16 +25,28 @@ class ViewDocument extends Component {
       browserHistory.push('/');
     }
     return (
-      <div className="row dashboardContainer col s12">
+      <div className="user_doc row col s12">
         <Header />
         <Sidebar />
         {(this.props.document) ?
-          <div className="col s12 workspace ">
-            <div className="row workspace-header"><h4>{ this.props.document.title || ''}</h4></div>
-            <div className="doc_list z-depth-4 panel doc_content">
-              <div>{ this.props.document.content || '' }</div>
-            </div>
+        <div className= "row">
+          <div className="col s2 m3">
           </div>
+          <div className="col s6 m6">
+              <div className="card">
+                <div className="card-image">
+                  <img src={cardimage}/>
+                  <span className="card-title">{this.props.document.title || ''}</span>
+                </div>
+                <div className="card-content">
+                  <p>{ this.props.document.content || '' }</p>
+                </div>
+                <div className="card-action">
+                  <a href="#">{this.props.document.access || ''}</a>
+                </div>
+              </div>
+          </div> 
+         </div>   
           :
           <div>
             Document not Found

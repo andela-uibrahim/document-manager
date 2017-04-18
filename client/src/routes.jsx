@@ -12,6 +12,7 @@ import ViewAllUsers from './components/ViewAllUsers.jsx';
 import EditUser from './components/editUser.jsx';
 import CreateUser from './components/CreateUser.jsx';
 import ChangePassword from './components/ChangePassword.jsx';
+import MyDocuments from './components/MyDocuments.jsx';
 
 const redirect = (path) => {
   return window.location.href = '/';
@@ -33,6 +34,7 @@ export default(
     <Route path="/users" component={ViewAllUsers} />
     <Route path="/create-user" component={CreateUser} />
     <Route path="/change-password/:id" component={ChangePassword} />
-    <Route path="*" onEnter={redirect} />
+    <Route path="/my-documents" component={MyDocuments} />
+    
   </Route>
 );
