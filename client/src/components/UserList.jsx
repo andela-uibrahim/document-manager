@@ -104,7 +104,9 @@ const UserList = ({ users, deleteUser, roles, updateUserRole }) => {
 
 UserList.propTypes = {
   users: React.PropTypes.array.isRequired,
-  roles: React.PropTypes.array.isRequired
+  roles: React.PropTypes.array.isRequired,
+  deleteUser: React.PropTypes.func.isRequired,
+  updateUserRole: React.PropTypes.func.isRequired
 };
 
 export default UserList;

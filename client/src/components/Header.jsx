@@ -38,10 +38,9 @@ class Header extends Component {
              <Link to="/" className="brand-logo"><img src={logo} alt="logo" /></Link>
               <ul id="loggedinNav">
                 <li>{this.state.username}</li>
+                <li><Link to="/my-documents">My Documents</Link></li>
                 <li><Link id="logout" onClick={this.logout}>Sign Out</Link></li>
-              </ul>
-              <ul id="nav-mobile" className="right hide-on-med-and-down">
-
+                <li><Link to="/about-us">About Us</Link></li>
               </ul>
             </div>
             <Link data-activates="slide-out" className="btn blue darken-2" id="collapse_btn">
@@ -61,6 +60,7 @@ class Header extends Component {
               <li><Link to="/about">About Us</Link></li>
             </ul>
           </div>
+           <h3 className="center title">Document Manager</h3>
         </nav >
       </div>
     );
@@ -73,7 +73,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 const mapStoreToProps = (state) => {
-  // console.log('fdsfdsx', state);
   return {
     user: state.user
   };
