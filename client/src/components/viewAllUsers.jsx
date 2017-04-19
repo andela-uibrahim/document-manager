@@ -18,10 +18,11 @@ import editUserRoleAction from '../actions/userManagement/editUser';
 class ViewAllUsers extends Component {
   constructor(props) {
     super(props);
+    this.token = window.localStorage.getItem('token');
+    this.RoleId = jwtDecode(this.token).RoleId
     this.state = {
       limit: 10,
       searchTerms: '',
-      token: window.localStorage.getItem('token')
     };
     this.handleChange = this.handleChange.bind(this);
     this.searchUser = this.searchUser.bind(this);
@@ -34,11 +35,11 @@ class ViewAllUsers extends Component {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
     }
-    if (this.state.token) {
-      this.setState({ userid: jwtDecode(this.state.token).UserId });
+    if (this.token) {
+      this.setState({ userid: jwtDecode(this.token).UserId });
       const offset = 0;
-      this.props.paginateUsers(this.state.token, offset, this.state.limit);
-      this.props.getRoles(this.state.token);
+      this.props.paginateUsers(this.token, offset, this.state.limit);
+      this.props.getRoles(this.token);
     }
   }
   handleChange(event) {
@@ -46,7 +47,7 @@ class ViewAllUsers extends Component {
   }
 
   updateUserRole(newRoleId, userId) {
-    this.props.editUserRole(this.state.token, { RoleId: newRoleId }, userId);
+    this.props.editUserRole(this.token, { RoleId: newRoleId }, userId);
   }
 
   changeLimit(value) {
@@ -55,12 +56,12 @@ class ViewAllUsers extends Component {
   }
 
   searchUser() {
-    this.props.searchUser(this.state.token, this.state.searchTerms);
+    this.props.searchUser(this.token, this.state.searchTerms);
   }
 
   refreshUsers() {
     const offset = 0;
-    this.props.paginateUsers(this.state.token, offset, this.state.limit);
+    this.props.paginateUsers(this.token, offset, this.state.limit);
     this.setState({
       searchTerms: ''
     });
@@ -100,24 +101,31 @@ class ViewAllUsers extends Component {
             <Link onClick={this.refreshUsers}>
               <i className="material-icons refresh-list-btn">
                 settings_backup_restore</i></Link></div>
-          { this.props.users ? 
-          <UserList
-            deleteUser={this.props.deleteUser}
-            userid={this.state.userid} 
-            users={this.props.users || []}
-            roles={this.props.roles || []}
-            updateUserRole={this.updateUserRole}
-          /> : null }
-          <center>
-            <Pagination
-              items={this.props.pageCount}
-              onSelect={(page) => {
-                const token = window.localStorage.getItem('token');
-                const offset = (page - 1) * this.state.limit;
-                this.props.paginateUsers(token, offset, this.state.limit);
-              }}
-            />
-          </center>
+          {this.props.users?
+            this.props.users.length > 0?
+              <div>
+                <UserList
+                  deleteUser={this.props.deleteUser}
+                  userid={this.state.userid} 
+                  users={this.props.users || []}
+                  roles={this.props.roles || []}
+                  updateUserRole={this.updateUserRole}
+                  roleId={this.RoleId}
+                /> 
+                <center>
+                <Pagination
+                  items={this.props.pageCount}
+                  onSelect={(page) => {
+                    const token = window.localStorage.getItem('token');
+                    const offset = (page - 1) * this.state.limit;
+                    this.props.paginateUsers(token, offset, this.state.limit);
+                  }}
+                />
+                </center>
+              </div>
+              : <div>{swal("Oops!", "No user found", "error")} </div> 
+            : <div/> 
+        }              
         </div>
       </div>
     );
@@ -134,7 +142,7 @@ ViewAllUsers.PropTypes = {
 const mapStoreToProps = (state) => {
   return {
     users: state.allUsersReducer.users,
-    pageCount: state.allUsersReducer.pageCount,
+    pageCount: state.allUsersReducer.pageCount | 1,
     paginated: state.allUsersReducer.paginated,
     roles: state.allRolesReducer.roles
   };

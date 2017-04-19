@@ -253,5 +253,62 @@ class UserController {
     });
   }
 
+/**
+ * Fetch specific document in the database
+ * Admin has access to all the documents
+ * Users only have access to their private
+ * documents and all other public documents.
+ * @param{Object} req - Server req
+ * @param{Object} res - Server res
+ * @return {Void} - returns Void
+ */
+  static fetchUsers(req, res) {
+    let queryBuilder = {
+      limit: 10,
+      offset: 0
+    };
+    if (req.query.limit && req.query.offset) {
+      queryBuilder = {
+        limit: req.query.limit,
+        offset: req.query.offset
+      };
+    } else if (req.query.search) {
+        let searchQuery = req.query.search;
+        queryBuilder = {};
+        const searchLimit = req.query.limit
+        queryBuilder.offset = (req.query.offset > 0) ? req.query.offset : 0;
+        if (searchLimit) {
+          queryBuilder.limit = searchLimit;
+        }
+        searchQuery = DocumentHelper.sanitizeString(searchQuery);
+        queryBuilder.where = {
+          $or:
+          [
+            {
+              username: { $like: `%${searchQuery}%` }
+            }, {
+              firstname: { $like: `%${searchQuery}%` }
+            }, {
+              lastname: { $like: `%${searchQuery}%` }
+            }, {
+              email: { $like: `%${searchQuery}%` }
+            }
+          ]
+        };
+      }
+    Users.findAndCountAll(queryBuilder)
+      .then((users) => {
+        const paginateResult = DocumentHelper
+        .paginateResult(users, queryBuilder.offset, queryBuilder.limit);
+        res.status(201).send({
+          users: users.rows,
+          pageCount: paginateResult.pageCount
+         });
+      })
+      .catch((err) => {
+        res.status(500).send({ error: err.message });
+      });
+  }
+
 }
 export default UserController;

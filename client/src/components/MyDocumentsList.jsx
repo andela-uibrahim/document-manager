@@ -11,7 +11,7 @@ const MyDocumentList = ({documents}) => {
       {documents.map(document => {
             return (
                 <div className="col s6 m3" key={document.id}>
-                  <div className="card">
+                  <div className="card medium">
                     <div className="card-image">
                       <img src={cardimage}/>
                       <span className="card-title">{document.title}</span>
@@ -35,7 +35,7 @@ const MyDocumentList = ({documents}) => {
        <div className="col s3 m4">
        </div>
           <div className="col s6 m4">
-            <div className="card">
+            <div className="card medium">
               <div className="card-image">
                 <img src={cardimage}/>
                 <span className="card-title"></span>

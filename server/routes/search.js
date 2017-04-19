@@ -12,6 +12,6 @@ router.route('/documents/')
     .get(Authenticate.authenticateUser, DocumentController.fetchDocuments)
 
 router.route('/users/')
-   // .get(Authenticate.authenticateUser, UserController.fetchUser)
+   .get(Authenticate.authenticateUser, UserController.fetchUsers)
 
 export default router;

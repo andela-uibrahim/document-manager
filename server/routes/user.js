@@ -9,8 +9,7 @@ const DocumentController = Controller.document;
 const router = express.Router();
 
 router.route('/')
-  .get(Authenticator.authenticateUser,
-     Authenticator.authenticateAdmin, UserController.fetchAllUsers)
+  .get(Authenticator.authenticateUser, UserController.fetchAllUsers)
   .post(UserController.createUser);
 
 router.route('/login')
