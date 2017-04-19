@@ -43,8 +43,7 @@ const confirmUpdateRole = (callback, roleId, userId) => {
     }
   });
 };
-const UserList = ({ users, deleteUser, roles, updateUserRole }) => {
-
+const UserList = ({ users, deleteUser, roles, updateUserRole, roleId }) => {
   return (
       <table className="highlight doc_list z-depth-4 panel pagination">
         <thead>
@@ -53,7 +52,8 @@ const UserList = ({ users, deleteUser, roles, updateUserRole }) => {
             <th>Last Name</th>
             <th>Username</th>
             <th>Email</th>
-            <th>Role</th>
+            {roleId === 1 ?
+            <th>Role</th>:<td />}
             <th>Registered on</th>
           </tr>
         </thead>
@@ -67,6 +67,7 @@ const UserList = ({ users, deleteUser, roles, updateUserRole }) => {
               <td>{user.lastname}</td>
               <td>{user.username}</td>
               <td>{user.email}</td>
+              {roleId === 1 ?
               <td>
                 { user.RoleId !== 1 ?
                   <select
@@ -80,9 +81,10 @@ const UserList = ({ users, deleteUser, roles, updateUserRole }) => {
                   </select>
                 : <span />
                 }
-              </td>
+              </td>:<td />}
               
               <td>{moment(user.createdAt).format('L')}</td>
+              { roleId === 1 ?
               <td>
               { user.RoleId !== 1 ?
                 <Link onClick={() => confirmDeletion(deleteUser, user.id)}>
@@ -90,7 +92,7 @@ const UserList = ({ users, deleteUser, roles, updateUserRole }) => {
                 </Link>
                 : <span />
               }
-              </td>
+              </td>:<td /> }
             </tr>
           )
           })
