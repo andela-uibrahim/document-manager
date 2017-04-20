@@ -16,6 +16,26 @@ export default {
     content: faker.lorem.paragraph(),
     access: 'public',
   },
+   publicDoc2: {
+    title: faker.random.word(),
+    content: faker.lorem.paragraph(),
+    access: 'public',
+  },
+   publicDoc3: {
+    title: faker.random.word(),
+    content: faker.lorem.paragraph(),
+    access: 'public',
+  },
+   publicDoc1: {
+    title: faker.random.word(),
+    content: faker.lorem.paragraph(),
+    access: 'public',
+  },
+   publicDoc4: {
+    title: faker.random.word(),
+    content: faker.lorem.paragraph(),
+    access: 'public',
+  },
   privateDoc: {
     title: faker.random.word(),
     content: faker.lorem.paragraph(),
@@ -30,6 +50,30 @@ export default {
     RoleId: 2
   },
   regularUser: {
+    username: faker.internet.userName(),
+    email: faker.internet.email(),
+    firstname: faker.name.firstName(),
+    lastname: faker.name.lastName(),
+    password: process.env.USER_PASSWORD,
+    RoleId: 2
+  },
+  regularUser2: {
+    username: faker.internet.userName(),
+    email: faker.internet.email(),
+    firstname: faker.name.firstName(),
+    lastname: faker.name.lastName(),
+    password: process.env.USER_PASSWORD,
+    RoleId: 2
+  },
+  regularUser3: {
+    username: faker.internet.userName(),
+    email: faker.internet.email(),
+    firstname: faker.name.firstName(),
+    lastname: faker.name.lastName(),
+    password: process.env.USER_PASSWORD,
+    RoleId: 2
+  },
+  regularUser4: {
     username: faker.internet.userName(),
     email: faker.internet.email(),
     firstname: faker.name.firstName(),
