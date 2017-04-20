@@ -42,9 +42,10 @@ class EditUser extends Component {
       firstname: '',
       lastname: '',
       status: '',
-      token: window.localStorage.getItem('token')
     };
-
+    this.token = window.localStorage.getItem('token');
+    this.userId = jwtDecode(this.token).UserId;
+    this.roleId = jwtDecode(this.token).RoleId;
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -54,6 +55,11 @@ class EditUser extends Component {
 
 
   render() {
+    if (!this.token) {
+      browserHistory.push('/');
+    } else if(this.userId !== this.props.params.id && this.roleId !==1){
+      browserHistory.push('/users');
+    }
 
     return (
       <div className="row">

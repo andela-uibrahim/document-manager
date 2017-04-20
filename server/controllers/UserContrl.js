@@ -267,7 +267,7 @@ class UserController {
       limit: 10,
       offset: 0
     };
-    if (req.query.limit && req.query.offset) {
+    if (req.query.limit || req.query.offset) {
       queryBuilder = {
         limit: req.query.limit,
         offset: req.query.offset

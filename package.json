@@ -123,8 +123,7 @@
   },
   "nyc": {
     "exclude": [
-      "tests/**/**/*.js",
-      "server/controllers/helper/*.js"
+      "tests/**/**/*.js"
     ]
   }
 }

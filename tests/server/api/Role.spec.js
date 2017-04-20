@@ -71,23 +71,26 @@ describe('Document ==> \n', () => {
           done();
         });
     });
+
     it('should be able to fetch all the roles in the database', (done) => {
-      client.get('/api/roles')
+      client.get('/api/roles/')
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
           expect(res.status).to.equal(201);
           done();
         });
     });
-    // it('should be able to delete roles from the table', (done) => {
-    //   client.delete('/roles/2')
-    //     .set({ 'x-access-token': adminToken })
-    //     .end((error, res) => {
-    //       expect(res.status).to.equal(200);
-    //       expect(res.body.success).to.equal(true);
-    //       done();
-    //     });
-    // });
+    it('should be able to delete roles from the table', (done) => {
+      client.delete('/api/roles/1')
+        .set({ 'x-access-token': adminToken })
+        .end((error, res) => {
+          console.log('================>', res.message)
+          expect(res.status).to.equal(200);
+          expect(res.body.success).to.equal(true);
+          done();
+        });
+    });
+    
     it('should return params 401 for invalid request params', (done) => {
       client.delete('/api/roles/400')
         .set({ 'x-access-token': adminToken })
