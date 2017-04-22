@@ -19,8 +19,7 @@ router.route('/logout')
   .post(UserController.logoutUser);
 
 router.route('/:id')
-  .get(Authenticator.authenticateUser,
-  Authenticator.authenticateAdmin, UserController.fetchUser)
+  .get(Authenticator.authenticateUser, UserController.fetchUser)
   .delete(Authenticator.authenticateUser,
   Authenticator.authenticateAdmin, UserController.deleteUser)
   .put(Authenticator.authenticateUser, UserController.updateUser);

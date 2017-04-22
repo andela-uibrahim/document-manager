@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import Header from './Header.jsx';
 import Sidebar from './Sidebar.jsx';
 import UserList from '../components/UserList.jsx';
-import viewAllUsersAction from '../actions/userManagement/viewAllUsers';
+import viewAllUsersAction from '../actions/userManagement/viewAllusers';
 import viewAllRolesAction from '../actions/roleManagement/viewAllRoles';
 import deleteUserAction from '../actions/userManagement/deleteUser';
 import paginateUserAction from '../actions/userManagement/paginateUser';
@@ -56,7 +56,12 @@ class ViewAllUsers extends Component {
   }
 
   searchUser() {
-    this.props.searchUser(this.token, this.state.searchTerms);
+    this.props.searchUser(this.token, this.state.searchTerms)
+    .then(()=> {
+      if(this.props.users.length<1){
+        swal("Here's a message!");
+      }
+    });
   }
 
   refreshUsers() {
@@ -101,8 +106,7 @@ class ViewAllUsers extends Component {
             <Link onClick={this.refreshUsers}>
               <i className="material-icons refresh-list-btn">
                 settings_backup_restore</i></Link></div>
-          {this.props.users?
-            this.props.users.length > 0?
+          {(this.props.users && this.props.users.length)?
               <div>
                 <UserList
                   deleteUser={this.props.deleteUser}
@@ -113,18 +117,18 @@ class ViewAllUsers extends Component {
                   roleId={this.RoleId}
                 /> 
                 <center>
-                <Pagination
+                <Pagination className="pag2"
                   items={this.props.pageCount}
                   onSelect={(page) => {
                     const token = window.localStorage.getItem('token');
                     const offset = (page - 1) * this.state.limit;
+                    console.log(offset);
                     this.props.paginateUsers(token, offset, this.state.limit);
                   }}
                 />
                 </center>
               </div>
-              : <div>{swal("Oops!", "No user found", "error")} </div> 
-            : <div/> 
+              : <div/> 
         }              
         </div>
       </div>

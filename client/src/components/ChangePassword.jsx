@@ -49,7 +49,6 @@ class EditUser extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-
   render() {
     return (
       <div className="row">
@@ -95,7 +94,6 @@ class EditUser extends Component {
 
 
 const mapStoreToProps = (state) => {
-
   return {
     user: state.allUsersReducer.user,
     status: state.allUsersReducer.status
