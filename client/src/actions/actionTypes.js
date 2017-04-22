@@ -25,6 +25,7 @@ export default keymirror({
   USER_UPDATE_FAILED: null,
   FIND_USER: null,
   USER_DELETED: null,
+  VIEW_USER: null,
   ALL_ROLES: null,
   FIND_ROLE: null,
   ROLE_RETRIEVAL_FAILED: null,

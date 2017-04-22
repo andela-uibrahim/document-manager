@@ -17,6 +17,7 @@ class Header extends Component {
 
   componentDidMount() {
     $(document).ready(function () {
+      $('.pag').click( event => event.preventDefault());
       $('select').material_select();
       $("#collapse_btn").sideNav();
       $("#collapse_btn").sideNav('hide');
@@ -60,7 +61,6 @@ class Header extends Component {
               <li><Link to="/about">About Us</Link></li>
             </ul>
           </div>
-           <h3 className="center title">Document Manager</h3>
         </nav >
       </div>
     );

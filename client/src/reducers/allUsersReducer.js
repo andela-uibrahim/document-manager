@@ -11,6 +11,8 @@ export default function allUsersReducer(state = initialState, action) {
       return Object.assign({}, state, {  users: action.users, pageCount: action.pageCount });
     case actionTypes.USER_RETRIEVAL_FAILED:
       return [...state, Object.assign({}, action.status)];
+    case actionTypes.VIEW_USER:
+      return Object.assign({}, state, { user: action.user });
     case actionTypes.USER_UPDATED:
       const userToUpdate = state.users.find(user => user.id === action.user.id);
       const userIndex = state.users.indexOf(userToUpdate);

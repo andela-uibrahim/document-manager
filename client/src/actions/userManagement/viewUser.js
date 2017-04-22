@@ -3,7 +3,7 @@ import actionTypes from '../actionTypes';
 
 export default (token, userid) => {
   return (dispatch) => {
-    return axios.get(`/api/v1/users/${userid}`, {
+    return axios.get(`/api/users/${userid}`, {
       headers: {
         Authorization: token
       }

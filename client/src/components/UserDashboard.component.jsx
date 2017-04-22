@@ -46,11 +46,10 @@ class ViewAllDocuments extends Component {
   }
 
   render() {
-    if (!window.localStorage.getItem('token')) {
-      browserHistory.push('/');
-    }
+    // if (!window.localStorage.getItem('token')) {
+    //   browserHistory.push('/');
+    // }
     return (
-      
       <div className="row dashboardContainer col s12">
         <Header />
         <Sidebar />
@@ -81,12 +80,11 @@ class ViewAllDocuments extends Component {
             documents={this.props.paginated || this.props.documents || []}
           />
           <center>
-            <Pagination
+            <Pagination className="pag"
               items={this.props.pageCount}
               onSelect={(page) => {
-                const token = window.localStorage.getItem('token');
                 const offset = (page - 1) * this.state.limit;
-                this.props.paginateDocuments(token, offset, this.state.limit);
+                this.props.paginateDocuments(this.state.token, offset, this.state.limit);
               }}
             />
           </center>
@@ -103,6 +101,7 @@ ViewAllDocuments.PropTypes = {
 };
 
 const mapStoreToProps = (state) => {
+  
   return {
     documents: state.allDocumentsReducer.documents,
     pageCount: state.allDocumentsReducer.pageCount

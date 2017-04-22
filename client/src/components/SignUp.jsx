@@ -28,9 +28,9 @@ class SignUpPage extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.Signup(this.state)
-      .then(() => {
-        browserHistory.push('/dashboard');
-      });
+    .then(() => {
+      browserHistory.push('/dashboard');
+    });
   }
 
   render() {
@@ -50,6 +50,7 @@ class SignUpPage extends Component {
                 name="username"
                 id="username"
                 onChange={this.handleChange}
+                required
               />
               <label htmlFor="username">Username</label>
             </div>
@@ -62,6 +63,7 @@ class SignUpPage extends Component {
                 name="firstname"
                 id="firstname"
                 onChange={this.handleChange}
+                required
               />
               <label htmlFor="firstname">Firstname</label>
             </div>
@@ -75,6 +77,7 @@ class SignUpPage extends Component {
                 name="lastname"
                 id="lastname"
                 onChange={this.handleChange}
+                required
               />
               <label htmlFor="lastname">Lastname</label>
             </div>
@@ -88,6 +91,7 @@ class SignUpPage extends Component {
                 name="email"
                 id="email"
                 onChange={this.handleChange}
+                required
               />
               <label htmlFor="email">Enter your email</label>
             </div>
@@ -101,6 +105,8 @@ class SignUpPage extends Component {
                 name="password"
                 id="password"
                 onChange={this.handleChange}
+                minLength="8"
+                required
               />
               <label htmlFor="password">Enter your password</label>
             </div>

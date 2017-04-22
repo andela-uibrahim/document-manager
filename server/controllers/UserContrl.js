@@ -78,11 +78,11 @@ class UserController {
             UserId: user.id,
             RoleId: user.RoleId,
             user: user.username
-          }, SECRET_KEY, { expiresIn: 86400 });
+          }, SECRET_KEY, { expiresIn: '1h' });
           res.status(201).send({
             message: 'login successfully',
             token,
-            expiresIn: 86400
+            expiresIn: '1h'
           });
         } else {
           res.status(401).send({

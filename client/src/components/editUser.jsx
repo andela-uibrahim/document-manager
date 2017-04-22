@@ -5,6 +5,7 @@ import React, { Component, PropTypes } from 'react';
 import Header from './Header.jsx';
 import Sidebar from './Sidebar.jsx';
 import editUserAction from '../actions/userManagement/editUser';
+import viewUserAction from '../actions/userManagement/viewUser';
 
 
 const confirmUpdateUser = (callback,token, userData, userId) => {
@@ -53,11 +54,27 @@ class EditUser extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  componentWillMount() {
+    const token = window.localStorage.getItem('token');
+    if (token) {
+      this.props.viewUser(token, this.props.params.id);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      username: nextProps.user.username,
+      email: nextProps.user.email,
+      firstname: nextProps.user.firstname,
+      lastname: nextProps.user.lastname,
+    });
+   }
 
   render() {
     if (!this.token) {
       browserHistory.push('/');
-    } else if(this.userId !== this.props.params.id && this.roleId !==1){
+    } else if((this.userId !== parseInt(this.props.params.id))
+     && (this.roleId !==1)){
       browserHistory.push('/users');
     }
 
@@ -78,6 +95,7 @@ class EditUser extends Component {
                 name="username"
                 id="username"
                 onChange={this.handleChange}
+                value={this.state.username}
               />
               <label htmlFor="username">Username</label>
             </div>
@@ -85,13 +103,15 @@ class EditUser extends Component {
           <div className="row">
             <div className="input-field col s12">
               <input
-                className="validate"
+                
                 type="text"
                 name="firstname"
                 id="firstname"
                 onChange={this.handleChange}
+                value={this.state.firstname}    
               />
               <label htmlFor="firstname">Firstname</label>
+              
             </div>
           </div>
 
@@ -103,6 +123,7 @@ class EditUser extends Component {
                 name="lastname"
                 id="lastname"
                 onChange={this.handleChange}
+                value={this.state.lastname}
               />
               <label htmlFor="lastname">Lastname</label>
             </div>
@@ -116,6 +137,8 @@ class EditUser extends Component {
                 name="email"
                 id="email"
                 onChange={this.handleChange}
+                value={this.state.email}
+
               />
               <label htmlFor="email">Enter your email</label>
             </div>
@@ -140,19 +163,20 @@ class EditUser extends Component {
   }
 }
 
-
-
 const mapStoreToProps = (state) => {
-  return {
-    user: state.allUsersReducer.user,
-    status: state.allUsersReducer.status
+
+    return {
+      user: state.allUsersReducer.user ? state.allUsersReducer.user: '' , 
+      status: state.allUsersReducer.status
+    };  
   };
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     editUser: (token, state, userId) =>
       dispatch(editUserAction(token, state, userId)),
+    viewUser: (token, userId) => 
+      dispatch(viewUserAction(token, userId))
   };
 };
 
