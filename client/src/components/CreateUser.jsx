@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import CreateUserAction from '../actions/userManagement/createUser';
 import Header from '../components/Header.jsx';
+import Sidebar from './Sidebar.jsx';
 
 
-class CreateUser extends Component {
+export class CreateUser extends Component {
 
   constructor(props) {
     super(props);
@@ -37,6 +38,7 @@ class CreateUser extends Component {
     return (
       <div className="row">
         <Header />
+        <Sidebar />
         <div className="col s2 l4 " />
         <form className="col s8 l4 loginForm" onSubmit={this.handleSubmit} >
           <div className="row">

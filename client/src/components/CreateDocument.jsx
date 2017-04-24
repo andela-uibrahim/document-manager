@@ -25,7 +25,7 @@ const ResponseMessage = (props) => {
 };
 
 
-class CreateDocument extends Component {
+export class CreateDocument extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,11 +37,10 @@ class CreateDocument extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.props.CheckToken();
   }
 
   componentDidMount(){
-     $(this.refs.access).material_select(this.handleChange.bind(this));
+     //$('#access').material_select(this.handleChange.bind(this));
   }
 
   componentWillReceiveProps(nextProps) {

@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import Header from './Header.jsx';
 import Sidebar from './Sidebar.jsx';
 import UserList from '../components/UserList.jsx';
-import viewAllUsersAction from '../actions/userManagement/viewAllusers';
+import viewAllUsersAction from '../actions/userManagement/viewAllUsers';
 import viewAllRolesAction from '../actions/roleManagement/viewAllRoles';
 import deleteUserAction from '../actions/userManagement/deleteUser';
 import paginateUserAction from '../actions/userManagement/paginateUser';
@@ -15,7 +15,7 @@ import editUserRoleAction from '../actions/userManagement/editUser';
 
 
 
-class ViewAllUsers extends Component {
+export class ViewAllUsers extends Component {
   constructor(props) {
     super(props);
     this.token = window.localStorage.getItem('token');
@@ -56,12 +56,7 @@ class ViewAllUsers extends Component {
   }
 
   searchUser() {
-    this.props.searchUser(this.token, this.state.searchTerms)
-    .then(()=> {
-      if(this.props.users.length<1){
-        swal("Here's a message!");
-      }
-    });
+    this.props.searchUser(this.token, this.state.searchTerms);
   }
 
   refreshUsers() {
@@ -106,7 +101,8 @@ class ViewAllUsers extends Component {
             <Link onClick={this.refreshUsers}>
               <i className="material-icons refresh-list-btn">
                 settings_backup_restore</i></Link></div>
-          {(this.props.users && this.props.users.length)?
+          {this.props.users?
+            this.props.users.length > 0?
               <div>
                 <UserList
                   deleteUser={this.props.deleteUser}
@@ -117,18 +113,18 @@ class ViewAllUsers extends Component {
                   roleId={this.RoleId}
                 /> 
                 <center>
-                <Pagination className="pag2"
+                <Pagination
                   items={this.props.pageCount}
                   onSelect={(page) => {
                     const token = window.localStorage.getItem('token');
                     const offset = (page - 1) * this.state.limit;
-                    console.log(offset);
                     this.props.paginateUsers(token, offset, this.state.limit);
                   }}
                 />
                 </center>
               </div>
-              : <div/> 
+              : <div>{swal("Oops!", "No user found", "error")} </div> 
+            : <div/> 
         }              
         </div>
       </div>

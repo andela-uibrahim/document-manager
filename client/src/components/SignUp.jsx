@@ -5,7 +5,7 @@ import signupAction from '../actions/authentication/signUpAction';
 import Header from '../components/Header.jsx';
 
 
-class SignUpPage extends Component {
+export class SignUpPage extends Component {
 
   constructor(props) {
     super(props);
@@ -139,7 +139,6 @@ class SignUpPage extends Component {
 
 SignUpPage.PropTypes = {
   user: React.PropTypes.object.isRequired,
-  loginThings: React.PropTypes.func.isRequired
 };
 
 SignUpPage.contextTypes = {

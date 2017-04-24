@@ -9,21 +9,21 @@ const MyDocumentList = ({documents}) => {
        <div className="col s2 m2">
        </div>
       {documents.map(document => {
-            return (
-                <div className="col s6 m3" key={document.id}>
-                  <div className="card medium">
-                    <div className="card-image">
-                      <img src={cardimage}/>
-                      <span className="card-title">{document.title}</span>
-                    </div>
-                    <div className="card-content">
-                      <p>{document.content}</p>
-                    </div>
-                    <div className="card-action">
-                      <a href="#">{document.access}</a>
-                    </div>
-                  </div>
-                </div>      
+        return (
+          <div className="col s6 m3" key={document.id}>
+            <div className="card medium">
+              <div className="card-image">
+                <img src={cardimage}/>
+                <span className="card-title">{document.title}</span>
+              </div>
+              <div className="card-content">
+                <p>{document.content}</p>
+              </div>
+              <div className="card-action">
+                <a href="#">{document.access}</a>
+              </div>
+            </div>
+          </div>      
           )
         })
       }

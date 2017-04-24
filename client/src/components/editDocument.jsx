@@ -28,7 +28,7 @@ const ResponseMessage = (props) => {
 };
 
 
-class EditDocument extends Component {
+export class EditDocument extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,7 +50,7 @@ class EditDocument extends Component {
   }
 
   componentDidMount() {
-    $(this.refs.access).material_select(this.handleChange.bind(this));
+    //$(this.refs.access).material_select(this.handleChange.bind(this));
   }
 
   componentWillReceiveProps(nextProps) {

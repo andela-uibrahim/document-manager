@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
-// import { Pagination } from 'react-materialize';
 
 const confirmDeletion = (callback, roleId) => {
   swal({
@@ -31,7 +30,7 @@ const RoleList = ({ roles, deleteRole }) => {
       <thead>
         <tr>
           <th>Role</th>
-          <th>Create on</th>
+          <th>Created on</th>
           <th>Delete Role</th>
         </tr>
       </thead>

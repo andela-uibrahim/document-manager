@@ -6,6 +6,7 @@ import app from '../../../server';
 import testData from '../helper/helper';
 import db from '../../../server/models';
 
+
 dotenv.config();
 
 
@@ -250,9 +251,9 @@ describe('document ==> \n', () => {
      belonging to a particular user`, (done) => {
       client.post('/api/documents')
         .set({ 'x-access-token': regularToken })
-        .send(testData.documentPublic1)
+        .send(testData.publicDoc1)
         .end(() => {
-          client.get('/api/users/2/documents')
+          client.get('/api/users/4/documents')
             .set({ 'x-access-token': adminToken })
             .end((error1, res1) => {
               expect(res1.status).to.equal(200);
@@ -269,10 +270,10 @@ describe('document ==> \n', () => {
           done();
         });
     });
-    it(`Regular Users should be able to access public
-     documents only`, (done) => {
-      client.get('/api/users/2/documents')
-        .set({ 'x-access-token': adminToken })
+    it(`Regular Users should be able to access their own documents
+    `, (done) => {
+      client.get('/api/users/4/documents')
+        .set({ 'x-access-token': regularToken })
         .end((error, res) => {
           expect(res.status).to.equal(200);
           done();
