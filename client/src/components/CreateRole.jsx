@@ -6,7 +6,7 @@ import Sidebar from './Sidebar.jsx';
 import createRoleAction from '../actions/roleManagement/newRole';
 
 
-class CreateRole extends Component {
+export class CreateRole extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,10 +21,6 @@ class CreateRole extends Component {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
     }
-  }
-
-  componentDidMount() {
-    $(this.refs.access).material_select(this.handleChange.bind(this));
   }
 
   componentWillReceiveProps(nextProps) {

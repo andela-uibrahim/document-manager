@@ -34,7 +34,7 @@ const confirmUpdateUser = (callback,token, userData, userId) => {
     });
 };
 
-class EditUser extends Component {
+export class EditUser extends Component {
   constructor(props) {
     super(props);
     this.state = {

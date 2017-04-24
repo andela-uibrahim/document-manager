@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import LoginPage from './components/Login.component.jsx';
+import LoginPage from './components/Login.jsx';
 import SignUpPage from './components/SignUp.jsx';
-import UserDashBoard from './components/UserDashBoard.component.jsx';
-import ViewDocument from './components/ViewDocument.component.jsx';
+import UserDashBoard from './components/UserDashboard.jsx';
+import ViewDocument from './components/ViewDocument.jsx';
 import CreateDocument from './components/CreateDocument.jsx';
 import EditDocument from './components/EditDocument.jsx';
 import CreateRole from './components/CreateRole.jsx';

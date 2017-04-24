@@ -9,7 +9,7 @@ import MyDocumentList from "./MydocumentsList.jsx"
 import ViewMyDocuments from '../actions/documentManagement/viewMyDocuments';
 //import paginateDocumentAction from '../actions/documentManagement/paginateDocument';
 
-class UserDocuments extends Component {
+ export class UserDocuments extends Component {
   constructor(props) {
     super(props);
     this.token = window.localStorage.getItem('token');

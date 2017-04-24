@@ -84,7 +84,6 @@ describe('Document ==> \n', () => {
       client.delete('/api/roles/1')
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
-          console.log('================>', res.message)
           expect(res.status).to.equal(200);
           expect(res.body.success).to.equal(true);
           done();

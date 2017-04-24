@@ -8,7 +8,7 @@ import RoleList from '../components/RoleList.jsx';
 import viewAllRolesAction from '../actions/roleManagement/viewAllRoles';
 import deleteRoleAction from '../actions/roleManagement/deleteRole';
 
-class ViewAllRoles extends Component {
+export class ViewAllRoles extends Component {
   constructor(props) {
     super(props);
     this.state = {

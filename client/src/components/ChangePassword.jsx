@@ -33,7 +33,7 @@ const confirmChangePassword = (callback, token, state, userId) => {
     });
 };
 
-class EditUser extends Component {
+export class ChangePassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -107,4 +107,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStoreToProps, mapDispatchToProps)(EditUser);
+export default connect(mapStoreToProps, mapDispatchToProps)(ChangePassword);

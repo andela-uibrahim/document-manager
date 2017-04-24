@@ -1,5 +1,3 @@
-'use strict';
-
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import jwtDecode from 'jwt-decode';
@@ -21,7 +19,7 @@ export default class Sidebar extends Component {
               <center className="circle useractions">
                 <i className="material-icons">view_list</i></center>
             </div>
-              <p className="col s10 action_desc">All Documents</p>
+              <p className="col s10 action_desc">All Documents </p>
             </Link>
           </li>
           <li>
