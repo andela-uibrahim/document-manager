@@ -5,7 +5,7 @@ import jwtDecode from 'jwt-decode';
 import React, { Component } from 'react';
 import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
-import MyDocumentList from "./MydocumentsList.jsx"
+import MyDocumentList from "./MyDocumentsList.jsx"
 import ViewMyDocuments from '../../actions/documentManagement/viewMyDocuments';
 
  export class UserDocuments extends Component {
