@@ -59,8 +59,7 @@
     "request": "^2.81.0",
     "sequelize-cli": "^2.7.0",
     "should": "^11.2.1",
-    "supertest": "^3.0.0",
-    "concurrently": "^3.4.0"
+    "supertest": "^3.0.0"
   },
   "dependencies": {
     "axios": "^0.16.1",
@@ -74,6 +73,7 @@
     "camelcase": "^4.0.0",
     "chai-enzyme": "^0.6.1",
     "copy-webpack-plugin": "^4.0.1",
+    "concurrently": "^3.4.0",
     "css-loader": "^0.28.0",
     "dotenv": "^4.0.0",
     "enzyme": "^2.8.2",
