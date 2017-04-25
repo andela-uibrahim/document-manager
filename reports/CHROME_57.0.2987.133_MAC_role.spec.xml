@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="2">
+
+  <testsuite name="role.spec"
+    errors="0" failures="1" hostname="" id="" package="role.spec" skipped="1"
+    tests="2" time="17.51" timestamp="Mon, 24 Apr 2017 22:28:54 GMT">
+  
+    <testcase name="Create Role" classname="role.spec" time="17.51" assertions="2">
+
+      <failure message="Timed out while waiting for element &lt;div.login-feedback&gt; to be present for 10000 milliseconds.">    at Object.CreateRole [as Create Role] (/Users/andeladeveloper/Desktop/document-manager/tests/client/e2e/role.spec.js:11:8)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)</failure>
+
+    
+    </testcase>
+  
+  
+    
+    <testcase
+      name="Delete Role" classname="role.spec">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>

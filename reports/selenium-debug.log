@@ -1,0 +1,359 @@
+21:28:35.337 INFO - Selenium build info: version: '3.3.1', revision: '5234b32'
+21:28:35.339 INFO - Launching a standalone Selenium Server
+2017-04-24 21:28:35.417:INFO::main: Logging initialized @909ms to org.seleniumhq.jetty9.util.log.StdErrLog
+21:28:35.584 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
+ registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform MAC
+21:28:35.585 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
+ registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform MAC
+21:28:35.585 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+21:28:35.585 INFO - Driver provider com.opera.core.systems.OperaDriver registration is skipped:
+Unable to create new instances on this machine.
+21:28:35.585 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+21:28:35.586 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+2017-04-24 21:28:35.758:INFO:osjs.Server:main: jetty-9.2.20.v20161216
+2017-04-24 21:28:35.861:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@685cb137{/,null,AVAILABLE}
+2017-04-24 21:28:35.971:INFO:osjs.AbstractConnector:main: Started ServerConnector@5bcab519{HTTP/1.1,[http/1.1]}{0.0.0.0:4444}
+2017-04-24 21:28:35.972:INFO:osjs.Server:main: Started @1464ms
+21:28:35.972 INFO - Selenium Server is up and running
+21:28:36.845 INFO - SessionCleaner initialized with insideBrowserTimeout 0 and clientGoneTimeout 1800000 polling every 180000
+21:28:36.919 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=default, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+21:28:36.969 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=default, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f) on port 30411
+Only local connections are allowed.
+21:28:39.178 INFO - Detected dialect: OSS
+21:28:39.216 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=default, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+21:28:39.251 INFO - Executing: [get: http://localhost:3000])
+21:28:39.917 INFO - Done: [get: http://localhost:3000]
+21:28:39.929 INFO - Executing: [find elements: By.cssSelector: body])
+21:28:40.094 INFO - Done: [find elements: By.cssSelector: body]
+21:28:40.102 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (327b2d1c532fa72b9edffba337c80b80)] -> css selector: body]])
+21:28:40.169 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (327b2d1c532fa72b9edffba337c80b80)] -> css selector: body]]
+21:28:40.179 INFO - Executing: [find element: By.cssSelector: input[type=email]])
+21:28:41.719 WARN - Exception thrown
+org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"input[type=email]"}
+  (Session info: chrome=57.0.2987.133)
+  (Driver info: chromedriver=2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 88 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.3.1', revision: '5234b32', time: '2017-03-10 09:04:52 -0800'
+System info: host: 'MacBook-Pro.local', ip: 'fe80:0:0:0:8f4:3112:e71d:279d%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f), userDataDir=/var/folders/7f/nz99wybd7778sw_lj2n_f_ym0000gn/T/.org.chromium.Chromium.ohY9V0}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=57.0.2987.133, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 327b2d1c532fa72b9edffba337c80b80
+*** Element info: {Using=css selector, value=input[type=email]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:216)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:168)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:638)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:371)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:468)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:104)
+	at com.sun.proxy.$Proxy4.findElement(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:188)
+	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:48)
+	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:33)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+21:28:41.723 WARN - Exception: no such element: Unable to locate element: {"method":"css selector","selector":"input[type=email]"}
+  (Session info: chrome=57.0.2987.133)
+  (Driver info: chromedriver=2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 88 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.3.1', revision: '5234b32', time: '2017-03-10 09:04:52 -0800'
+System info: host: 'MacBook-Pro.local', ip: 'fe80:0:0:0:8f4:3112:e71d:279d%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f), userDataDir=/var/folders/7f/nz99wybd7778sw_lj2n_f_ym0000gn/T/.org.chromium.Chromium.ohY9V0}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=57.0.2987.133, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 327b2d1c532fa72b9edffba337c80b80
+*** Element info: {Using=css selector, value=input[type=email]}
+21:28:41.778 INFO - Executing: [find element: By.cssSelector: input[type=password]])
+21:28:42.128 WARN - Exception thrown
+org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"input[type=password]"}
+  (Session info: chrome=57.0.2987.133)
+  (Driver info: chromedriver=2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 34 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.3.1', revision: '5234b32', time: '2017-03-10 09:04:52 -0800'
+System info: host: 'MacBook-Pro.local', ip: 'fe80:0:0:0:8f4:3112:e71d:279d%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f), userDataDir=/var/folders/7f/nz99wybd7778sw_lj2n_f_ym0000gn/T/.org.chromium.Chromium.ohY9V0}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=57.0.2987.133, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 327b2d1c532fa72b9edffba337c80b80
+*** Element info: {Using=css selector, value=input[type=password]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:216)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:168)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:638)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:371)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:468)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:104)
+	at com.sun.proxy.$Proxy4.findElement(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:188)
+	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:48)
+	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:33)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+21:28:42.129 WARN - Exception: no such element: Unable to locate element: {"method":"css selector","selector":"input[type=password]"}
+  (Session info: chrome=57.0.2987.133)
+  (Driver info: chromedriver=2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 34 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.3.1', revision: '5234b32', time: '2017-03-10 09:04:52 -0800'
+System info: host: 'MacBook-Pro.local', ip: 'fe80:0:0:0:8f4:3112:e71d:279d%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f), userDataDir=/var/folders/7f/nz99wybd7778sw_lj2n_f_ym0000gn/T/.org.chromium.Chromium.ohY9V0}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=57.0.2987.133, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 327b2d1c532fa72b9edffba337c80b80
+*** Element info: {Using=css selector, value=input[type=password]}
+21:28:42.213 INFO - Executing: [find element: By.cssSelector: button[type="submit"]])
+21:28:42.518 WARN - Exception thrown
+org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"button[type="submit"]"}
+  (Session info: chrome=57.0.2987.133)
+  (Driver info: chromedriver=2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 31 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.3.1', revision: '5234b32', time: '2017-03-10 09:04:52 -0800'
+System info: host: 'MacBook-Pro.local', ip: 'fe80:0:0:0:8f4:3112:e71d:279d%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f), userDataDir=/var/folders/7f/nz99wybd7778sw_lj2n_f_ym0000gn/T/.org.chromium.Chromium.ohY9V0}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=57.0.2987.133, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 327b2d1c532fa72b9edffba337c80b80
+*** Element info: {Using=css selector, value=button[type="submit"]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:216)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:168)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:638)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:371)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByCssSelector(RemoteWebDriver.java:468)
+	at org.openqa.selenium.By$ByCssSelector.findElement(By.java:430)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:104)
+	at com.sun.proxy.$Proxy4.findElement(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:188)
+	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:48)
+	at org.openqa.selenium.remote.server.handler.FindElement.call(FindElement.java:33)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+21:28:42.519 WARN - Exception: no such element: Unable to locate element: {"method":"css selector","selector":"button[type="submit"]"}
+  (Session info: chrome=57.0.2987.133)
+  (Driver info: chromedriver=2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 31 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.3.1', revision: '5234b32', time: '2017-03-10 09:04:52 -0800'
+System info: host: 'MacBook-Pro.local', ip: 'fe80:0:0:0:8f4:3112:e71d:279d%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f), userDataDir=/var/folders/7f/nz99wybd7778sw_lj2n_f_ym0000gn/T/.org.chromium.Chromium.ohY9V0}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=57.0.2987.133, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 327b2d1c532fa72b9edffba337c80b80
+*** Element info: {Using=css selector, value=button[type="submit"]}
+21:28:42.572 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+21:28:42.599 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+21:28:43.108 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+21:28:43.119 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+21:28:43.627 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+21:28:43.651 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+21:28:44.158 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+21:28:44.177 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+21:28:44.686 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+21:28:44.699 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+21:28:45.208 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+21:29:45.272 INFO - Executing: [delete session: e31a2f7e-f4b4-4b52-b028-d231c9ac2179])
+21:30:45.449 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=default, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+21:30:45.452 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=default, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f) on port 31428
+Only local connections are allowed.
+21:30:46.363 INFO - Detected dialect: OSS
+21:30:46.367 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=default, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+21:30:46.376 INFO - Executing: [get: http://localhost:3000])
+23:28:54.225 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:28:54.377 INFO - Done: [get: http://localhost:3000]
+23:28:54.387 INFO - Done: [delete session: e31a2f7e-f4b4-4b52-b028-d231c9ac2179]
+23:28:54.393 INFO - Executing: [find elements: By.cssSelector: body])
+23:28:54.470 INFO - Done: [find elements: By.cssSelector: body]
+23:28:54.479 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (fbd1e7e34882dc82c10d30f98661178b)] -> css selector: body]])
+23:28:54.531 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (fbd1e7e34882dc82c10d30f98661178b)] -> css selector: body]]
+23:28:54.544 INFO - Executing: [get title])
+23:28:54.561 INFO - Done: [get title]
+23:28:54.572 INFO - Executing: [delete session: 2b4b0702-b13a-4ed4-bd9e-a108bd3098ca])
+23:28:54.698 INFO - Done: [delete session: 2b4b0702-b13a-4ed4-bd9e-a108bd3098ca]
+23:28:54.961 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=default, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+23:28:54.963 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=default, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f) on port 40973
+Only local connections are allowed.
+23:28:55.979 INFO - Detected dialect: OSS
+23:28:55.999 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=default, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+23:28:56.006 INFO - Executing: [get: http://localhost:3000])
+23:28:58.516 INFO - Done: [get: http://localhost:3000]
+23:28:58.529 INFO - Executing: [find elements: By.cssSelector: body])
+23:28:58.560 INFO - Done: [find elements: By.cssSelector: body]
+23:28:58.565 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (b603742a7330a200282680b40a318913)] -> css selector: body]])
+23:28:58.590 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (b603742a7330a200282680b40a318913)] -> css selector: body]]
+23:28:58.595 INFO - Executing: [find element: By.cssSelector: input[type=email]])
+23:28:58.633 INFO - Done: [find element: By.cssSelector: input[type=email]]
+23:28:58.640 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (b603742a7330a200282680b40a318913)] -> css selector: input[type=email]], [a, d, m, i, n, @, a, d, m, i, n, ., c, o, m]])
+23:28:59.575 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (b603742a7330a200282680b40a318913)] -> css selector: input[type=email]], [a, d, m, i, n, @, a, d, m, i, n, ., c, o, m]]
+23:28:59.642 INFO - Executing: [find element: By.cssSelector: input[type=password]])
+23:28:59.694 INFO - Done: [find element: By.cssSelector: input[type=password]]
+23:28:59.701 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (b603742a7330a200282680b40a318913)] -> css selector: input[type=password]], [K, r, a, t, u, s, 0, 4, 3]])
+23:28:59.868 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (b603742a7330a200282680b40a318913)] -> css selector: input[type=password]], [K, r, a, t, u, s, 0, 4, 3]]
+23:28:59.874 INFO - Executing: [find element: By.cssSelector: button[type="submit"]])
+23:28:59.903 INFO - Done: [find element: By.cssSelector: button[type="submit"]]
+23:28:59.908 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (b603742a7330a200282680b40a318913)] -> css selector: button[type="submit"]]])
+23:29:01.882 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (b603742a7330a200282680b40a318913)] -> css selector: button[type="submit"]]]
+23:29:01.887 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:01.909 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:02.417 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:02.427 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:02.933 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:02.942 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:03.447 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:03.456 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:03.961 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:03.975 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:04.478 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:04.486 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:04.994 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:05.004 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:05.516 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:05.524 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:06.030 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:06.038 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:06.545 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:06.553 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:07.063 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:07.072 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:07.581 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:07.590 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:08.100 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:08.108 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:08.619 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:08.634 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:09.142 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:09.152 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:09.663 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:09.674 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:10.183 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:10.195 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:10.706 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:10.714 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:11.222 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:11.232 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:11.741 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:11.751 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:12.261 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:12.270 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:12.276 INFO - Executing: [delete session: 1294d8ea-14ca-4429-970d-6da8d44f63cb])
+23:29:12.418 INFO - Done: [delete session: 1294d8ea-14ca-4429-970d-6da8d44f63cb]
+23:29:12.528 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=Search Spec, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+23:29:12.529 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=Search Spec, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f) on port 45999
+Only local connections are allowed.
+23:29:13.387 INFO - Detected dialect: OSS
+23:29:13.390 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=Search Spec, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+23:29:13.395 INFO - Executing: [get: http://localhost:3000])
+23:29:15.405 INFO - Done: [get: http://localhost:3000]
+23:29:15.415 INFO - Executing: [find elements: By.cssSelector: body])
+23:29:15.445 INFO - Done: [find elements: By.cssSelector: body]
+23:29:15.448 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (a102327920c83c78f087138e2fa7a48a)] -> css selector: body]])
+23:29:15.465 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (a102327920c83c78f087138e2fa7a48a)] -> css selector: body]]
+23:29:15.470 INFO - Executing: [find element: By.cssSelector: input[type=email]])
+23:29:15.493 INFO - Done: [find element: By.cssSelector: input[type=email]]
+23:29:15.497 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (a102327920c83c78f087138e2fa7a48a)] -> css selector: input[type=email]], [f, r, e, e, m, i, l, e, @, g, m, a, i, l, ., c, o, m]])
+23:29:16.152 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (a102327920c83c78f087138e2fa7a48a)] -> css selector: input[type=email]], [f, r, e, e, m, i, l, e, @, g, m, a, i, l, ., c, o, m]]
+23:29:16.156 INFO - Executing: [find element: By.cssSelector: input[type=password]])
+23:29:16.188 INFO - Done: [find element: By.cssSelector: input[type=password]]
+23:29:16.195 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (a102327920c83c78f087138e2fa7a48a)] -> css selector: input[type=password]], [1, 2, 3, 4, 5, 6]])
+23:29:16.272 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (a102327920c83c78f087138e2fa7a48a)] -> css selector: input[type=password]], [1, 2, 3, 4, 5, 6]]
+23:29:16.276 INFO - Executing: [find element: By.cssSelector: button[type="submit"]])
+23:29:16.295 INFO - Done: [find element: By.cssSelector: button[type="submit"]]
+23:29:16.298 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (a102327920c83c78f087138e2fa7a48a)] -> css selector: button[type="submit"]]])
+23:29:18.164 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (a102327920c83c78f087138e2fa7a48a)] -> css selector: button[type="submit"]]]
+23:29:18.193 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:18.221 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:18.726 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:18.735 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:19.248 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:19.257 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:19.767 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:19.792 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:20.298 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:20.306 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:20.821 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:20.832 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:21.343 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:21.356 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:21.872 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:21.880 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:22.387 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:22.395 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:22.904 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:22.917 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:23.424 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:23.435 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:23.944 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:23.953 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:24.465 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:24.475 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:24.980 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:24.987 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:25.494 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:25.502 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:26.011 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:26.020 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:26.524 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:26.534 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:27.039 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:27.047 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:27.552 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:27.560 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:28.070 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:28.078 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:28.589 INFO - Executing: [find elements: By.cssSelector: div.login-feedback])
+23:29:28.597 INFO - Done: [find elements: By.cssSelector: div.login-feedback]
+23:29:28.604 INFO - Executing: [delete session: 577d553c-b6ec-402b-a083-f699079e031d])
+23:29:28.733 INFO - Done: [delete session: 577d553c-b6ec-402b-a083-f699079e031d]
+23:29:28.825 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=default, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+23:29:28.827 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=default, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.28.455517 (2c6d2707d8ea850c862f04ac066724273981e88f) on port 5953
+Only local connections are allowed.
+23:29:29.622 INFO - Detected dialect: OSS
+23:29:29.625 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=default, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+23:29:29.632 INFO - Executing: [get: http://localhost:3000/register])
+23:29:32.309 INFO - Done: [get: http://localhost:3000/register]
+23:29:32.318 INFO - Executing: [find elements: By.cssSelector: body])
+23:29:32.393 INFO - Done: [find elements: By.cssSelector: body]
+23:29:32.397 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (fb418697d65c61e2643f9931ac07ffb5)] -> css selector: body]])
+23:29:32.420 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (fb418697d65c61e2643f9931ac07ffb5)] -> css selector: body]]
+23:29:32.426 INFO - Executing: [get title])
+23:29:32.434 INFO - Done: [get title]
+23:29:32.443 INFO - Executing: [delete session: 1400732a-b3dd-461d-b7eb-4eedeadb778d])
+23:29:32.570 INFO - Done: [delete session: 1400732a-b3dd-461d-b7eb-4eedeadb778d]

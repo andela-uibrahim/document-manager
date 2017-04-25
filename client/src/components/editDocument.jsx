@@ -50,7 +50,7 @@ export class EditDocument extends Component {
   }
 
   componentDidMount() {
-    //$(this.refs.access).material_select(this.handleChange.bind(this));
+    $(this.refs.access).material_select(this.handleChange.bind(this));
   }
 
   componentWillReceiveProps(nextProps) {

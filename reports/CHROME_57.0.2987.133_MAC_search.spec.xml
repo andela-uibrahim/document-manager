@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="search.spec"
+    errors="0" failures="1" hostname="" id="" package="search.spec" skipped="0"
+    tests="1" time="16.25" timestamp="Mon, 24 Apr 2017 22:29:12 GMT">
+  
+    <testcase name="Search Document" classname="search.spec" time="16.25" assertions="2">
+
+      <failure message="Timed out while waiting for element &lt;div.login-feedback&gt; to be present for 10000 milliseconds.">    at Object.SearchDocument [as Search Document] (/Users/andeladeveloper/Desktop/document-manager/tests/client/e2e/search.spec.js:11:8)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)</failure>
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>

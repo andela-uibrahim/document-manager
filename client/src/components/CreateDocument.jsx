@@ -40,7 +40,7 @@ export class CreateDocument extends Component {
   }
 
   componentDidMount(){
-     //$('#access').material_select(this.handleChange.bind(this));
+     $('#access').material_select(this.handleChange.bind(this));
   }
 
   componentWillReceiveProps(nextProps) {
