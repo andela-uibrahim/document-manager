@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "sequelize db:migrate && webpack -p && babel-node server.js",
+    "start": "webpack -p && babel-node server.js",
     "bundle": "webpack --watch",
     "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install",
     "e2e-test": "node_modules/.bin/nightwatch --config nightwatch.conf.js",

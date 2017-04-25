@@ -18,11 +18,11 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['react']
+          presets: ['react', 'es2015']
         }
       },
       {
@@ -30,17 +30,12 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
       { 
-        test: /\.jsx$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/ 
-      },
-      { 
         test: /\.css$/,
         loader: ['style-loader','css-loader'] 
       },
       { 
         test: /\.(jpg|png|svg|jpeg)$/,
-        loader: 'url-loader' 
+        loader: 'file-loader' 
       },
       { 
         test: /\.(ttf|eot|woff|woff2)$/,
