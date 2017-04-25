@@ -4,7 +4,7 @@ import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
 import MyDocumentsList from 
-'../../../client/src/components/MyDocumentsList.jsx';
+'../../../client/src/components/document/MyDocumentsList.jsx';
 
 let wrapper = shallow(<MyDocumentsList documents={[{
 title: 'document list',

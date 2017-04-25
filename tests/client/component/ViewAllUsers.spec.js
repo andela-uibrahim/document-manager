@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ViewAllUsers } from 
-'../../../client/src/components/ViewAllUsers.jsx';
+'../../../client/src/components/user/ViewAllUsers.jsx';
 import initialState from '../../../client/src/store/initialState';
 import configureStore from '../../../client/src/store/configureStore';
 

@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ViewAllRoles } from 
-'../../../client/src/components/ViewAllRoles.jsx';
+'../../../client/src/components/role/ViewAllRoles.jsx';
 import initialState from '../../../client/src/store/initialState';
 import configureStore from '../../../client/src/store/configureStore';
 

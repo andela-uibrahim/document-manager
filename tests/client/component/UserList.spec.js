@@ -4,7 +4,7 @@ import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
 import UserList from 
-'../../../client/src/components/UserList.jsx';
+'../../../client/src/components/user/UserList.jsx';
 
 const wrapper = shallow(<UserList users={[{
 firstname: 'usman',

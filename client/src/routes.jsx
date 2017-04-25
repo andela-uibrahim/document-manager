@@ -1,18 +1,31 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import LoginPage from './components/Login.jsx';
-import SignUpPage from './components/SignUp.jsx';
-import UserDashBoard from './components/UserDashboard.jsx';
-import ViewDocument from './components/ViewDocument.jsx';
-import CreateDocument from './components/CreateDocument.jsx';
-import EditDocument from './components/EditDocument.jsx';
-import CreateRole from './components/CreateRole.jsx';
-import ViewAllRoles from './components/ViewAllRoles.jsx';
-import ViewAllUsers from './components/ViewAllUsers.jsx';
-import EditUser from './components/editUser.jsx';
-import CreateUser from './components/CreateUser.jsx';
-import ChangePassword from './components/ChangePassword.jsx';
-import MyDocuments from './components/MyDocuments.jsx';
+import LoginPage from
+ './components/authentication/Login.jsx';
+import SignUpPage from
+ './components/authentication/SignUp.jsx';
+import UserDashBoard from
+ './components/user/UserDashboard.jsx';
+import ViewDocument from
+ './components/document/ViewDocument.jsx';
+import CreateDocument from
+ './components/document/CreateDocument.jsx';
+import EditDocument from
+ './components/document/EditDocument.jsx';
+import CreateRole
+ from './components/role/CreateRole.jsx';
+import ViewAllRoles from
+ './components/role/ViewAllRoles.jsx';
+import ViewAllUsers from
+ './components/user/ViewAllUsers.jsx';
+import EditUser from
+ './components/user/EditUser.jsx';
+import CreateUser from
+ './components/user/CreateUser.jsx';
+import ChangePassword from
+ './components/user/ChangePassword.jsx';
+import MyDocuments from
+ './components/document/MyDocuments.jsx';
 
 const redirect = (path) => {
   return window.location.href = '/';
