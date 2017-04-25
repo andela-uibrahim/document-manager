@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import React from 'react';
 import { Provider } from 'react-redux';
 import UserDashboard from 
-'../../../client/src/components/UserDashboard.jsx';
+'../../../client/src/components/user/UserDashboard.jsx';
 import initialState from '../../../client/src/store/initialState';
 import configureStore from '../../../client/src/store/configureStore';
 

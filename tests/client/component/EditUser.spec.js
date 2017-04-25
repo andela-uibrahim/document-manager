@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import React from 'react';
 import { EditUser } from 
-'../../../client/src/components/EditUser.jsx';
+'../../../client/src/components/user/EditUser.jsx';
 import initialState from '../../../client/src/store/initialState';
 import configureStore from '../../../client/src/store/configureStore';
 
