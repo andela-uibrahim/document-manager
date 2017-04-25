@@ -47,14 +47,14 @@ module.exports = {
     ]
   },
   target: 'web',
-  resolve: {
-    extensions: [
-      '.config.js',
-      '.js',
-      '.jsx',
-      '.json',
-    ],
-  },
+  // resolve: {
+  //   extensions: [
+  //     '.config.js',
+  //     '.js',
+  //     '.jsx',
+  //     '.json',
+  //   ],
+  // },
   output: {
     path: path.resolve(__dirname + '/client/dist'),
     filename: 'bundle.js'
