@@ -49,7 +49,6 @@ module.exports = {
   target: 'web',
   resolve: {
     extensions: [
-      '',
       '.config.js',
       '.js',
       '.jsx',
