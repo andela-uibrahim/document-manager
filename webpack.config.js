@@ -47,9 +47,15 @@ module.exports = {
     ]
   },
   target: 'web',
-  // resolve: {
-  //   extensions: ['.js']
-  // },
+  resolve: {
+    extensions: [
+      '',
+      '.config.js',
+      '.js',
+      '.jsx',
+      '.json',
+    ],
+  },
   output: {
     path: path.resolve(__dirname + '/client/dist'),
     filename: 'bundle.js'
