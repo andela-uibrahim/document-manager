@@ -3,7 +3,7 @@ import { browserHistory, Link } from 'react-router';
 import jwtDecode from 'jwt-decode';
 import React, { Component } from 'react';
 import Header from './Header.jsx';
-import Sidebar from './Sidebar.jsx';
+import Sidebar from './sidebar.jsx';
 import RoleList from '../components/RoleList.jsx';
 import viewAllRolesAction from '../actions/roleManagement/viewAllRoles';
 import deleteRoleAction from '../actions/roleManagement/deleteRole';

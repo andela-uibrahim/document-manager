@@ -4,7 +4,7 @@ import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
 import Sidebar from 
-'../../../client/src/components/Sidebar.jsx';
+'../../../client/src/components/sidebar.jsx';
 
 const wrapper = shallow(<Sidebar />);
 

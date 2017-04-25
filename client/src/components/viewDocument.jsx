@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import jwtDecode from 'jwt-decode';
 import React, { Component, PropTypes } from 'react';
 import Header from './Header.jsx';
-import Sidebar from './Sidebar.jsx';
+import Sidebar from './sidebar.jsx';
 import viewDocumentAction from '../actions/documentManagement/viewDocument';
 import cardimage from '../images/cardimage.jpeg';
 
