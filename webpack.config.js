@@ -51,7 +51,7 @@ module.exports = {
   //   extensions: ['.js']
   // },
   output: {
-    path: path.resolve('./client/dist'),
+    path: path.resolve(__dirname + '/client/dist'),
     filename: 'bundle.js'
   },
   // devServer: {
