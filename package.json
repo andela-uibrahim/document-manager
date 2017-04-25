@@ -127,7 +127,12 @@
   },
   "nyc": {
     "exclude": [
-      "tests/**/**/*.js"
-    ]
+      "tests/**/**/*.js",
+      "client/src/actions/**/*.js",
+      "client/src/reducers/**/*.js"
+    ],
+    "extension": [
+     ".jsx"
+   ]
   }
 }
