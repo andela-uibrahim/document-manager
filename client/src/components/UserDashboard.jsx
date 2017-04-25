@@ -4,7 +4,7 @@ import { Pagination } from 'react-materialize';
 import jwtDecode from 'jwt-decode';
 import React, { Component } from 'react';
 import Header from './Header.jsx';
-import Sidebar from './Sidebar.jsx';
+import Sidebar from './sidebar.jsx';
 import DocumentList from './DocumentList.jsx';
 import deleteDocumentAction from '../actions/documentManagement/deleteDocument';
 import paginateDocumentAction from '../actions/documentManagement/paginateDocument';

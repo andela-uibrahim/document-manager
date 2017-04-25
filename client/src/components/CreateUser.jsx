@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import CreateUserAction from '../actions/userManagement/createUser';
 import Header from '../components/Header.jsx';
-import Sidebar from './Sidebar.jsx';
+import Sidebar from './sidebar.jsx';
 
 
 export class CreateUser extends Component {

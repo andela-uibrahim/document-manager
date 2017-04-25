@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 import React, { Component } from 'react';
 import Header from './Header.jsx';
-import Sidebar from './Sidebar.jsx';
-import MyDocumentList from "./MydocumentsList.jsx"
+import Sidebar from './sidebar.jsx';
+import MyDocumentList from "./MyDocumentsList.jsx"
 import ViewMyDocuments from '../actions/documentManagement/viewMyDocuments';
 //import paginateDocumentAction from '../actions/documentManagement/paginateDocument';
 
