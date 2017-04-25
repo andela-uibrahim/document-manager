@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import UserList from './UserList.jsx';
-import viewAllUsersAction from '../../actions/userManagement/viewAllUsers';
+import viewAllUsersAction from '../../actions/userManagement/viewAllusers';
 import viewAllRolesAction from '../../actions/roleManagement/viewAllRoles';
 import deleteUserAction from '../../actions/userManagement/deleteUser';
 import paginateUserAction from '../../actions/userManagement/paginateUser';
