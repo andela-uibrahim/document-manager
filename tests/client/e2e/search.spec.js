@@ -1,3 +1,4 @@
+/*eslint-disable no-unused-vars*/
 import config from '../../../nightwatch.conf';
 import db from '../../../server/models';
 import testData from '../../server/helper/helper';
@@ -48,7 +49,8 @@ export default {
       .pause(1000)
       .assert.urlEquals('http://localhost:3000/dashboard')
       .waitForElementVisible('table#document-list')
-      .assert.containsText('table#document-list tr:first-of-type>td.doc-title', 'Searched Document')
+      .assert.containsText('table#document-list tr:first-of-type>td.doc-title',
+       'Searched Document')
       .end();
   }
 };

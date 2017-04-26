@@ -1,3 +1,4 @@
+/*eslint-disable no-unused-vars*/
 import config from '../../../nightwatch.conf';
 
 import db from '../../../server/models';
@@ -45,7 +46,8 @@ export default {
       .pause(1000)
       .url('http://localhost:3000/roles')
       .waitForElementVisible('table#role_list')
-      .assert.containsText('table#role_list tr:first-of-type>td.role-title', 'Issa Role')
+      .assert.containsText('table#role_list tr:first-of-type>td.role-title',
+       'Issa Role')
       .end();
   },
   'Delete Role': function (browser) {
@@ -64,7 +66,8 @@ export default {
       .pause(500)
       .waitForElementVisible('button.confirm')
       .click('button.confirm')
-      .expect.element('table#role_list tr:first-of-type>td.role-title').text.to.not.equal('Issa Role');
+      .expect.element('table#role_list tr:first-of-type>td.role-title')
+      .text.to.not.equal('Issa Role');
     browser.end();
   }
 };

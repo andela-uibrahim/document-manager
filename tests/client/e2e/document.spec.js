@@ -1,3 +1,4 @@
+/*eslint-disable no-unused-vars*/
 import config from '../../../nightwatch.conf';
 import db from '../../../server/models';
 import testData from '../../server/helper/helper';
@@ -40,7 +41,8 @@ export default {
       .pause(1000)
       .assert.urlEquals('http://localhost:3000/admindashboard')
       .waitForElementVisible('table#document-list')
-      .assert.containsText('table#document-list tr:first-of-type>td.doc-title', 'Issa Title')
+      .assert.containsText('table#document-list tr:first-of-type>td.doc-title',
+       'Issa Title')
       .end();
   },
   'Edit Document': function (browser) {
@@ -63,7 +65,8 @@ export default {
       .assert.urlEquals('http://localhost:3000/admindashboard')
       .waitForElementVisible('body')
       .waitForElementVisible('table#document-list')
-      .assert.containsText('table#document-list tr:first-of-type>td.doc-title', 'Issa One More Title')
+      .assert.containsText('table#document-list tr:first-of-type>td.doc-title',
+       'Issa One More Title')
       .end();
   },
   'Delete Document': function (browser) {
@@ -89,7 +92,8 @@ export default {
       .pause(500)
       .waitForElementVisible('button.confirm')
       .click('button.confirm')
-      .expect.element('table#document-list tr:first-of-type>td.doc-title').text.to.not.equal('Chosen One');
+      .expect.element('table#document-list tr:first-of-type>td.doc-title')
+      .text.to.not.equal('Chosen One');
     browser.end();
   }
 };

@@ -1,7 +1,7 @@
+/*eslint-disable no-unused-vars*/
 import config from '../../../nightwatch.conf';
 
 import db from '../../../server/models';
-import testData from '../../server/helper/helper';
 
 
 export default {
