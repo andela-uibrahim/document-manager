@@ -5,11 +5,15 @@
 
   <testsuite name="signUp.spec"
     errors="0" failures="1" hostname="" id="" package="signUp.spec" skipped="0"
-    tests="1" time="3.763" timestamp="Mon, 24 Apr 2017 22:29:28 GMT">
+    tests="1" time="6.219" timestamp="Wed, 26 Apr 2017 15:12:16 GMT">
   
-    <testcase name="SignUp Page" classname="signUp.spec" time="3.763" assertions="2">
+    <testcase name="SignUp Page" classname="signUp.spec" time="6.219" assertions="4">
 
-      <failure message="Testing if the page title equals &quot;Akdeniz&quot;.">    at Object.SignUpPage [as SignUp Page] (/Users/andeladeveloper/Desktop/document-manager/tests/client/e2e/signUp.spec.js:8:15)
+    
+
+    
+
+      <failure message="Testing if the URL equals &quot;http://localhost:3000/register&quot;.">    at Object.SignUpPage [as SignUp Page] (/Users/andeladeveloper/Desktop/document-manager/tests/client/e2e/signUp.spec.js:17:15)
     at _combinedTickCallback (internal/process/next_tick.js:67:7)</failure>
 
     
