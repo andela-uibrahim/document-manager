@@ -126,6 +126,7 @@
   },
   "nyc": {
     "exclude": [
+
       "tests/**/**/*.js",
       "client/src/actions/**/*.js",
       "client/src/reducers/**/*.js"

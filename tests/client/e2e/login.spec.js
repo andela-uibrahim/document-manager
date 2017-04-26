@@ -5,9 +5,9 @@ export default {
     browser
       .url('http://localhost:3000')
       .waitForElementVisible('body')
-      .assert.title('Docman')
-      .setValue('input[type=email]', 'freemile@gmail.com')
-      .setValue('input[type=password]', '123456')
+      .assert.title('Docman system')
+      .setValue('input[type=email]', 'test@test.com')
+      .setValue('input[type=password]', 'userPassword')
       .click('button[type="submit"]')
       .waitForElementVisible('div.login-feedback')
       .assert.containsText('div.login-feedback', 'Login Successful')
