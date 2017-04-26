@@ -21,7 +21,8 @@ if (process.env.NODE_ENV !== ('production' && 'test')) {
   app.use(webpackHotMiddleware(compiler));
 }
 
-app.use(express.static(path.join(__dirname, 'client/dist')));
+app.use(express.static(path.join(__dirname, 'api-docs/')));
+
 
 // Log requests to the console.
 app.use(logger('dev'));
@@ -39,6 +40,8 @@ routes.Index(app);
 app.all('*', (req, res) => {
   res.sendFile(`${__dirname}/client/dist/index.html`);
 });
+
+app.use(express.static(path.join(__dirname, 'client/dist')));
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 app.set('port', port);

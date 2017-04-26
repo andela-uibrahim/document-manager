@@ -91,7 +91,7 @@ router.route('/')
      *   get:
      *     description: Returns {limit} users from the the {offset}
      *     tags:
-     *       - Get users
+     *       - Get users with limit
      *     produces:
      *        - application/json
      *     parameters:
@@ -265,7 +265,7 @@ router.route('/admin')
      *   post:
      *     description: Creates a user
      *     tags:
-     *      - Create User
+     *      - Create Admin
      *     produces:
      *      - application/json
      *     parameters:
