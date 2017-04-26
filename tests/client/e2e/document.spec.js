@@ -35,14 +35,14 @@ export default {
       .assert.containsText('h4', 'Create A Document')
       .waitForElementVisible('body')
       .assert.title('Docman system')
-      .setValue('input#title', 'Issa Title')
-      .setValue('textarea#content', 'Issa Content')
+      .setValue('input#title', 'Freemile Title')
+      .setValue('textarea#content', 'Freemile Content')
       .click('button[type="submit"]')
       .pause(1000)
       .assert.urlEquals('http://localhost:3000/admindashboard')
       .waitForElementVisible('table#document-list')
       .assert.containsText('table#document-list tr:first-of-type>td.doc-title',
-       'Issa Title')
+       'Freemile Title')
       .end();
   },
   'Edit Document': function (browser) {
@@ -59,14 +59,14 @@ export default {
       .click('table#document-list tbody tr:first-of-type i.edit-btn')
       .waitForElementVisible('body')
       .clearValue('input#title')
-      .setValue('input#title', 'Issa One More Title')
+      .setValue('input#title', 'Freemile One More Title')
       .click('button[type="submit"]')
       .pause(1000)
       .assert.urlEquals('http://localhost:3000/admindashboard')
       .waitForElementVisible('body')
       .waitForElementVisible('table#document-list')
       .assert.containsText('table#document-list tr:first-of-type>td.doc-title',
-       'Issa One More Title')
+       'Freemile One More Title')
       .end();
   },
   'Delete Document': function (browser) {

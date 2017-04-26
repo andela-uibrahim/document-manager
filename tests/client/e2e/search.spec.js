@@ -39,7 +39,7 @@ export default {
       .assert.containsText('h4', 'Create A Document')
       .waitForElementVisible('body')
       .setValue('input#title', 'Searched Document')
-      .setValue('textarea#content', 'Issa Content')
+      .setValue('textarea#content', 'Freemile Content')
       .click('button[type="submit"]')
       .pause(1000)
       .assert.urlEquals('http://localhost:3000/dashboard')

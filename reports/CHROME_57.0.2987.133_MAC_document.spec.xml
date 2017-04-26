@@ -5,9 +5,9 @@
 
   <testsuite name="document.spec"
     errors="0" failures="0" hostname="" id="" package="document.spec" skipped="0"
-    tests="3" time="27.43" timestamp="Wed, 26 Apr 2017 18:25:16 GMT">
+    tests="3" time="27.14" timestamp="Wed, 26 Apr 2017 19:45:40 GMT">
   
-    <testcase name="Create Document" classname="document.spec" time="10.38" assertions="11">
+    <testcase name="Create Document" classname="document.spec" time="9.882" assertions="11">
 
     
 
@@ -32,7 +32,7 @@
     
     </testcase>
   
-    <testcase name="Edit Document" classname="document.spec" time="7.876" assertions="9">
+    <testcase name="Edit Document" classname="document.spec" time="7.909" assertions="9">
 
     
 
@@ -53,7 +53,7 @@
     
     </testcase>
   
-    <testcase name="Delete Document" classname="document.spec" time="9.174" assertions="9">
+    <testcase name="Delete Document" classname="document.spec" time="9.349" assertions="9">
 
     
 

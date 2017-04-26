@@ -36,7 +36,7 @@ export default {
       .assert.containsText('h4', 'Create A Role')
       .waitForElementVisible('body')
       .assert.title('Docman system')
-      .setValue('input#role', 'Issa Role')
+      .setValue('input#role', 'Freemile Role')
       .click('button[type="submit"]')
       .pause(1000)
       .url('http://localhost:3000/create-role')
@@ -47,7 +47,7 @@ export default {
       .url('http://localhost:3000/roles')
       .waitForElementVisible('table#role_list')
       .assert.containsText('table#role_list tr:first-of-type>td.role-title',
-       'Issa Role')
+       'Freemile Role')
       .end();
   },
   'Delete Role': function (browser) {
@@ -67,7 +67,7 @@ export default {
       .waitForElementVisible('button.confirm')
       .click('button.confirm')
       .expect.element('table#role_list tr:first-of-type>td.role-title')
-      .text.to.not.equal('Issa Role');
+      .text.to.not.equal('Freemile Role');
     browser.end();
   }
 };

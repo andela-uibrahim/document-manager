@@ -239,21 +239,13 @@ describe('document ==> \n', () => {
   });
 
   describe('GET documents by id :==>\n', () => {
-    // it('All documents Should only be accessed by the admin only', (done) => {
-    //   client.get('/documents')
-    //     .set({ 'x-access-token': adminUserToken })
-    //     .end((error, res) => {
-    //       expect(res.status).to.equal(200);
-    //       done();
-    //     });
-    // });
     it(`Admin should be able to get all the documents
      belonging to a particular user`, (done) => {
       client.post('/api/documents')
         .set({ 'x-access-token': regularToken })
         .send(testData.publicDoc1)
         .end(() => {
-          client.get('/api/users/4/documents')
+          client.get('/api/users/2/documents')
             .set({ 'x-access-token': adminToken })
             .end((error1, res1) => {
               expect(res1.status).to.equal(200);
@@ -272,7 +264,7 @@ describe('document ==> \n', () => {
     });
     it(`Regular Users should be able to access their own documents
     `, (done) => {
-      client.get('/api/users/4/documents')
+      client.get('/api/users/2/documents')
         .set({ 'x-access-token': regularToken })
         .end((error, res) => {
           expect(res.status).to.equal(200);
