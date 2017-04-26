@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "sequelize db:migrate && webpack -p && babel-node server.js",
+    "start": "webpack -p && babel-node server.js",
     "bundle": "webpack --watch",
     "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install",
     "e2e-test": "node_modules/.bin/nightwatch --config nightwatch.conf.js",
@@ -127,7 +127,13 @@
   },
   "nyc": {
     "exclude": [
+<<<<<<< HEAD
       "tests/**/**/*.js"
+=======
+      "tests/**/**/*.js",
+      "client/src/actions/**/*.js",
+      "client/src/reducers/**/*.js"
+>>>>>>> 1189372b059e06dbd4ca6ce9253856b118f1541f
     ],
     "extension": [
      ".jsx"

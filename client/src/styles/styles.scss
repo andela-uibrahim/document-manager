@@ -10,12 +10,11 @@ $url_0: url(../images/background.jpeg);
 //original selectors
 //body, html
 %extend_1 {
-	background: $url_0;
+	background: $url_0 no-repeat center center fixed;
 	background-size: cover;
 	padding: 0 !important;
 	margin: 0 !important;
 	overflow-y: scroll;
-	min-height: 548 px;
 }
 
 

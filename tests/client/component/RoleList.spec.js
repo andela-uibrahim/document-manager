@@ -4,7 +4,7 @@ import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
 import RoleList from 
-'../../../client/src/components/RoleList.jsx';
+'../../../client/src/components/role/RoleList.jsx';
 
 const wrapper = shallow(<RoleList roles={[{
 role: 'admin',

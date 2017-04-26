@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import React from 'react';
 import { ChangePassword } from 
-'../../../client/src/components/ChangePassword.jsx';
+'../../../client/src/components/user/ChangePassword.jsx';
 import initialState from '../../../client/src/store/initialState';
 import configureStore from '../../../client/src/store/configureStore';
 
