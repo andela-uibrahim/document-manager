@@ -12,6 +12,7 @@ const client = supertest.agent(app);
 describe('Users ==> \n', () => {
   let adminToken, regularToken;
   before((done) => {
+    db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
     db.User.create(testData.admin).then(() => {
       client.post('/api/users/login')
         .send({
