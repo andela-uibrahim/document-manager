@@ -1,6 +1,16 @@
+/*eslint-disable no-unused-vars*/
 import config from '../../../nightwatch.conf';
 
+import db from '../../../server/models';
+
+
 export default {
+  before : function() {
+    db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY');
+  },
+  after : function() {
+    db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY');
+  },
   'SignUp Page': function (browser) {
     browser
       .url('http://localhost:3000/register')
@@ -14,7 +24,7 @@ export default {
       .click('button[type="submit"]')
       .pause(1500)
       .waitForElementVisible('body')
-      .assert.urlEquals('http://localhost:3000/register')
+      .assert.urlEquals('http://localhost:3000/dashboard')
       .waitForElementVisible('body')
       .end();
   }

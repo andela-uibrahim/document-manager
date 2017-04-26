@@ -1,6 +1,23 @@
-const config = require('../../../nightwatch.conf.js');
+/*eslint-disable no-unused-vars*/
+import config from '../../../nightwatch.conf';
+import db from '../../../server/models';
+import testData from '../../server/helper/helper';
 
-module.exports = {
+
+export default {
+  before : function() {
+    db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
+    .then(() => {
+      db.User.create(testData.user)
+    });
+    
+  },
+  after : function() {
+    db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
+      .then(()=> {
+      db.sequelize.query('TRUNCATE "documents" RESTART IDENTITY');
+    });
+  },
   'Search Document': function (browser) {
     browser
       .url('http://localhost:3000')
@@ -32,7 +49,8 @@ module.exports = {
       .pause(1000)
       .assert.urlEquals('http://localhost:3000/dashboard')
       .waitForElementVisible('table#document-list')
-      .assert.containsText('table#document-list tr:first-of-type>td.doc-title', 'Searched Document')
+      .assert.containsText('table#document-list tr:first-of-type>td.doc-title',
+       'Searched Document')
       .end();
   }
 };

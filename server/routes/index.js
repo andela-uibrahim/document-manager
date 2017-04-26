@@ -16,9 +16,20 @@ class IndexRoute {
  * @return{Void} return void
  */
   static Index(app) {
-    app.get('/api', (req, res) => {
+    app.all('/api/*', (req, res) => {
       res.status(200)
-        .sendFile(path.resolve('api-docs/', 'index.html'));
+        .send('welcome to docman api');
+    });
+  }
+/**
+ * Index Route for swagger UI
+ * @param{Object} app express app
+ * @return{Void} return void
+ */
+  static SwaggerUI(app) {
+    app.get('/doc', (req, res) => {
+      res.status(200)
+        .sendFile(path.resolve('api-docs', 'index.html'));
     });
   }
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
-            failures="1"
+            failures="0"
             tests="1">
 
   <testsuite name="search.spec"
-    errors="0" failures="1" hostname="" id="" package="search.spec" skipped="0"
-    tests="1" time="9.975" timestamp="Wed, 26 Apr 2017 15:12:06 GMT">
+    errors="0" failures="0" hostname="" id="" package="search.spec" skipped="0"
+    tests="1" time="11.22" timestamp="Wed, 26 Apr 2017 18:26:14 GMT">
   
-    <testcase name="Search Document" classname="search.spec" time="9.975" assertions="12">
+    <testcase name="Search Document" classname="search.spec" time="11.22" assertions="16">
 
     
 
@@ -29,8 +29,15 @@
 
     
 
-      <failure message="Testing if the URL equals &quot;http://localhost:3000/dashboard&quot;.">    at Object.SearchDocument [as Search Document] (/Users/andeladeveloper/Desktop/document-manager/tests/client/e2e/search.spec.js:28:15)
-    at _combinedTickCallback (internal/process/next_tick.js:67:7)</failure>
+    
+
+    
+
+    
+
+    
+
+    
 
     
     </testcase>

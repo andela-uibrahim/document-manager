@@ -1,6 +1,24 @@
+/*eslint-disable no-unused-vars*/
 import config from '../../../nightwatch.conf';
 
+import db from '../../../server/models';
+import testData from '../../server/helper/helper';
+
+
 export default {
+  before : function() {
+    db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
+    .then(() => {
+      db.User.create(testData.admin)
+    });
+    
+  },
+  after : function() {
+    db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
+    .then(() => {
+      db.sequelize.query('TRUNCATE "Roles" RESTART IDENTITY')
+    });
+  },
   'Create Role': function (browser) {
     browser
       .url('http://localhost:3000')
@@ -21,9 +39,15 @@ export default {
       .setValue('input#role', 'Issa Role')
       .click('button[type="submit"]')
       .pause(1000)
+      .url('http://localhost:3000/create-role')
+      .waitForElementVisible('body')
+      .setValue('input#role', 'Usman Role')
+      .click('button[type="submit"]')
+      .pause(1000)
       .url('http://localhost:3000/roles')
       .waitForElementVisible('table#role_list')
-      .assert.containsText('table#role_list tr:last-of-type>td.role-title', 'Issa Role')
+      .assert.containsText('table#role_list tr:first-of-type>td.role-title',
+       'Issa Role')
       .end();
   },
   'Delete Role': function (browser) {
@@ -38,11 +62,12 @@ export default {
       .pause(1000)
       .url('http://localhost:3000/roles')
       .pause(2000)
-      .click('table#role_list tbody tr:last-of-type i.delete-btn')
+      .click('table#role_list tbody tr:first-of-type i.delete-btn')
       .pause(500)
       .waitForElementVisible('button.confirm')
       .click('button.confirm')
-      .expect.element('table#role_list tr:last-of-type>td.role-title').text.to.not.equal('Issa Role');
+      .expect.element('table#role_list tr:first-of-type>td.role-title')
+      .text.to.not.equal('Issa Role');
     browser.end();
   }
 };
