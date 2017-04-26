@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
-            failures="1"
+            failures="0"
             tests="1">
 
   <testsuite name="signUp.spec"
-    errors="0" failures="1" hostname="" id="" package="signUp.spec" skipped="0"
-    tests="1" time="6.219" timestamp="Wed, 26 Apr 2017 15:12:16 GMT">
+    errors="0" failures="0" hostname="" id="" package="signUp.spec" skipped="0"
+    tests="1" time="6.165" timestamp="Wed, 26 Apr 2017 18:26:25 GMT">
   
-    <testcase name="SignUp Page" classname="signUp.spec" time="6.219" assertions="4">
+    <testcase name="SignUp Page" classname="signUp.spec" time="6.165" assertions="5">
 
     
 
     
 
-      <failure message="Testing if the URL equals &quot;http://localhost:3000/register&quot;.">    at Object.SignUpPage [as SignUp Page] (/Users/andeladeveloper/Desktop/document-manager/tests/client/e2e/signUp.spec.js:17:15)
-    at _combinedTickCallback (internal/process/next_tick.js:67:7)</failure>
+    
+
+    
 
     
     </testcase>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
-            failures="1"
+            failures="0"
             tests="3">
 
   <testsuite name="document.spec"
-    errors="0" failures="1" hostname="" id="" package="document.spec" skipped="2"
-    tests="3" time="10.16" timestamp="Wed, 26 Apr 2017 15:11:25 GMT">
+    errors="0" failures="0" hostname="" id="" package="document.spec" skipped="0"
+    tests="3" time="27.43" timestamp="Wed, 26 Apr 2017 18:25:16 GMT">
   
-    <testcase name="Create Document" classname="document.spec" time="10.16" assertions="9">
+    <testcase name="Create Document" classname="document.spec" time="10.38" assertions="11">
 
     
 
@@ -23,24 +23,57 @@
 
     
 
-      <failure message="Testing if the URL equals &quot;http://localhost:3000/admindashboard&quot;.">    at Object.CreateDocument [as Create Document] (/Users/andeladeveloper/Desktop/document-manager/tests/client/e2e/document.spec.js:25:15)
-    at _combinedTickCallback (internal/process/next_tick.js:67:7)</failure>
+    
+
+    
+
+    
 
     
     </testcase>
   
+    <testcase name="Edit Document" classname="document.spec" time="7.876" assertions="9">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
   
+    <testcase name="Delete Document" classname="document.spec" time="9.174" assertions="9">
+
     
-    <testcase
-      name="Edit Document" classname="document.spec">
-      <skipped />
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
     </testcase>
-    
-    <testcase
-      name="Delete Document" classname="document.spec">
-      <skipped />
-    </testcase>
-    
+  
   
   </testsuite>
 </testsuites>
