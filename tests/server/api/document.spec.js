@@ -16,17 +16,19 @@ const client = supertest.agent(app);
 describe('document ==> \n', () => {
   let adminToken, regularToken;
   before((done) => {
-    db.sequelize.query('TRUNCATE "documents" RESTART IDENTITY');
-    db.User.create(testData.admin).then(() => {
-      client.post('/api/users/login')
-        .send({
-          email: testData.admin.email,
-          password: testData.admin.password
+    db.sequelize.query('TRUNCATE "documents" RESTART IDENTITY')
+    .then(() => {
+      db.User.create(testData.admin).then(() => {
+        client.post('/api/users/login')
+          .send({
+            email: testData.admin.email,
+            password: testData.admin.password
+          })
+          .end((error, res) => {
+            adminToken = res.body.token;
+            done();
+          });
         })
-        .end((error, res) => {
-          adminToken = res.body.token;
-          done();
-        });
     });
   });
 

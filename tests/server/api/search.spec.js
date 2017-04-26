@@ -15,7 +15,6 @@ const client = supertest.agent(app);
 describe('search ==> \n', () => {
   let adminToken, regularToken;
   before((done) => {
-    db.sequelize.query('TRUNCATE "documents" RESTART IDENTITY');
     db.User.create(testData.admin).then(() => {
       client.post('/api/users/login')
         .send({
@@ -44,14 +43,11 @@ describe('search ==> \n', () => {
   });
 
   after((done) => {
-    db.sequelize.query('TRUNCATE "Roles" RESTART IDENTITY')
+    db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
     .then(() => {
-      db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
+      db.sequelize.query('TRUNCATE "documents" RESTART IDENTITY')
       .then(() => {
-        db.sequelize.query('TRUNCATE "documents" RESTART IDENTITY')
-        .then(() => {
-          done();
-        });
+        done();
       });
     });
   });

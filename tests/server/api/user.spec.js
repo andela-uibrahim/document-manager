@@ -40,16 +40,10 @@ describe('Users ==> \n', () => {
   });
 
   after((done) => {
-    db.sequelize.query('TRUNCATE "Roles" RESTART IDENTITY')
-    .then(() => {
-      db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
+    db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
       .then(() => {
-        db.sequelize.query('TRUNCATE "documents" RESTART IDENTITY')
-        .then(() => {
-          done();
-        });
+        done();
       });
-    });
   });
 
 
