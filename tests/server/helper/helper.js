@@ -2,7 +2,7 @@ import faker from 'faker';
 
 export default {
   newRole1: {
-    role: faker.company.catchPhrase(),
+    role: 'admin',
   },
   newRole2: {
     role: faker.company.catchPhrase(),
@@ -191,7 +191,7 @@ export default {
       documentId: 1
     },
     invalidToken: {
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjYsImlhdCI6MTQ4ODkyNzU1OSwiZXhwIjoxNDg5MDEzOTU5fQ.knnZeLlKhXkGX3AYeT3lUgJQlMqOVueDQC6BGkSgbY4'
+      token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjYsImlhdCI6MTQ4ODkyNzU1OSwiZXhwIjoxNDg5MDEzOTU5fQ.knnZeLlKhXkGX3AYeT3lUgJQlMqOVueDQC6BGkSgbY4`
     }
   }
 };

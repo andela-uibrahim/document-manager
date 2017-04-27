@@ -1,12 +1,10 @@
 /* eslint import/no-extraneous-dependencies: 0 */
 /* eslint import/no-unresolved: 0 */
-import jwt from 'jsonwebtoken';
 import model from '../models';
 import Authenticate from '../middleware/authenticator';
 import DocumentHelper from './helper/DocHelper';
 
 const Users = model.User;
-const SECRET_KEY = process.env.SECRET || 'thisisademosecret';
 
 /**
  * Controller for Users
@@ -74,11 +72,7 @@ class UserController {
     })
       .then((user) => {
         if (user && user.passwordMatched(req.body.password)) {
-          const token = jwt.sign({
-            UserId: user.id,
-            RoleId: user.RoleId,
-            user: user.username
-          }, SECRET_KEY, { expiresIn: 86400 });
+          const token = Authenticate.generateToken(user);
           res.status(201).send({
             message: 'login successfully',
             token,
@@ -172,7 +166,7 @@ class UserController {
     }).then((user) => {
       if (user) {
         if (RoleId === 1) {
-          user.update(req.body)
+          user.update(req.body, {fields: Object.keys(req.body)})
             .then(updatedUser => res.status(201).send(updatedUser));
         } else if (UserId === user.id && RoleId === 2) {
           const updateProps = Object.keys(req.body);        
@@ -268,18 +262,13 @@ class UserController {
       offset: 0
     };
     if (req.query.limit || req.query.offset) {
-      queryBuilder = {
-        limit: req.query.limit,
-        offset: req.query.offset
-      };
-    } else if (req.query.search) {
+       queryBuilder = {
+         limit: req.query.limit,
+         offset: req.query.offset || 0
+       };
+    }
+    if (req.query.search) {
         let searchQuery = req.query.search;
-        queryBuilder = {};
-        const searchLimit = req.query.limit
-        queryBuilder.offset = (req.query.offset > 0) ? req.query.offset : 0;
-        if (searchLimit) {
-          queryBuilder.limit = searchLimit;
-        }
         searchQuery = DocumentHelper.sanitizeString(searchQuery);
         queryBuilder.where = {
           $or:

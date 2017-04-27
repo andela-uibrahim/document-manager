@@ -17,7 +17,7 @@ class RoleController {
     );
   }
   /**
-   * Method to create a a new Role
+   * Method to create a new Role
    * @param{Object} request - Request Object
    * @param{Object} response - Response Object
    * @return{Void} - Returns void
@@ -29,20 +29,25 @@ class RoleController {
           role: request.body.role
         }).then(role => response.status(201).send(role));
     }
-    response.status(404).send({
+    response.status(500).send({
       success: false,
-      message: 'Error! request.body.role not found'
     });
   }
   /**
-   * Method to createa fetch a Role
+   * Method to fetch Roles
    * @param{Object} request - Request Object
    * @param{Object} response - Response Object
    * @return{Void} - Returns void
    */
   static fetchRoles(request, response) {
     Roles.findAll({})
-      .then(role => response.status(201).send(role));
+      .then(role => response.status(201).send(role))
+      .catch((error) => {
+        response.status(404).send({
+          success: false,
+          message: error.message
+        });
+      })
   }
   /**
    * Method to delete a Role

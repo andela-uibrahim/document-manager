@@ -154,7 +154,7 @@ describe('search ==> \n', () => {
     });
   });
 
-  describe('User ==> \n', () => {
+  describe('user ==> \n', () => {
     it('should return users limited by a specified number', (done) => {
       const searchLimit = 3;
       client.post('/api/users')
@@ -226,8 +226,8 @@ describe('search ==> \n', () => {
         })
         .end((error1, res1) => {
           regularToken = res1.body.token;
-          client.get(`/api/search/users/?search=${searchText}
-          &limit=${searchLimit}`)
+          client.get(`/api/search/users/?
+          search=${searchText}&limit=${searchLimit}`)
             .set({ 'x-access-token': regularToken })
             .end((error, res) => {
               expect(res.status).to.equal(201);

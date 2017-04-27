@@ -80,10 +80,10 @@ class DocumentController {
  * @return {Void} - returns Void
  */
   static updateDocument(req, res) {
-    const OwnerId = req.decoded.UserId;
+    const FinderId = req.decoded.UserId;
     const RoleId = req.decoded.RoleId;
     Documents.findById(req.params.id).then((document) => {
-      if (document.UserId === OwnerId || RoleId === 1) {
+      if (document.UserId === FinderId || RoleId === 1) {
         document.update(req.body)
         .then(updatedDocument => res.status(201).send(updatedDocument))
         .catch(error => res.status(401).send(error.message));
@@ -105,14 +105,14 @@ class DocumentController {
  * @return {Void} - returns Void
  */
   static deleteDocument(req, res) {
-    const OwnerId = req.decoded.UserId;
+    const FinderId = req.decoded.UserId;
     const RoleId = req.decoded.RoleId;
     Documents.findOne({
       where: {
         id: req.params.id
       }
     }).then((document) => {
-      if (document.UserId === OwnerId || RoleId === 1) {
+      if (document.UserId === FinderId || RoleId === 1) {
         document.destroy()
         .then(() => res.status(201).send({
           success: true,

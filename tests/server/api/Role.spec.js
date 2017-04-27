@@ -11,7 +11,7 @@ dotenv.config();
 const expect = chai.expect;
 const client = supertest.agent(app);
 
-describe('Document ==> \n', () => {
+describe('Role ==> \n', () => {
   let adminToken, regularToken;
   before((done) => {
     db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY');
@@ -60,13 +60,13 @@ describe('Document ==> \n', () => {
           done();
         });
     });
-    it(`should return 404 status code if the role
+    it(`should return 404 status code if the 500
      value is not inputed`, (done) => {
       client.post('/api/roles')
         .set({ 'x-access-token': adminToken })
         .send({})
         .end((error, res) => {
-          expect(res.status).to.equal(404);
+          expect(res.status).to.equal(500);
           done();
         });
     });
@@ -89,7 +89,7 @@ describe('Document ==> \n', () => {
         });
     });
     
-    it('should return params 401 for invalid request params', (done) => {
+    it('should return params 404 for invalid request params', (done) => {
       client.delete('/api/roles/400')
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
@@ -125,7 +125,7 @@ describe('Document ==> \n', () => {
           done();
         });
     });
-    it('should be able to delete roles from the table', (done) => {
+    it('should not be able to delete roles from the table', (done) => {
       client.delete('/api/roles/3')
         .set({ 'x-access-token': regularToken })
         .end((error, res) => {

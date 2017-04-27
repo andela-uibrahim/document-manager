@@ -6,7 +6,7 @@ const User = model.User;
 const expect = chai.expect;
 chai.should();
 
-describe('User Model', () => {
+describe('User Model,', () => {
   let user;
 
   describe('Create User', () => {
@@ -31,7 +31,7 @@ describe('User Model', () => {
   });
 
   describe('User Validation', () => {
-    it('requires name fields to create a user', (done) => {
+    it('should require name fields to create a user', (done) => {
       User.create(data.invalid.noName)
         .catch((error) => {
           error.errors[0].message.should.equal('username cannot be null');
@@ -48,7 +48,7 @@ describe('User Model', () => {
       expect(user.email).equal(data.user2.email);
     });
 
-    it('requires name fields to create a user', (done) => {
+    it('should require valid input fields to create a user', (done) => {
       User.create(data.invalid.invalidDataType)
         .catch((error) => {
           error.errors[0].message.should
@@ -60,7 +60,7 @@ describe('User Model', () => {
         });
     });
 
-    it('ensures a user can only be created once', (done) => {
+    it('should ensure a user can only be created once', (done) => {
       User.create(data.user2)
         .catch((error) => {
           error.errors[0].message.should
@@ -71,7 +71,7 @@ describe('User Model', () => {
   });
 
   describe('Email Validation', () => {
-    it('requires email fields to create a user', (done) => {
+    it('should require email fields to create a user', (done) => {
       User.create(data.invalid.noEmail)
         .catch((error) => {
           error.errors[0].message.should.equal('email cannot be null');
@@ -79,7 +79,7 @@ describe('User Model', () => {
         });
     });
 
-    it('requires email fields to create a user', (done) => {
+    it('should require valid email format to create a user', (done) => {
       User.create(data.invalid.invalidEmail)
         .catch((error) => {
           error.errors[0].message.should.equal('input correct email field');
@@ -90,7 +90,8 @@ describe('User Model', () => {
 
 
   describe('password Validation', () => {
-    it('requires password fields longer than 8 to create a user', (done) => {
+    it('should require password fields longer than 8 to create a user',
+     (done) => {
       User.create(data.invalid.shortPassword)
         .catch((error) => {
           error.errors[0].message.should

@@ -49,8 +49,8 @@ describe('Users ==> \n', () => {
 
 
 
-  describe('Users', () => {
-    it('with invalid token should not be authenticated ',
+  describe('', () => {
+    it('Users with invalid token should not be authenticated ',
         (done) => {
           client.get('/api/users')
           .set({ 'x-access-token': testData.invalid.invalidToken.token })
@@ -59,7 +59,7 @@ describe('Users ==> \n', () => {
             done();
           });
         });
-    it('Should not be authenticated without a token ',
+    it('Users should not be authenticated without a token ',
         (done) => {
           client.get('/api/users')
           .end((error, res) => {
@@ -88,7 +88,7 @@ describe('Users ==> \n', () => {
           done();
         });
     });
-    it('should return status code 400 for incorrect input', (done) => {
+    it('should return status code 400 for login incorrect input', (done) => {
       client.post('/api/users')
         .send({})
         .end((error, res) => {
@@ -107,7 +107,7 @@ describe('Users ==> \n', () => {
             });
         });
 
-    it('Admin User should be able to update details of users', (done) => {
+    it('Admin should be able to update details of other users ',(done) => {
       client.put('/api/users/2')
         .set({ 'x-access-token': adminToken })
         .send({
@@ -133,7 +133,7 @@ describe('Users ==> \n', () => {
               done();
             });
         });
-    it('Role Id for admin user should be 1',
+    it('Should have a RoleId of one',
         (done) => {
           client.get('/api/users/1')
             .set({ 'x-access-token': adminToken })
