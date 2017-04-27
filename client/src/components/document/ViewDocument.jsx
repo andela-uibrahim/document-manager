@@ -1,3 +1,4 @@
+/*eslint-disable no-unused-vars*/
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import jwtDecode from 'jwt-decode';
@@ -36,7 +37,8 @@ export class ViewDocument extends Component {
               <div className="card">
                 <div className="card-image">
                   <img src={cardimage}/>
-                  <span className="card-title">{this.props.document.title || ''}</span>
+                  <span className="card-title">
+                  {this.props.document.title || ''}</span>
                 </div>
                 <div className="card-content">
                   <p>{ this.props.document.content || '' }</p>
@@ -71,7 +73,8 @@ const mapStoreToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    viewDocument: (usertoken, documentid) => dispatch(viewDocumentAction(usertoken, documentid))
+    viewDocument: (usertoken, documentid) =>
+     dispatch(viewDocumentAction(usertoken, documentid))
   };
 };
 
