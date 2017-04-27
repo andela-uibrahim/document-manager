@@ -4,17 +4,16 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './client/src/index.html',
-  filename: 'index.html',
-  inject: 'body'
-});
+// const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+//   template: './client/src/index.html',
+//   filename: 'index.html',
+//   inject: 'body'
+// });
+
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
-  entry: [
-    './client/src/index.jsx'
-  ],
+  entry: path.resolve(__dirname +  '/client/src/index.jsx'),
   
   module: {
     loaders: [
@@ -28,11 +27,11 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
       },
       { 
         test: /\.css$/,
-        loader: ['style-loader','css-loader'] 
+        loaders: ['style-loader','css-loader'] 
       },
       { 
         test: /\.(jpg|png|svg|jpeg)$/,
@@ -49,15 +48,15 @@ module.exports = {
     extensions: ['.js']
   },
   output: {
-    path: path.resolve('client/dist'),
+    path: path.resolve(__dirname + '/client/dist'),
     filename: 'bundle.js'
   },
-  devServer: {
-    contentBase: './client/dist',
-    hot: true
-  },
-  plugins: [
-    HtmlWebpackPluginConfig,
-    new ExtractTextPlugin('stylesheet.css')
-  ]
+  // devServer: {
+  //   contentBase: './client/dist',
+  //   hot: true
+  // },
+  // plugins: [
+  //   HtmlWebpackPluginConfig,
+  //   new ExtractTextPlugin('stylesheet.css')
+  // ]
 };
