@@ -1,3 +1,4 @@
+/*eslint-disable no-unused-vars*/
 import React from 'react';
 import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';

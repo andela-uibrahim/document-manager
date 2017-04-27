@@ -1,4 +1,5 @@
 /* eslint import/no-unresolved: 0 */
+/*eslint-disable no-unused-vars*/
 import model from '../models';
 import DocumentHelper from './helper/DocHelper';
 

@@ -1,4 +1,5 @@
 /* eslint import/no-extraneous-dependencies: 0 */
+/*eslint-disable no-unused-vars*/
 import supertest from 'supertest';
 import chai from 'chai';
 import dotenv from 'dotenv';
