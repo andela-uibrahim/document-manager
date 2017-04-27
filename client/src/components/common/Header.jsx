@@ -1,3 +1,4 @@
+/*eslint-disable no-unused-vars*/
 import React, { Component } from 'react';
 import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';

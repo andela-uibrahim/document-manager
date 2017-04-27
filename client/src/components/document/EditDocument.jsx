@@ -1,3 +1,4 @@
+/*eslint-disable no-unused-vars*/
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 import { browserHistory } from 'react-router';
