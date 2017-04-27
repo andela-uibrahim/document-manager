@@ -2,3 +2,4 @@ client/src/reducers
 client/dist/bundle.js
 migrations/
 api-docs/*.js
+server/seeders/
