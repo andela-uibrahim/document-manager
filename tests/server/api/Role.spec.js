@@ -15,7 +15,6 @@ const client = supertest.agent(app);
 describe('Role ==> \n', () => {
   let adminToken, regularToken;
   before((done) => {
-    db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY');
     db.User.create(testData.admin).then(() => {
       client.post('/api/users/login')
         .send({
@@ -44,12 +43,15 @@ describe('Role ==> \n', () => {
   });
 
   after((done) => {
-    db.sequelize.query('TRUNCATE "Roles" RESTART IDENTITY');
-    db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
+    db.sequelize.query('TRUNCATE "Roles" RESTART IDENTITY')
       .then(() => {
-        done();
-    });
+        db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
+          .then(() => {
+            done();
+          });
+      });
   });
+
 
   describe('Admin', () => {
     it('should only allow user with a valid token to create Roles', (done) => {
@@ -81,7 +83,7 @@ describe('Role ==> \n', () => {
         });
     });
     it('should be able to delete roles from the table', (done) => {
-      client.delete('/api/roles/1')
+      client.delete('/api/roles/2')
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
           expect(res.status).to.equal(200);
