@@ -44,7 +44,7 @@ app.all('*', (req, res) => {
   res.sendFile(`${__dirname}/client/dist/index.html`);
 });
 
-const port = parseInt(process.env.PORT, 10) || 3000;
+const port = process.env.PORT || 3000;
 app.set('port', port);
 app.listen(port, () => console.log('server started'));
 export default app;

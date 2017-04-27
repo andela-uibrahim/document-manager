@@ -28,7 +28,7 @@ module.exports = {
       updatedAt: new Date()
     },
     {
-      id: 13,
+      id: 4,
       username: faker.internet.userName(),
       firstname: faker.name.firstName(),
       lastname: faker.name.lastName(),
@@ -40,7 +40,7 @@ module.exports = {
       updatedAt: new Date()
     },
     {
-      id: 14,
+      id: 5,
       username: faker.internet.userName(),
       firstname: faker.name.firstName(),
       lastname: faker.name.lastName(),
@@ -55,7 +55,7 @@ module.exports = {
 
   down(queryInterface, Sequelize) {
     return queryInterface.bulkDelete('Users', {
-      id: [2, 3, 12, 13, 14, 15]
+      id: [2, 3, 4, 5]
     });
   }
 };

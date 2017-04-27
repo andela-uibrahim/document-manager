@@ -3,7 +3,7 @@ const faker = require('faker');
 module.exports = {
   up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert('documents', [{
-      id: 13,
+      id: 1,
       title: faker.random.word(),
       content: faker.lorem.paragraph(),
       access: 'public',
@@ -11,7 +11,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
-      id: 14,
+      id: 2,
       title: faker.random.word(),
       content: faker.lorem.paragraph(),
       access: 'private',
@@ -20,7 +20,7 @@ module.exports = {
       updatedAt: new Date()
     },
     {
-      id: 15,
+      id: 3,
       title: faker.random.word(),
       content: faker.lorem.paragraph(),
       access: 'role',
@@ -29,7 +29,7 @@ module.exports = {
       updatedAt: new Date()
     },
     {
-      id: 16,
+      id: 4,
       title: faker.random.word(),
       content: faker.lorem.paragraph(),
       access: 'public',
@@ -38,20 +38,20 @@ module.exports = {
       updatedAt: new Date()
     },
     {
-      id: 17,
+      id: 5,
       title: faker.random.word(),
       content: faker.lorem.paragraph(),
       access: 'private',
-      UserId: 6,
+      UserId: 2,
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      id: 18,
+      id: 6,
       title: faker.random.word(),
       content: faker.lorem.paragraph(),
       access: 'role',
-      UserId: 8,
+      UserId: 3,
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});
@@ -59,7 +59,7 @@ module.exports = {
 
   down(queryInterface, Sequelize) {
     return queryInterface.bulkDelete('documents', {
-      id: [13, 14, 15, 16, 17, 18]
+      id: [1, 2, 3, 4, 5, 6]
     });
   }
 };
