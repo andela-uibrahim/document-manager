@@ -24,12 +24,6 @@ export class CreateRole extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.status === 'success') {
-      browserHistory.push('/roles');
-    }
-  }
-
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }

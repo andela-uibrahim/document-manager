@@ -93,14 +93,6 @@ export class ChangePassword extends Component {
 }
 
 
-
-const mapStoreToProps = (state) => {
-  return {
-    user: state.allUsersReducer.user,
-    status: state.allUsersReducer.status
-  };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     changePassword: (token, state, userId) =>
@@ -108,4 +100,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStoreToProps, mapDispatchToProps)(ChangePassword);
+export default connect(null, mapDispatchToProps)(ChangePassword);

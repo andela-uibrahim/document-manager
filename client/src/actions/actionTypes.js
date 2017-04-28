@@ -1,7 +1,8 @@
 import keymirror from 'keymirror';
 
 export default keymirror({
-  SIGNUP: null,
+  SIGN_UP_SUCCESSFUL: null,
+  SIGN_UP_ERROR: null,
   LOGIN: null,
   LOGIN_SUCCESSFUL: null,
   LOGIN_ERROR: null,

@@ -127,23 +127,14 @@ export class CreateUser extends Component {
   }
 }
 
-CreateUser.PropTypes = {
-  user: React.PropTypes.object.isRequired,
-};
-
 CreateUser.contextTypes = {
   router: React.PropTypes.object
 };
 
-const mapStoreToProps = (state) => {
-  return {
-    user: state.user
-  };
-};
 const mapDispatchToProps = (dispatch) => {
   return {
     createUser: userDetails => dispatch(CreateUserAction(userDetails))
   };
 };
 
-export default connect(mapStoreToProps, mapDispatchToProps)(CreateUser);
+export default connect(null, mapDispatchToProps)(CreateUser);

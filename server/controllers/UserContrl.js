@@ -171,7 +171,9 @@ class UserController {
         } else if (UserId === user.id && RoleId === 2) {
           const updateProps = Object.keys(req.body);        
           user.update(req.body, {fields: updateProps})
-          .then(updatedUser => res.status(201).send(updatedUser));
+          .then(updatedUser => {
+            return res.status(201).send(updatedUser)
+          });
         } else {
           res.status(401).send({
             success: false,

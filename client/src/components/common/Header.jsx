@@ -74,10 +74,6 @@ const mapDispatchToProps = (dispatch) => {
     logout: () => dispatch(logoutAction())
   };
 };
-const mapStoreToProps = (state) => {
-  return {
-    user: state.user
-  };
-};
 
-export default connect(mapStoreToProps, mapDispatchToProps)(Header);
+
+export default connect(null, mapDispatchToProps)(Header);

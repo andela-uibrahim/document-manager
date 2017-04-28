@@ -4,11 +4,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-// const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-//   template: './client/src/index.html',
-//   filename: 'index.html',
-//   inject: 'body'
-// });
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: './client/src/index.html',
+  filename: 'index.html',
+  inject: 'body'
+});
 
 
 module.exports = {
@@ -51,12 +51,12 @@ module.exports = {
     path: path.resolve(__dirname + '/client/dist'),
     filename: 'bundle.js'
   },
-  // devServer: {
-  //   contentBase: './client/dist',
-  //   hot: true
-  // },
-  // plugins: [
-  //   HtmlWebpackPluginConfig,
-  //   new ExtractTextPlugin('stylesheet.css')
-  // ]
+  devServer: {
+    contentBase: './client/dist',
+    hot: true
+  },
+  plugins: [
+    HtmlWebpackPluginConfig,
+    new ExtractTextPlugin('stylesheet.css')
+  ]
 };

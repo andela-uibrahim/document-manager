@@ -86,7 +86,7 @@ export class EditUser extends Component {
         <div className="col s2 l4 " />
         <form className="col s8 l4 loginForm" onSubmit={(e) => {
             e.preventDefault();
-            confirmUpdateUser(this.props.editUser, this.state.token, this.state, this.props.params.id);
+            confirmUpdateUser(this.props.editUser, this.token, this.state, this.props.params.id);
             }} >
           <div className="row">
             <div className="input-field col s12">

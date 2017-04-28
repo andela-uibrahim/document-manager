@@ -16,10 +16,17 @@ export class SignUpPage extends Component {
       lastname: '',
       email: '',
       password: '',
+      error: null,
+      success: null
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.state.error = nextProps.signUpError;
+    this.state.success = nextProps.signUpSuccess;
   }
 
   handleChange(event) {
@@ -28,21 +35,38 @@ export class SignUpPage extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.Signup(this.state)
-    .then(() => {
-      browserHistory.push('/dashboard');
+    // clear any error or success messages showing
+    this.setState({
+      success: null,
+      error: null
     });
+    this.props.Signup(this.state)
   }
 
   render() {
     if (window.localStorage.getItem('token')) {
-      browserHistory.push('/dashboard');
+      setTimeout(() => {
+        browserHistory.push('/dashboard');
+      }, 1000);
     }
     return (
       <div className="row">
         <Header />
         <div className="col s2 l4 " />
         <form className="col s8 l4 loginForm" onSubmit={this.handleSubmit} >
+        { this.state.error ?
+            <div className="login-feedback error">
+              { this.state.error }
+            </div>
+            : <span />
+          }
+
+          { this.state.success ?
+            <div className="login-feedback success">
+              { this.state.success }
+            </div>
+            : <span />
+          }
           <div className="row">
             <div className="input-field col s12">
               <input
@@ -138,17 +162,15 @@ export class SignUpPage extends Component {
   }
 }
 
-SignUpPage.PropTypes = {
-  user: React.PropTypes.object.isRequired,
-};
-
 SignUpPage.contextTypes = {
   router: React.PropTypes.object
 };
 
 const mapStoreToProps = (state) => {
+  console.log(state);
   return {
-    user: state.user
+    signUpSuccess: state.signUpReducer.success,
+    signUpError: state.signUpReducer.error,
   };
 };
 const mapDispatchToProps = (dispatch) => {

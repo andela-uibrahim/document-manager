@@ -139,7 +139,6 @@ export class LoginPage extends Component {
 }
 
 LoginPage.PropTypes = {
-  user: PropTypes.object.isRequired,
   loginThings: PropTypes.func.isRequired
 };
 
@@ -149,10 +148,8 @@ LoginPage.contextTypes = {
 
 const mapStoreToProps = (state) => {
   return {
-    user: state.loginReducer.user,
     loginSuccess: state.loginReducer.success,
     loginError: state.loginReducer.error,
-    token: state.loginReducer.token
   };
 };
 const mapDispatchToProps = (dispatch) => {

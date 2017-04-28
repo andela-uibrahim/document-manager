@@ -36,14 +36,7 @@ html {
 nav {
 	padding: 0 15px 0 15px !important;
 }
-.forgot-password {
-	float: right;
-	padding-right: 10px;
-	color: $blue;
-	&:hover {
-		color: $blue;
-	}
-}
+
 #btn_login {
   background: $ash_color !important;
 	color: $white !important;
@@ -52,13 +45,7 @@ nav {
 		background: $blue !important;
 	}
 }
-.changeLogin {
-	float: right;
-	padding-right: 10px;
-	a {
-		color: $blue;
-	}
-}
+
 #loggedinNav {
 	float: right;
 	a {
@@ -84,7 +71,7 @@ nav {
 	z-index:1000;
 }
 .workspace {
-	height:auto;;
+	height:auto;
 	padding:20px;
 }
 
@@ -146,8 +133,8 @@ a {
  .workspace-header{
 	 width:80%;
 	 margin:0 auto;
-   margin-top:80px !important;
-   background:$white;
+   	margin-top:80px !important;
+   	background:$white;
  }
 
 #collapse_btn{
@@ -242,13 +229,4 @@ padding-top:50px !important;
 	&.success {
 		background-color: rgba(0 ,255, 0,0.2);
 	}
-}
-
-.about-us{
-	width:80%;
-	background:white;
-	padding:30px;
-	margin: 0 auto;
-	font-size:18px;
-	margin-top:15%;
 }

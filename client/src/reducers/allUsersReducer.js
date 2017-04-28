@@ -14,11 +14,7 @@ export default function allUsersReducer(state = initialState, action) {
     case actionTypes.VIEW_USER:
       return Object.assign({}, state, { user: action.user });
     case actionTypes.USER_UPDATED:
-      const userToUpdate = state.users.find(user => user.id === action.user.id);
-      const userIndex = state.users.indexOf(userToUpdate);
-      const newUsers = state.users.slice();
-      newUsers[userIndex] = Object.assign({}, newUsers[userIndex], action.user);
-      return Object.assign({}, state, { users: newUsers });
+      return Object.assign({}, state, { user: action.user });
     case actionTypes.USER_DELETED:
       return  Object.assign({}, state, {  users: state.users.filter((user) => {
           return user.id !== action.userid;
