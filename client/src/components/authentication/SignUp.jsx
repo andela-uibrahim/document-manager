@@ -167,7 +167,6 @@ SignUpPage.contextTypes = {
 };
 
 const mapStoreToProps = (state) => {
-  console.log(state);
   return {
     signUpSuccess: state.signUpReducer.success,
     signUpError: state.signUpReducer.error,
