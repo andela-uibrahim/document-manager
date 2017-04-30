@@ -103,20 +103,20 @@ nav {
 .sidebar {
 	background: $blue;
 	position: absolute;
-	z-index:1000;
+	z-index: 1000;
 }
 .workspace {
-	height:auto;
-	padding:20px;
+	height: auto;
+	padding: 20px;
 }
 
 .workspace .panel{
-	width:80%;
-	margin:0 auto;
-	margin-top:40px;
-	padding:40px;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 40px;
+	padding: 40px;
 	margin-bottom: 40px;
-	height:auto;
+	height: auto;
 	background: $white;
 
 }
@@ -136,13 +136,13 @@ nav {
 	margin: 6px;
 }
 .useractions {
-	width:50px;
-	height:50px;
+	width: 50px;
+	height: 50px;
 	background: white;
 }
 
 .useractions i{
-	margin-top:12px !important;
+	margin-top: 12px !important;
 	color: $blue;
 }
 
@@ -159,71 +159,71 @@ a {
  .usermenu {
 	color: white;
 	font-weight: bold;
-	height:auto;
-	padding:20px;
+	height: auto;
+	padding: 20px;
  }
 
 
  #content {
 	 background: white;
-	 padding:10px;
-	 min-height:300px;
+	 padding: 10px;
+	 min-height: 300px;
  }
 
  .workspace-header{
-	width:80%;
-	margin:0 auto;
-   	margin-top:80px !important;
-   	background:$white;
+	width: 80%;
+	margin: 0 auto;
+   	margin-top: 80px !important;
+   	background: $white;
  }
 
 #collapse_btn{
-	margin-top:15px !important;
+	margin-top: 15px !important;
 	text-align: center;
-	position:absolute;
+	position: absolute;
 }
 
 #collapse_btn i{
-	margin-top:-8px !important;
+	margin-top: -8px !important;
 }
 
 
 .side-nav {
-padding-top:120px !important;
+padding-top: 120px !important;
 }
 
 .menu_link li {
-padding-top:50px !important;
+padding-top: 50px !important;
 }
 
 .action_desc{
-	margin-top:-1px !important;
+	margin-top: -1px !important;
 }
 
 .document-name-field input {
-	width:90%;
+	width: 90%;
 }
 
 .doc_list {
-	margin:0 auto;
+	margin: 0 auto;
 
 }
 
 .doc_list a{
-	color:black;
+	color: black;
 }
 
 .doc_list a:hover{
-	color:$blue;
+	color: $blue;
 }
 
 .doc_list th, .doc_list td {
-	padding:15px;
-	padding-left:30px;
+	padding: 15px;
+	padding-left: 30px;
 }
 
 .pagination-btn {
-	margin-right:30px;
+	margin-right: 30px;
 	margin-bottom: 30px;
 }
 
@@ -232,11 +232,11 @@ padding-top:50px !important;
 }
 
 .refresh-list-btn:hover{
-	color:$blue !important;
+	color: $blue !important;
 }
 
 .userRoleSelect{
-	width:90px;
+	width: 90px;
 }
 .user_doc {
 	background: $white_80;
