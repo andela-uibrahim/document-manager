@@ -17,21 +17,8 @@ describe('MyDocumentsList component', () => {
   });
 
   it('should be cards of MyDocumentsList', () => {
-    expect(wrapper.find('img').length).toBe(1);
     expect(wrapper.find('span').length).toBe(1);
-    expect(wrapper.find('a').length).toBe(1);
-    expect(wrapper.find('p').length).toBe(1);
-  });
-
-  it('should have an image tag with a src prop', () => {
-    expect(wrapper.find('img').props().src).toExist();
-  });
-
-  it(`should have a table with head that contains
-   "title", "access" and 'content'`, () => {
-    expect(wrapper.find('span').text()).toEqual('document list');
-    expect(wrapper.find('a').text()).toEqual('public');
-    expect(wrapper.find('p').text()).toEqual('this is andela');
+    expect(wrapper.find('h3').length).toBe(1);
   });
 
   it(`should return no document found  if there was no document`, () => {

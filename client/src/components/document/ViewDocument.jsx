@@ -11,6 +11,7 @@ import cardimage from '../../images/cardimage.jpeg';
 export class ViewDocument extends Component {
   constructor(props) {
     super(props);
+    this.parseHtml = this.parseHtml.bind(this);
   }
 
   componentWillMount() {
@@ -19,6 +20,11 @@ export class ViewDocument extends Component {
       this.setState({ userid: jwtDecode(token).UserId });
       this.props.viewDocument(token, this.props.params.id);
     }
+  }
+
+  parseHtml(content){
+    const html = $.parseHTML(content);
+    $('#content').append(html);
   }
 
   render() {
@@ -31,34 +37,33 @@ export class ViewDocument extends Component {
         <Sidebar />
         {(this.props.document) ?
         <div className= "row">
-          <div className="col s2 m3">
+         <br/> <br/>
+          <div className="col s2 m2">
           </div>
-          <div className="col s6 m6">
+          <div className="col s8 m8">
               <div className="card">
-                <div className="card-image">
-                  <img src={cardimage}/>
-                  <span className="card-title">
-                  {this.props.document.title || ''}</span>
-                </div>
-                <div className="card-content">
-                  <p>{ this.props.document.content || '' }</p>
-                </div>
-                <div className="card-action">
-                  <a href="#">{this.props.document.access || ''}</a>
+                <div className="card-panel white">
+                   <div className="teal-text left">Access: {` ${this.props.document.access || ''}`}</div>
+                  <span className="black-text"> 
+                    <h4 className="center">{this.props.document.title || ''}</h4>
+                    <br/> 
+                    <p id="content" className="black-text">{ this.parseHtml(this.props.document.content ) }</p>
+                    <br/>
+                  </span>
                 </div>
               </div>
-          </div> 
-         </div>   
-          :
-          <div>
-            Document not Found
-          </div>
-        }
-      </div>
+            </div> 
+          </div>   
+            :
+            <div>
+              Document not Found
+                </div>
+          }
+        </div>
 
-    );
+      );
+    }
   }
-}
 
 
 ViewDocument.propTypes = {

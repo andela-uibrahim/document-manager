@@ -1,4 +1,5 @@
 /*eslint-disable no-unused-vars*/
+/*eslint-disable no-undef*/
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 import { Pagination } from 'react-materialize';
@@ -42,7 +43,9 @@ export class ViewAllUsers extends Component {
       this.props.paginateUsers(this.token, offset, this.state.limit);
       this.props.getRoles(this.token);
     }
+    $('.pag').children().click( event => event.preventDefault());
   }
+
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -114,7 +117,7 @@ export class ViewAllUsers extends Component {
                   roleId={this.RoleId}
                 /> 
                 <center>
-                <Pagination
+                <Pagination className="pag"
                   items={this.props.pageCount}
                   onSelect={(page) => {
                     const token = window.localStorage.getItem('token');

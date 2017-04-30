@@ -35,10 +35,10 @@ describe('ViewDocument component', () => {
   });
 
   it('should be cards of ViewDocument', () => {
-    expect(wrapper.find('img').length).toBe(2);
+    expect(wrapper.find('h4').length).toBe(1);
     expect(wrapper.find('span').length).toBe(1);
-    expect(wrapper.find('a').length).toBe(15);
-    expect(wrapper.find('p').length).toBe(9);
+    expect(wrapper.find('a').length).toBe(14);
+    expect(wrapper.find('p').length).toBe(8);
   });
 
   it('should have an image tag with a src prop', () => {
@@ -48,8 +48,8 @@ describe('ViewDocument component', () => {
   it(`should have a card that contains
    "title", "access" and 'content'`, () => {
     expect(wrapper.find('span').at(0).text()).toEqual('document list');
-    expect(wrapper.find('a').last().text()).toEqual('public');
-    expect(wrapper.find('p').last().text()).toEqual('this is andela');
+    expect(wrapper.find('div').last().text()).toEqual('Access:  public');
+    expect(wrapper.find('p').last().text()).toEqual('');
   });
 
 });

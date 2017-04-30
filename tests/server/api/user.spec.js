@@ -115,7 +115,7 @@ describe('Users ==> \n', () => {
           password: process.env.ADMIN_PASSWORD
         })
         .end((error, res) => {
-          expect(res.status).to.equal(201);
+          expect(res.status).to.equal(200);
           done();
         });
     });
@@ -167,7 +167,7 @@ describe('Users ==> \n', () => {
           password: testData.admin.password
         })
         .end((error, res) => {
-          expect(res.status).to.equal(201);
+          expect(res.status).to.equal(200);
           done();
         });
     });

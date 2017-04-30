@@ -73,7 +73,7 @@ class UserController {
       .then((user) => {
         if (user && user.passwordMatched(req.body.password)) {
           const token = Authenticate.generateToken(user);
-          res.status(201).send({
+          res.status(200).send({
             message: 'login successfully',
             token,
             expiresIn: 86400
@@ -120,11 +120,15 @@ class UserController {
     }
     Users.findAndCountAll({})
       .then((users) => {
+        users.rows = users.rows.map(user => {
+          delete user.dataValues.password;
+          return user.dataValues;
+        })
         const paginateResult = DocumentHelper
         .paginateResult(users, queryParams.offset, queryParams.limit);
-        res.status(201).send({
+        res.status(200).send({
           users: users.rows,
-          pageCount: paginateResult.pageCount
+          pagination: paginateResult
          });
       })
       .catch((err) => {
@@ -167,12 +171,12 @@ class UserController {
       if (user) {
         if (RoleId === 1) {
           user.update(req.body, {fields: Object.keys(req.body)})
-            .then(updatedUser => res.status(201).send(updatedUser));
+            .then(updatedUser => res.status(200).send(updatedUser));
         } else if (UserId === user.id && RoleId === 2) {
           const updateProps = Object.keys(req.body);        
           user.update(req.body, {fields: updateProps})
           .then(updatedUser => {
-            return res.status(201).send(updatedUser)
+            return res.status(200).send(updatedUser)
           });
         } else {
           res.status(401).send({
@@ -289,9 +293,13 @@ class UserController {
       }
     Users.findAndCountAll(queryBuilder)
       .then((users) => {
+        users.rows = users.rows.map(user => {
+          delete user.dataValues.password;
+          return user.dataValues;
+        })
         const paginateResult = DocumentHelper
         .paginateResult(users, queryBuilder.offset, queryBuilder.limit);
-        res.status(201).send({
+        res.status(200).send({
           users: users.rows,
           pageCount: paginateResult.pageCount
          });

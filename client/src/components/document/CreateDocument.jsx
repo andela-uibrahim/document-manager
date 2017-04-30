@@ -1,30 +1,15 @@
 /*eslint-disable no-unused-vars*/
+/*eslint-disable no-undef*/
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import React, { Component, PropTypes } from 'react';
+import TinyMCE from 'react-tinymce';
 import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import newDocument from '../../actions/documentManagement/newDocument';
+import Validation from '../../helper/validation';
 
-
-const ResponseMessage = (props) => {
-  if (props.status === 'success') {
-    return (
-      <div>
-        Document Created
-      </div>
-    );
-  } else if (props.status === 'failed') {
-    return (
-      <div>
-        Document not Created
-      </div>
-    );
-  } else {
-    return (<span />);
-  }
-};
-
+const validate = new Validation();
 
 export class CreateDocument extends Component {
   constructor(props) {
@@ -38,24 +23,38 @@ export class CreateDocument extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEditorChange = this.handleEditorChange.bind(this);
   }
 
   componentDidMount(){
-     $('#access').material_select(this.handleChange.bind(this));
+     //$('#access').material_select(this.handleChange.bind(this));
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.status === 'success') {
+    if (nextProps.status === 'success') { 
+      toastr.info('Document successfully created ');
       browserHistory.push('/dashboard');
+      return null
     }
+    toastr.error('title already exist');
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+  handleEditorChange(event) {
+    this.setState({ content : event.target.getContent() }); 
+  }
 
   handleSubmit(event) {
     event.preventDefault();
+    if(validate.isEmpty(this.state.title)){
+      toastr.error('Please enter a valid title', 'Error!')
+      return false
+    } else if(validate.isEmpty(this.state.content)){
+      toastr.error('Please enter the document contents')
+      return false
+    }
     this.props.CreateDocument(this.state);
   }
 
@@ -95,17 +94,20 @@ export class CreateDocument extends Component {
               </div>
             </div>
             <div className="field row">
-              <textarea
+              <TinyMCE
                 name="content"
                 id="content"
-                onChange={this.handleChange}
-                placeholder="Type your content here..."
+                content="Type your content here..."
+                config={{
+                  plugins: 'link image code',
+                  toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+                  }}
+                onChange={this.handleEditorChange}
               />
             </div>
             <div className="field row">
               <button className="btn" type="submit">Save</button>
             </div>
-            <ResponseMessage status={this.props.status} />
           </form>
         </div>
       </div>
@@ -121,7 +123,7 @@ CreateDocument.contextTypes = {
 
 const mapStoreToProps = (state) => {
   return {
-    status: state.allDocumentsReducer.createStatus
+    status: state.allDocumentsReducer.status
   };
 };
 

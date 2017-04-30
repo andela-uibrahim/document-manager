@@ -42,7 +42,7 @@ router.route('/')
      *          required: true
      *          type: string
      *      responses:
-     *        201:
+     *        200:
      *          description: roles
      *          schema:
      *            type: array
@@ -96,7 +96,7 @@ router.route('/:id')
      *          required: true
      *          type: string
      *      responses:
-     *        201:
+     *        200:
      *          description: message
      *          schema:
      *            type: object

@@ -12,7 +12,8 @@ m._load = function hookedLoader(request, parent, isMain) {
   return originalLoader(request, parent, isMain);
 };
 
-const doc = jsdom.jsdom('<!doctype html><html><body></body></html>',{
+
+const doc = jsdom.jsdom(`<!doctype html><html><body></body></html>`,{
   url: 'http://localhost'
 });
 global.document = doc;

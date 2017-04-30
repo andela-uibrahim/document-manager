@@ -63,7 +63,7 @@ describe('Role ==> \n', () => {
           done();
         });
     });
-    it(`should return 404 status code if the 500
+    it(`should return 500 status code if the role
      value is not inputed`, (done) => {
       client.post('/api/roles')
         .set({ 'x-access-token': adminToken })
@@ -78,7 +78,7 @@ describe('Role ==> \n', () => {
       client.get('/api/roles/')
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
-          expect(res.status).to.equal(201);
+          expect(res.status).to.equal(200);
           done();
         });
     });

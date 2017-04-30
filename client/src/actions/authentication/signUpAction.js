@@ -1,3 +1,4 @@
+/*eslint-disable no-undef*/
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import actionTypes from '../actionTypes';
@@ -16,7 +17,7 @@ export default (userData) => {
         window.localStorage.setItem('token', response.data.token);
         const user = jwtDecode(response.data.token);
         dispatch(loginSuccessful(user));
-      }).catch((error) => {
+      }).catch(() => {
         dispatch({
           type: actionTypes.SIGN_UP_ERROR,
           message: 'Invalid credentials'

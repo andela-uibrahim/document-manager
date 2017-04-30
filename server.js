@@ -12,7 +12,8 @@ import routes from './server/routes';
 // Set up the express app
 const app = express();
 
-if (process.env.NODE_ENV !== ('production' && 'test' && 'travis')) {
+if (process.env.NODE_ENV === 'development') {
+  console.log('===================================> bad')
   const compiler = webpack(webpackConfig);
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,

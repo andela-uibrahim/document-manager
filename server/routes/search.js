@@ -25,7 +25,7 @@ router.route('/documents/')
       *          required: true
       *          type: string
       *     responses:
-      *        201:
+      *        200:
       *          description: get documents from the database
       *          schema:
       *            type: array
@@ -50,7 +50,7 @@ router.route('/users/')
       *          required: true
       *          type: string
       *     responses:
-      *        201:
+      *        200:
       *          description: get users from the database
       *          schema:
       *            type: array
