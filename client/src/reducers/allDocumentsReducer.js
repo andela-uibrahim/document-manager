@@ -22,7 +22,7 @@ export default function allDocumentsReducer(state = initialState, action) {
       return Object.assign({}, state, { document: action.document });  
     case actionTypes.DOCUMENT_CREATED:
       return Object.assign({}, state, 
-      { createStatus: action.status, documents: action.documents });
+      { status: action.status, documents: action.documents });
     case actionTypes.DOCUMENT_CREATE_FAILED:
       return Object.assign({}, state, { status: action.status });
     case actionTypes.USER_DOCUMENTS_FOUND:

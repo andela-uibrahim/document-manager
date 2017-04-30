@@ -1,10 +1,14 @@
 /*eslint-disable no-unused-vars*/
+/*eslint-disable no-undef*/
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import React, { Component, PropTypes } from 'react';
 import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import createRoleAction from '../../actions/roleManagement/newRole';
+import Validation from '../../helper/validation';
+
+const validate = new Validation();
 
 
 export class CreateRole extends Component {
@@ -30,6 +34,10 @@ export class CreateRole extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    if(validate.isEmpty(this.state.role)){
+      toastr.error('Please enter a new Role', 'Error!')
+      return false
+    }
     this.props.CreateRole(this.state);
   }
 

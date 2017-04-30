@@ -5,6 +5,7 @@ $ash_color: #B5BEB2;
 
 //urls
 $url_0: url(../images/background.jpeg);
+$url_1: url(../images/homePage.jpg);
 
 //@extend-elements
 //original selectors
@@ -18,14 +19,31 @@ $url_0: url(../images/background.jpeg);
 }
 
 
-body {
-	@extend %extend_1;
+// body {
+// 	@extend %extend_1;
+// }
+// html {
+// 	@extend %extend_1;
+// }
+
+.homePage {
+   background: $url_1;
+   background-size: cover;
+   padding: 0 !important;
+   margin: 0 !important;
+   min-height: 700px !important;
 }
-html {
-	@extend %extend_1;
+.Docman {
+	margin-left: 80px;
+	li {
+		h3 {
+			line-height: 23px;
+		}
+	}
 }
 .loginForm {
 	background: $white;
+	border: 2px solid #ddd;
 	margin-top: 5%;
 	min-height: 370px !important;
 	min-width: 200px;
@@ -38,11 +56,12 @@ nav {
 }
 
 #btn_login {
-  background: $ash_color !important;
+  background: #ddd !important;
+  color: #039be5 !important;
+  font-weight: bold;
+  &:hover {
+	background: #1976d2 !important;
 	color: $white !important;
-	font-weight: bold;
-	&:hover {
-		background: $blue !important;
 	}
 }
 
@@ -50,11 +69,27 @@ nav {
 	float: right;
 	a {
 		font-weight: bold;
+		color: black;
 		&:hover {
 			background: transparent;
-			color: $white;
+			color: black;
 		}
 	};
+}
+
+.dropdown-content {
+  background-color: #FFFFFF;
+  margin: 0;
+  display: none;
+  min-width: 200px; /* Changed this to accomodate content width */
+  max-height: auto;
+  margin-left: -1px; /* Add this to keep dropdown in line with edge of navbar */
+  overflow: hidden; /* Changed this from overflow-y:auto; to overflow:hidden; */
+  margin-top: 65px;
+  opacity: 0;
+  position: absolute;
+  white-space: nowrap;
+  z-index: 1;
 }
 
 .title {
@@ -111,6 +146,11 @@ nav {
 	color: $blue;
 }
 
+.pagination .active{
+	a{
+		background: #1976d2 !important;
+	}
+}
 
 a {
 	cursor: pointer;
@@ -131,8 +171,8 @@ a {
  }
 
  .workspace-header{
-	 width:80%;
-	 margin:0 auto;
+	width:80%;
+	margin:0 auto;
    	margin-top:80px !important;
    	background:$white;
  }
@@ -188,7 +228,7 @@ padding-top:50px !important;
 }
 
 .refresh-list-btn {
-	color:$white !important;
+	color: #1976d2 !important;
 }
 
 .refresh-list-btn:hover{
@@ -197,16 +237,6 @@ padding-top:50px !important;
 
 .userRoleSelect{
 	width:90px;
-}
-
-.doc_content {
-	margin:0 auto;
-	width:70%;
-	min-height:200px;
-}
-
-.doc_content div {
-	padding:25px !important;
 }
 .user_doc {
 	background: $white_80;

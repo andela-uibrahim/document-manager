@@ -50,9 +50,11 @@ export class SignUpPage extends Component {
       }, 1000);
     }
     return (
-      <div className="row">
+       <div>
         <Header />
-        <div className="col s2 l4 " />
+        <div className="row">
+          <div className="col s4 l6 homePage"/>
+          <div className="col l1" />
         <form className="col s8 l4 loginForm" onSubmit={this.handleSubmit} >
         { this.state.error ?
             <div className="login-feedback error">
@@ -155,8 +157,8 @@ export class SignUpPage extends Component {
             </div>
           </center>
         </form>
-        <div className="col s2 l4" />
       </div>
+    </div>
 
     );
   }

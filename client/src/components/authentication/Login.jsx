@@ -7,7 +7,6 @@ import React, { Component } from 'react';
 import loginAction from '../../actions/authentication/loginAction';
 import Header from '../common/Header.jsx';
 
-
 const ADMIN_ROLE_ID = 1;
 
 export class LoginPage extends Component {
@@ -68,9 +67,11 @@ export class LoginPage extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div>
         <Header />
-        <div className="col s2 l4 " />
+        <div className="row">
+        <div className="col s4 l6 homePage"/>
+        <div className="col l1" />
         <form className="col s8 l4 loginForm" onSubmit={this.handleSubmit}>
           { this.state.error ?
             <div className="login-feedback error">
@@ -131,8 +132,8 @@ export class LoginPage extends Component {
             </div>
           </center>
         </form>
-        <div className="col s2 l4" />
       </div>
+    </div>
 
     );
   }

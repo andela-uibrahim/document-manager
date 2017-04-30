@@ -86,8 +86,8 @@ class DocumentController {
     Documents.findById(req.params.id).then((document) => {
       if (document.UserId === FinderId || RoleId === 1) {
         document.update(req.body)
-        .then(updatedDocument => res.status(201).send(updatedDocument))
-        .catch(error => res.status(401).send(error.message));
+        .then(updatedDocument => res.status(200).send(updatedDocument))
+        .catch(error => res.status(409).send(error.message));
       } else {
         res.status(401).send({
           success: false,
@@ -115,7 +115,7 @@ class DocumentController {
     }).then((document) => {
       if (document.UserId === FinderId || RoleId === 1) {
         document.destroy()
-        .then(() => res.status(201).send({
+        .then(() => res.status(200).send({
           success: true,
           message: 'Document has been successfully deleted'
         }));

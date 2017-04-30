@@ -20,7 +20,7 @@ export default (credentials) => {
           token,
           message: 'Login Successful'
         });
-      }).catch((error) => {
+      }).catch(() => {
         dispatch({
           type: actionTypes.LOGIN_ERROR,
           message: 'Invalid credentials'

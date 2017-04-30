@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import actionTypes from '../actionTypes';
-
+/*eslint-disable no-undef*/
 export default (details) => {
   const token = window.localStorage.getItem('token');
   return (dispatch) => {

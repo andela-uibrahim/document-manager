@@ -101,7 +101,7 @@ router.route('/')
      *          required: true
      *          type: string
      *     responses:
-     *        201:
+     *        200:
      *          description: users
      *          schema:
      *            type: array
@@ -161,7 +161,7 @@ router.route('/login')
    *         schema:
    *           $ref: '#/definitions/NewLogin'
    *     responses:
-   *       201:
+   *       200:
    *         description: users
    *         schema:
    *          type: object,
@@ -248,7 +248,7 @@ router.route('/:id')
      *         schema:
      *           $ref: '#/definitions/NewUser'
      *     responses:
-     *       201:
+     *       200:
      *         description: users
      *         schema:
      *          type: object,

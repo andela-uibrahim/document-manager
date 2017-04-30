@@ -1,4 +1,5 @@
 /*eslint-disable no-unused-vars*/
+/*eslint-disable no-undef*/
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 import { browserHistory } from 'react-router';
@@ -6,6 +7,9 @@ import React, { Component, PropTypes } from 'react';
 import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import editUserAction from '../../actions/userManagement/editUser';
+import Validation from '../../helper/validation';
+
+const validate = new Validation();
 
 
 const confirmChangePassword = (callback, token, state, userId) => {
@@ -20,7 +24,7 @@ const confirmChangePassword = (callback, token, state, userId) => {
     closeOnCancel: false
   },
     (changeConfirmed) => {
-      if (changeConfirmed) {
+      if (changeConfirmed  && validate.isValidPassword(state.password)) {
         callback(token, state, userId);
         swal('Updated!', 'The user\'s password has been updated.', 'success');
         if (jwtDecode(token).RoleId === 1) {
@@ -58,7 +62,8 @@ export class ChangePassword extends Component {
         <div className="col s2 l4 " />
         <form className="col s8 l4 loginForm" onSubmit={(e) => {
             e.preventDefault();
-            confirmChangePassword(this.props.changePassword, this.state.token, this.state, this.props.params.id);
+            confirmChangePassword(this.props.changePassword,
+             this.state.token, this.state, this.props.params.id);
             }} >
           <div className="row">
             <div className="input-field col s12">

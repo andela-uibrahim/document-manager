@@ -1,3 +1,4 @@
+/*eslint-disable no-undef*/
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import actionTypes from '../actionTypes';
@@ -10,8 +11,10 @@ export default (details, token, documentid) => {
       }
     })
     .then(() => {
+      toastr.info('Document successfully updated');
       browserHistory.push('/');
     }).catch((err) => {
+      toastr.error('title already exist');
       dispatch({
         type: actionTypes.DOCUMENT_UPDATE_FAILED,
         status: 'failed',

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import actionTypes from '../actionTypes';
-
+/*eslint-disable no-undef*/
 export default (roleId) => {
   const token = window.localStorage.getItem('token');
   return (dispatch) => {

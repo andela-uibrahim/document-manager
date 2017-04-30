@@ -1,4 +1,5 @@
 /*eslint-disable no-unused-vars*/
+/*eslint-disable no-undef*/
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 import { Pagination } from 'react-materialize';
@@ -55,14 +56,14 @@ class ViewAllDocuments extends Component {
     }
     return (
       <div className="row dashboardContainer col s12">
-        <Header />
+        <Header/>
         <Sidebar />
         <div className="col s12 workspace ">
           <div className="row workspace-header">
-            <h4 className="col s8">All Documents</h4>
-            <div className="col s4">
+            <h4 className="col s6">All Documents</h4>
+            <div className="col s6">
               <input
-                className="col s10"
+                className="col s8"
                 type="text"
                 id="searchTerms"
                 name="searchTerms"
@@ -71,12 +72,11 @@ class ViewAllDocuments extends Component {
               <button className="btn col s2 blue darken-2" id="searchBtn" onClick={this.searchDocument}>
                 <i className="material-icons">search</i>
               </button>
+              <button className="btn col s2 white" onClick={this.refreshDocuments}>
+                <i className="material-icons  refresh-list-btn">autorenew</i>
+              </button>
             </div>
           </div>
-          <div className="col m10" /><div className="col m2">
-            <Link onClick={this.refreshDocuments}>
-              <i className="material-icons  refresh-list-btn">
-            autorenew</i></Link></div>
           <DocumentList
             deleteDocument={this.props.deleteDocument}
             userid={this.state.userid}

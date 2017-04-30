@@ -110,7 +110,7 @@ router.route('/:id')
      *         schema:
      *           $ref: '#/definitions/NewDocument'
      *     responses:
-     *       201:
+     *       200:
      *         description: users
      *         schema:
      *          type: object,
@@ -134,7 +134,7 @@ router.route('/:id')
      *          required: true
      *          type: string
      *      responses:
-     *        201:
+     *        200:
      *          description: users
      *          schema:
      *            type: array

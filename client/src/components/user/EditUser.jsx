@@ -1,4 +1,5 @@
 /*eslint-disable no-unused-vars*/
+/*eslint-disable no-undef*/
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 import { browserHistory } from 'react-router';
@@ -7,8 +8,9 @@ import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import editUserAction from '../../actions/userManagement/editUser';
 import viewUserAction from '../../actions/userManagement/viewUser';
+import Validation from '../../helper/validation';
 
-
+const validate = new Validation();
 const confirmUpdateUser = (callback,token, userData, userId) => {
   swal({
     title: 'Are you sure?',
@@ -20,8 +22,8 @@ const confirmUpdateUser = (callback,token, userData, userId) => {
     closeOnConfirm: false,
     closeOnCancel: false
   },
-    (deletionConfirmed) => {
-      if (deletionConfirmed) {
+    (updateConfirmed) => {
+      if (updateConfirmed && validate.isValidUserData(userData)) {
         callback(token, userData, userId);
         swal('Updated!', 'The user\'s details has been updated.', 'success');
          if (jwtDecode(token).RoleId === 1) {

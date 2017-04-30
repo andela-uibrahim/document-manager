@@ -1,4 +1,5 @@
 /*eslint-disable no-unused-vars*/
+/*eslint-disable no-undef*/
 import React from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';

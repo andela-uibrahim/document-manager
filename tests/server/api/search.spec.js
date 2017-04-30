@@ -182,7 +182,7 @@ describe('search ==> \n', () => {
                       client.get(`/api/search/users/?limit=${searchLimit}`)
                         .set({ 'x-access-token': adminToken })
                         .end((error, res) => {
-                          expect(res.status).to.equal(201);
+                          expect(res.status).to.equal(200);
                           expect(res.body.users.length).to.equal(searchLimit);
                           done();
                         });      
@@ -197,7 +197,7 @@ describe('search ==> \n', () => {
       client.get(`/api/search/users/?search=${searchText}`)
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
-          expect(res.status).to.equal(201);
+          expect(res.status).to.equal(200);
           res.body.users.forEach((user) => {
             expect(`${user.username} ${user.email}
              ${user.firstname} ${user.lastname}`).to.contain(searchText);
@@ -212,7 +212,7 @@ describe('search ==> \n', () => {
       client.get(`/api/search/users/?search=${searchText}&limit=${searchLimit}`)
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
-          expect(res.status).to.equal(201);
+          expect(res.status).to.equal(200);
           res.body.users.forEach((user) => {
             expect(`${user.username} ${user.email}
              ${user.firstname} ${user.lastname}`).to.contain(searchText);
@@ -236,7 +236,7 @@ describe('search ==> \n', () => {
           search=${searchText}&limit=${searchLimit}`)
             .set({ 'x-access-token': regularToken })
             .end((error, res) => {
-              expect(res.status).to.equal(201);
+              expect(res.status).to.equal(200);
               res.body.users.forEach((user) => {
                 expect(`${user.username} ${user.email}
                 ${user.firstname} ${user.lastname}`).to.contain(searchText);

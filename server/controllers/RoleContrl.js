@@ -41,7 +41,7 @@ class RoleController {
    */
   static fetchRoles(request, response) {
     Roles.findAll({})
-      .then(role => response.status(201).send(role))
+      .then(role => response.status(200).send(role))
       .catch((error) => {
         response.status(404).send({
           success: false,

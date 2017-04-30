@@ -177,7 +177,7 @@ describe('document ==> \n', () => {
         .set({ 'x-access-token': regularToken })
         .send(testData.privateDoc)
         .end((error, res) => {
-          expect(res.status).to.equal(201);
+          expect(res.status).to.equal(200);
           done();
         });
     });
@@ -216,7 +216,7 @@ describe('document ==> \n', () => {
       client.delete('/api/documents/2')
         .set({ 'x-access-token': regularToken })
         .end((error, res) => {
-          expect(res.status).to.equal(201);
+          expect(res.status).to.equal(200);
           done();
         });
     });

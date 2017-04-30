@@ -1,32 +1,17 @@
 /*eslint-disable no-unused-vars*/
+/*eslint-disable no-undef*/
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 import { browserHistory } from 'react-router';
 import React, { Component, PropTypes } from 'react';
+import TinyMCE from 'react-tinymce';
 import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import viewDocument from '../../actions/documentManagement/viewDocument';
 import editDocument from '../../actions/documentManagement/editDocument';
+import Validation from '../../helper/validation';
 
-
-
-const ResponseMessage = (props) => {
-  if (props.status === 'success') {
-    return (
-      <div>
-        Document Updated
-      </div>
-    );
-  } else if (props.status === 'failed') {
-    return (
-      <div>
-        Document not Updated
-      </div>
-    );
-  } else {
-    return (<span />);
-  }
-};
+const validate = new Validation();
 
 
 export class EditDocument extends Component {
@@ -41,6 +26,7 @@ export class EditDocument extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEditorChange = this.handleEditorChange.bind(this);
   }
 
   componentWillMount() {
@@ -51,7 +37,7 @@ export class EditDocument extends Component {
   }
 
   componentDidMount() {
-    $('#access').material_select(this.handleChange.bind(this));
+    //$('#access').material_select(this.handleChange.bind(this));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -61,19 +47,25 @@ export class EditDocument extends Component {
       content: nextProps.document.content
     });
     $('#access').val(nextProps.document.access);
-
-    if (nextProps.status === 'success') {
-      browserHistory.push('/dashboard');
-    }
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+  handleEditorChange(event) {
+    this.setState({ content : event.target.getContent() }); 
+  }
 
   handleSubmit(event) {
     const token = localStorage.getItem('token');
     event.preventDefault();
+    if(validate.isEmpty(this.state.title)){
+      toastr.error('Please enter a valid title', 'Error!')
+      return false
+    } else if(validate.isEmpty(this.state.content)){
+      toastr.error('Please enter the document contents')
+      return false
+    }
     this.props.editDocument(this.state, token, this.props.params.id);
   }
 
@@ -114,18 +106,21 @@ export class EditDocument extends Component {
               </div>
             </div>
             <div className="field row">
-              <textarea
+              { this.state.content?
+                <TinyMCE
                 name="content"
                 id="content"
-                onChange={this.handleChange}
-                placeholder="Type your content here..."
-                value={this.state.content}
-              />
+                content={this.state.content}
+                config={{
+                  plugins: 'link image code',
+                  toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+                  }}
+                onChange={this.handleEditorChange}
+              />: <span/> }
             </div>
             <div className="field row">
               <button className="btn" type="submit">Save</button>
             </div>
-            <ResponseMessage status={this.props.status} />
           </form>
         </div>
       </div>
