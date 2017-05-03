@@ -83,7 +83,7 @@ describe('Users ==> \n', () => {
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
           expect(res.status).equal(200);
-          expect(res.body).to.have.property('id');
+          expect(res.body.user).to.have.property('id');
           done();
         });
     });
@@ -101,7 +101,7 @@ describe('Users ==> \n', () => {
           client.get('/api/users/2')
             .set({ 'x-access-token': adminToken })
             .end((error, res) => {
-              expect(res.body.RoleId).to.equal(2);
+              expect(res.body.user.RoleId).to.equal(2);
               done();
             });
         });
@@ -137,7 +137,7 @@ describe('Users ==> \n', () => {
           client.get('/api/users/1')
             .set({ 'x-access-token': adminToken })
             .end((error, res) => {
-              expect(res.body.RoleId).to.equal(1);
+              expect(res.body.user.RoleId).to.equal(1);
               done();
             });
         });

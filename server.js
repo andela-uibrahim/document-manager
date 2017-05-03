@@ -13,7 +13,6 @@ import routes from './server/routes';
 const app = express();
 
 if (process.env.NODE_ENV === 'development') {
-  console.log('===================================> bad')
   const compiler = webpack(webpackConfig);
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,

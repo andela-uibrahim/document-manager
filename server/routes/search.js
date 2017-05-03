@@ -32,7 +32,7 @@ router.route('/documents/')
       *            items:
       *              $ref: '#/definitions/Document'
       */
-    .get(Authenticate.authenticateUser, DocumentController.fetchDocuments)
+    .get(Authenticate.authenticateUser, DocumentController.searchDocuments)
 
 router.route('/users/')
     /** @swagger
@@ -57,6 +57,6 @@ router.route('/users/')
       *            items:
       *              $ref: '#/definitions/Document'
       */
-   .get(Authenticate.authenticateUser, UserController.fetchUsers)
+   .get(Authenticate.authenticateUser, UserController.searchUsers)
 
 export default router;

@@ -34,6 +34,32 @@ router.route('/')
     /**
      * @swagger
      * /api/documents:
+     *   get:
+     *     description: Creates a document
+     *     tags:
+     *      - Create Document
+     *     produces:
+     *      - application/json
+     *     parameters:
+     *       - name: Authorization
+     *         in: header
+     *         description: an authorization header
+     *         required: true
+     *         type: string
+     *         schema:
+     *           $ref: '#/definitions/NewDocument'
+     *     responses:
+     *       200:
+     *         description: users
+     *         schema:
+     *          type: object,
+     *          items:
+     *            $ref: '#/definitions/Document'
+     */
+    .get(Authenticate.authenticateUser, DocumentController.fetchDocuments)
+    /**
+     * @swagger
+     * /api/documents:
      *   post:
      *     description: Creates a document
      *     tags:

@@ -83,10 +83,22 @@ class DocumentController {
   static updateDocument(req, res) {
     const FinderId = req.decoded.UserId;
     const RoleId = req.decoded.RoleId;
+    if(!parseInt(req.params.id)){
+      return res.status(400)
+      .send({ 
+        success: false,
+        message: 'Invalid query params'
+      });
+    }
     Documents.findById(req.params.id).then((document) => {
       if (document.UserId === FinderId || RoleId === 1) {
         document.update(req.body)
-        .then(updatedDocument => res.status(200).send(updatedDocument))
+        .then(updatedDocument => res.status(200)
+          .send({
+            success: true,
+            updatedDocument
+          })
+        )
         .catch(error => res.status(409).send(error.message));
       } else {
         res.status(401).send({
@@ -108,12 +120,20 @@ class DocumentController {
   static deleteDocument(req, res) {
     const FinderId = req.decoded.UserId;
     const RoleId = req.decoded.RoleId;
+    if(!parseInt(req.params.id)){
+      return res.status(400)
+      .send({ 
+        success: false,
+        message: 'Invalid query params'
+      });
+    }
     Documents.findOne({
       where: {
         id: req.params.id
       }
     }).then((document) => {
-      if (document.UserId === FinderId || RoleId === 1) {
+      if (document.UserId === FinderId || (RoleId === 1 &&
+       document.access !== 'private')) {
         document.destroy()
         .then(() => res.status(200).send({
           success: true,
@@ -140,6 +160,13 @@ class DocumentController {
   static fetchDocument(req, res) {
     const UserId = req.decoded.UserId;
     const RoleId = req.decoded.RoleId;
+    if(!parseInt(req.params.id)){
+      return res.status(400)
+      .send({ 
+        success: false,
+        message: 'Invalid query params'
+      });
+    }
     Documents.findOne({
       where: {
         id: req.params.id
@@ -194,51 +221,61 @@ class DocumentController {
  * @return{Void} - return Void
  */
   static fetchUserDocument(req, res) {
+    let queryBuilder ={};
     const queryId = req.params.id;
     const UserId = req.decoded.UserId;
     const RoleId = req.decoded.RoleId;
-    if (UserId === queryId || RoleId === 1) {
-      Documents.findAll({
-        where: {
-          UserId: queryId
-        }
-      }).then((document) => {
-        if (document.length < 1) {
-          return res.status(404).send({
-            success: false,
-            message: 'No documents found'
-          });
-        }
-        return res.status(200).send(document);
-      });
-    } else {
-      Documents.findAll({
-        where: {
-          UserId: queryId,
-          access: 'public'
-        }
-      }).then((document) => {
-        if (document.length < 1) {
-          return res.status(404).send({
-            success: false,
-            message: 'No documents found'
-          });
-        }
-        return res.status(200).send(document);
+    if(!parseInt(req.params.id)){
+      return res.status(400)
+      .send({ 
+        success: false,
+        message: 'Invalid query params'
       });
     }
+    queryBuilder.offset = (req.query.offset > 0) ? req.query.offset : 0;
+    queryBuilder.limit = (req.query.limit > 0) ? req.query.limit : 9;
+    if (UserId === queryId || RoleId === 1) {
+      queryBuilder.where = {
+        UserId: queryId,
+      } 
+    } else {
+      queryBuilder.where = {
+        UserId: queryId,
+        access: 'public'
+      }
+    }
+      Documents.findAndCountAll( queryBuilder)
+      .then((results) => {
+        if (results.length < 1) {
+          return res.status(404).send({
+            success: false,
+            message: 'No documents found'
+          });
+        }
+        const offset = queryBuilder.offset;
+        const limit = queryBuilder.limit;
+        const pagination = DocumentHelper
+         .paginateResult(results, offset, limit);
+        return res.status(200).send({
+          success: true,
+          results,
+          pagination
+        });
+    });
   }
 
+  
+
 /**
- * Fetch specific document in the database
- * Admin has access to all the documents
+ * search document in the database
+ * Admin has access to all except private documents
  * Users only have access to their private
- * documents and all other public documents.
+ * documents and all other public documents or row.
  * @param{Object} req - Server req
  * @param{Object} res - Server res
  * @return {Void} - returns Void
  */
-  static fetchDocuments(req, res) {
+  static searchDocuments(req, res) {
     let searchQuery = req.query.search;
     const searchLimit = req.query.limit;
     const UserId = req.decoded.UserId;
@@ -257,20 +294,121 @@ class DocumentController {
       queryBuilder.limit = searchLimit;
     }
 
-    if (RoleId === 1) {
-      if (searchQuery) {
+    if (searchQuery) {
+      if (RoleId === 1 ) {
         searchQuery = DocumentHelper.sanitizeString(searchQuery);
         queryBuilder.where = {
           $or:
           [
             {
               title: { $like: `%${searchQuery}%` }
-            }, {
-              content: { $like: `%${searchQuery}%` }
             }
+          ],
+          $and: {
+            $or:
+            [
+              { access: 'public' },
+              { access: 'role' },
+              { UserId, }
+            ]
+          }
+        };
+        Documents.findAndCountAll(queryBuilder)
+        .then((results) => {
+          if (results.count < 1) {
+            res.status(404).send({
+              success: false,
+              message: 'No Document Found'
+            });
+          } else {
+            const offset = queryBuilder.offset;
+            const limit = queryBuilder.limit;
+            const pagination = DocumentHelper
+             .paginateResult(results, offset, limit);
+            res.status(200).send({
+              success: true,
+              results,
+              pagination
+            });
+          }
+        });
+      } else {
+        searchQuery = DocumentHelper.sanitizeString(searchQuery);
+        queryBuilder.where = {
+          $or:
+          [
+            {
+              title: { $like: `%${searchQuery}%` }
+            }
+          ],
+        };
+        Documents.findAndCountAll(queryBuilder).then((results) => {
+        results.rows = results.rows.filter((document) => {
+          if ((document.access === 'public') ||
+               (document.User.RoleId === RoleId &&
+               document.access !== 'private')) {
+            return true;
+          } else if (document.access === 'private' &&
+                document.UserId === UserId) {
+            return true;
+          }
+          return false;
+        });
+
+        const offset = queryBuilder.offset;
+        const limit = queryBuilder.limit;
+        results.count = results.rows.length;
+        const pagination = DocumentHelper
+          .paginateResult(results, offset, limit);
+
+        res.status(200).send({
+          success: true,
+          results,
+          pagination
+        });
+      });
+     }
+   } else {
+       res.status(400).send({
+         success: false,
+         message: 'please enter a search parameter'
+       });
+    }     
+ }
+
+
+  /**
+ * Fetch all accessible documents in the database
+ * Admin has access to public and roles documents
+ * Users only have access to their private
+ * documents and all other public documents.
+ * @param{Object} req - Server req
+ * @param{Object} res - Server res
+ * @return {Void} - returns Void
+ */
+  static fetchDocuments(req, res) {
+    const UserId = req.decoded.UserId;
+    const RoleId = req.decoded.RoleId;
+    const queryBuilder = {
+      attributes: ['id', 'UserId', 'access', 'title', 'content', 'createdAt'],
+      order: '"createdAt" DESC',
+      include: [{
+        model: Users,
+        attributes: ['RoleId']
+      }]
+    };
+    queryBuilder.offset = (req.query.offset > 0) ? req.query.offset : 0;
+    queryBuilder.limit = (req.query.limit > 0) ? req.query.limit : 10;
+
+    if (RoleId === 1) {
+        queryBuilder.where = {   
+          $or:
+          [
+            { access: 'public' },
+            { access: 'role' },
+            { UserId, }
           ]
         };
-      }
       Documents.findAndCountAll(queryBuilder)
         .then((results) => {
           if (results.count < 1) {
@@ -290,28 +428,7 @@ class DocumentController {
             });
           }
         });
-    } else {
-      if (searchQuery) {
-        searchQuery = DocumentHelper.sanitizeString(searchQuery);
-        queryBuilder.where = {
-          $or:
-          [
-            {
-              title: { $like: `%${searchQuery}%` }
-            },
-            {
-              content: { $like: `%${searchQuery}%` }
-            }
-          ],
-          $and: {
-            $or:
-            [
-              { access: 'public' },
-              { UserId, }
-            ]
-          }
-        };
-      }
+    } else {  
       Documents.findAndCountAll(queryBuilder).then((results) => {
         results.rows = results.rows.filter((document) => {
           if ((document.access === 'public') ||
@@ -324,13 +441,14 @@ class DocumentController {
           }
           return false;
         });
+        results.count = results.rows.length;
 
         const offset = queryBuilder.offset;
         const limit = queryBuilder.limit;
 
         const pagination = DocumentHelper
           .paginateResult(results, offset, limit);
-
+         
         res.status(200).send({
           success: true,
           results,

@@ -14,6 +14,9 @@ import paginateDocumentAction from
  '../../actions/documentManagement/paginateDocument';
 import searchDocumentAction from
  '../../actions/documentManagement/searchDocument';
+import Validation from '../../helper/validation';
+
+const validate = new Validation();
 
 class ViewAllDocuments extends Component {
   constructor(props) {
@@ -42,6 +45,10 @@ class ViewAllDocuments extends Component {
   }
 
   searchDocument() {
+    if (validate.isEmpty(this.state.searchTerms)){
+      toastr.error('You have not entered any searchTerm');
+      return false;
+    }
     this.props.searchDocument(this.state.token, this.state.searchTerms);
   }
 

@@ -81,30 +81,24 @@ export class ViewAllUsers extends Component {
         <Sidebar />
         <div className="col s12 workspace ">
           <div className="row workspace-header">
-            <h4 className="col s8">All Users</h4>
-            <div className="col s4">
+            <h4 className="col s6">All Users</h4>
+            <div className="col s6">
               <input
-                className="col s10"
+                className="col s8"
                 type="text"
                 id="searchTerms"
                 name="searchTerms"
                 value={this.state.searchTerms}
                 placeholder="Search..."
                 onChange={this.handleChange} />
-              <button className="btn col s2" onClick={this.searchUser}>
+              <button className="btn col s2 blue darken-2" onClick={this.searchUser}>
                 <i className="material-icons">search</i>
+              </button>
+              <button className="btn col s2 white" onClick={this.refreshUsers}>
+                <i className="material-icons  refresh-list-btn">autorenew</i>
               </button>
             </div>
           </div>
-          <div className="col m1" />
-          <div className="col m4 pagination-links">
-            <Link onClick={() => this.changeLimit(5)}>View 5 per page</Link>
-            <Link onClick={() => this.changeLimit(10)}>View 10 per page</Link>
-            <Link onClick={() => this.changeLimit(20)} >View 20 per page</Link></div>
-          <div className="col m5" /><div className="col m2">
-            <Link onClick={this.refreshUsers}>
-              <i className="material-icons refresh-list-btn">
-                settings_backup_restore</i></Link></div>
           {this.props.users?
             this.props.users.length > 0?
               <div>
@@ -144,6 +138,7 @@ ViewAllUsers.PropTypes = {
 };
 
 const mapStoreToProps = (state) => {
+  console.log(state.allUsersReducer.pageCount);
   return {
     users: state.allUsersReducer.users,
     pageCount: state.allUsersReducer.pageCount | 1,

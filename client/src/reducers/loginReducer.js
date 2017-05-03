@@ -5,7 +5,11 @@ export default function loginReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.LOGIN_SUCCESSFUL:
       return Object.assign({}, state, {
-         userId: action.userId, roleId: action.roleId, token: action.token, error: null, success: action.message
+         userId: action.userId,
+         roleId: action.roleId,
+         token: action.token, 
+         error: null,
+         success: action.message
         });
     case actionTypes.LOGIN_ERROR:
       return Object.assign({}, state, {
