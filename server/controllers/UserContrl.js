@@ -113,7 +113,7 @@ class UserController {
       offset: 0
     };
     if (req.query.limit && req.query.offset) {
-      if(!parseInt(req.query.limit) || !parseInt(req.query.offset)){
+      if(!parseInt(req.query.limit)){
         return res.status(400)
         .send({ 
           success: false,
