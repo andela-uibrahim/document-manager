@@ -32,8 +32,8 @@ router.route('/documents/')
       *            items:
       *              $ref: '#/definitions/Document'
       */
-    .get(Authenticator.authenticateUser, DocumentController.searchDocuments)
 
+    .get(Authenticator.authenticateUser, DocumentController.searchDocuments)
 router.route('/users/')
     /** @swagger
       *  /api/search/users/:
