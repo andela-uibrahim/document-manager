@@ -15,7 +15,19 @@ import paginateDocumentAction from
 import searchDocumentAction from
  '../../actions/documentManagement/searchDocument';
 
+/**
+ * 
+ * 
+ * @class ViewAllDocuments
+ * @extends {Component}
+ */
 class ViewAllDocuments extends Component {
+  /**
+   * Creates an instance of ViewAllDocuments.
+   * @param {any} props 
+   * 
+   * @memberof ViewAllDocuments
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -28,6 +40,11 @@ class ViewAllDocuments extends Component {
     this.refreshDocuments = this.refreshDocuments.bind(this);
   }
 
+  /**
+   *  
+   * @memberof ViewAllDocuments
+   * @return {void}
+   */
   componentWillMount() {
     if (this.state.token) {
       this.setState({ 
@@ -37,19 +54,52 @@ class ViewAllDocuments extends Component {
       this.props.paginateDocuments(this.state.token, offset, this.state.limit);
     }
   }
+
+
+  /**
+   * 
+   * 
+   * @param {any} event 
+   * @return {void}
+   * 
+   * @memberof ViewAllDocuments
+   */
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+
+  /**
+   * 
+   * 
+   * @returns {void}
+   * 
+   * @memberof ViewAllDocuments
+   */
   searchDocument() {
     this.props.searchDocument(this.state.token, this.state.searchTerms);
   }
 
+
+  /**
+   * 
+   * 
+   * @return {void}
+   * @memberof ViewAllDocuments
+   */
   refreshDocuments() {
     const offset = 0;
     this.props.paginateDocuments(this.state.token, offset, this.state.limit);
   }
 
+
+  /**
+   * 
+   * 
+   * @returns {jsx}:
+   * 
+   * @memberof ViewAllDocuments
+   */
   render() {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
@@ -69,11 +119,15 @@ class ViewAllDocuments extends Component {
                 name="searchTerms"
                 placeholder="Search..."
                 onChange={this.handleChange} />
-              <button className="btn col s2 blue darken-2" id="searchBtn" onClick={this.searchDocument}>
+              <button className="btn col s2 blue darken-2" id="searchBtn"
+                 onClick={this.searchDocument}>
                 <i className="material-icons">search</i>
               </button>
-              <button className="btn col s2 white" onClick={this.refreshDocuments}>
-                <i className="material-icons  refresh-list-btn">autorenew</i>
+              <button className="btn col s2 white" 
+                onClick={this.refreshDocuments}>
+                <i className="material-icons  refresh-list-btn">
+                  autorenew
+                </i>
               </button>
             </div>
           </div>
@@ -88,7 +142,8 @@ class ViewAllDocuments extends Component {
               items={this.props.pageCount}
               onSelect={(page) => {
                 const offset = (page - 1) * this.state.limit;
-                this.props.paginateDocuments(this.state.token, offset, this.state.limit);
+                this.props.paginateDocuments(this.state.token,
+                 offset, this.state.limit);
               }}
             />
           </center>
@@ -99,7 +154,7 @@ class ViewAllDocuments extends Component {
 }
 
 
-ViewAllDocuments.PropTypes = {
+ViewAllDocuments.propTypes = {
   documents: React.PropTypes.array.isRequired,
   paginateDocuments: React.PropTypes.func.isRequired
 };

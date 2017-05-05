@@ -8,8 +8,21 @@ import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 
 
+/**
+ * 
+ * 
+ * @export
+ * @class CreateUser
+ * @extends {Component}
+ */
 export class CreateUser extends Component {
 
+  /**
+   * Creates an instance of CreateUser.
+   * @param {any} props 
+   * 
+   * @memberof CreateUser
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -24,10 +37,25 @@ export class CreateUser extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  /**
+   * @param {any} event 
+   * @return {void}
+   * 
+   * @memberof CreateUser
+   */
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+
+  /**
+   * 
+   * 
+   * @param {any} event 
+   * @return {void}
+   * 
+   * @memberof CreateUser
+   */
   handleSubmit(event) {
     event.preventDefault();
     this.props.createUser(this.state)
@@ -36,6 +64,14 @@ export class CreateUser extends Component {
       });
   }
 
+
+  /**
+   * 
+   * 
+   * @returns {jsx}:
+   * 
+   * @memberof CreateUser
+   */
   render() {
     return (
       <div className="row">

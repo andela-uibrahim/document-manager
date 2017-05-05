@@ -2,7 +2,7 @@
 /* eslint import/no-unresolved: 0 */
 import model from '../models';
 import Authenticate from '../middleware/authenticator';
-import DocumentHelper from './helper/DocHelper';
+import DocumentHelper from './helper/DocumentHelper';
 
 const Users = model.User;
 
@@ -113,12 +113,19 @@ class UserController {
       offset: 0
     };
     if (req.query.limit && req.query.offset) {
+      if(!parseInt(req.query.limit)){
+        return res.status(400)
+        .send({ 
+          success: false,
+          message: 'Invalid query params'
+         });
+      }
       queryParams = {
         limit: req.query.limit,
         offset: req.query.offset
       };
     }
-    Users.findAndCountAll({})
+    Users.findAndCountAll(queryParams)
       .then((users) => {
         users.rows = users.rows.map(user => {
           delete user.dataValues.password;
@@ -127,6 +134,7 @@ class UserController {
         const paginateResult = DocumentHelper
         .paginateResult(users, queryParams.offset, queryParams.limit);
         res.status(200).send({
+          success: true,
           users: users.rows,
           pagination: paginateResult
          });
@@ -143,10 +151,22 @@ class UserController {
  * @returns{Void} return Void
  */
   static fetchUser(req, res) {
+    if(!parseInt(req.params.id)){
+      return res.status(400)
+      .send({ 
+        success: false,
+        message: 'Invalid query params'
+      });
+    }
     Users.findOne({ where: { id: req.params.id } })
       .then((user) => {
-        if (user) {
-          res.status(200).send(user);
+        if (user) {    
+          delete user.dataValues.password;
+          return res.status(200)
+          .send({
+            success: true,
+            user
+          });
         } else {
           res.status(404).send({
             success: false,
@@ -164,19 +184,37 @@ class UserController {
    */
   static updateUser(req, res) {
     const UserId = req.decoded.UserId;
-    let RoleId = req.decoded.RoleId
+    let RoleId = req.decoded.RoleId;
+    if(!parseInt(req.params.id)){
+      return res.status(400)
+      .send({ 
+        success: false,
+        message: 'Invalid query params'
+      });
+    }
     Users.findOne({
       where: { id: req.params.id }
     }).then((user) => {
       if (user) {
         if (RoleId === 1) {
           user.update(req.body, {fields: Object.keys(req.body)})
-            .then(updatedUser => res.status(200).send(updatedUser));
+            .then((updatedUser) => { 
+              delete updatedUser.dataValues.password;
+              return res.status(200)
+              .send({
+                success: true,
+                updatedUser
+              })
+            });
         } else if (UserId === user.id && RoleId === 2) {
           const updateProps = Object.keys(req.body);        
           user.update(req.body, {fields: updateProps})
           .then(updatedUser => {
-            return res.status(200).send(updatedUser)
+            return res.status(200)
+            .send({
+              success: true,
+              updatedUser
+             })
           });
         } else {
           res.status(401).send({
@@ -206,6 +244,13 @@ class UserController {
  * @returns{Void} return Void
  */
   static deleteUser(req, res) {
+    if(!parseInt(req.params.id)){
+      return res.status(400)
+      .send({ 
+        success: false,
+        message: 'Invalid query params'
+      });
+    }
     Users.findOne({ where: { id: req.params.id } })
       .then((user) => {
         if (user) {
@@ -262,11 +307,12 @@ class UserController {
  * @param{Object} res - Server res
  * @return {Void} - returns Void
  */
-  static fetchUsers(req, res) {
+  static searchUsers(req, res) {
     let queryBuilder = {
       limit: 10,
       offset: 0
     };
+    
     if (req.query.limit || req.query.offset) {
        queryBuilder = {
          limit: req.query.limit,
@@ -290,24 +336,29 @@ class UserController {
             }
           ]
         };
-      }
-    Users.findAndCountAll(queryBuilder)
-      .then((users) => {
-        users.rows = users.rows.map(user => {
-          delete user.dataValues.password;
-          return user.dataValues;
-        })
+      Users.findAndCountAll(queryBuilder)
+        .then((users) => {
+          users.rows = users.rows.map(user => {
+            delete user.dataValues.password;
+            return user.dataValues;
+         })
         const paginateResult = DocumentHelper
-        .paginateResult(users, queryBuilder.offset, queryBuilder.limit);
-        res.status(200).send({
-          users: users.rows,
-          pageCount: paginateResult.pageCount
-         });
-      })
-      .catch((err) => {
-        res.status(500).send({ error: err.message });
-      });
+          .paginateResult(users, queryBuilder.offset, queryBuilder.limit);
+          res.status(200).send({
+            success: true,
+            users: users.rows,
+            pageCount: paginateResult.pageCount
+          });
+        })
+        .catch((err) => {
+          res.status(500).send({ error: err.message });
+        });
+      } else {
+       res.status(400).send({
+         success: false,
+         message: 'please enter a search parameter'
+       });
+      }    
+    }
   }
-
-}
 export default UserController;

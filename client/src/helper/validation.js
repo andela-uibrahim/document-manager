@@ -19,7 +19,7 @@ class Validation {
  * @return{bolean} boolean
  */
   isValidPassword(password) {
-    if (password.length > 8) {
+    if (password.length > 7) {
         return true;
     }
     toastr.error('please enter a minumum of 8 characters', 'Error!');

@@ -9,7 +9,21 @@ import Sidebar from '../common/Sidebar.jsx';
 import MyDocumentList from "./MyDocumentsList.jsx"
 import ViewMyDocuments from '../../actions/documentManagement/viewMyDocuments';
 
+ /**
+  * 
+  * 
+  * @export
+  * @class UserDocuments
+  * @extends {Component}
+  */
  export class UserDocuments extends Component {
+  
+  /**
+   * Creates an instance of UserDocuments.
+   * @param {any} props 
+   * 
+   * @memberof UserDocuments
+   */
   constructor(props) {
     super(props);
     this.token = window.localStorage.getItem('token');
@@ -18,11 +32,24 @@ import ViewMyDocuments from '../../actions/documentManagement/viewMyDocuments';
     };
   }
 
+  /**
+   * 
+   * @memberof UserDocuments
+   * @return {void}
+   */
   componentWillMount() {
     this.props.viewDocuments(this.state.userid);
   }
   
 
+
+  /**
+   * 
+   * 
+   * @returns {jsx}:
+   * 
+   * @memberof UserDocuments
+   */
   render() {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');

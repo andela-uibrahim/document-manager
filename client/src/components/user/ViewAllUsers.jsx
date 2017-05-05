@@ -17,7 +17,21 @@ import editUserRoleAction from '../../actions/userManagement/editUser';
 
 
 
+/**
+ * 
+ * 
+ * @export
+ * @class ViewAllUsers
+ * @extends {Component}
+ */
 export class ViewAllUsers extends Component {
+  
+  /**
+   * Creates an instance of ViewAllUsers.
+   * @param {any} props 
+   * 
+   * @memberof ViewAllUsers
+   */
   constructor(props) {
     super(props);
     this.token = window.localStorage.getItem('token');
@@ -33,6 +47,13 @@ export class ViewAllUsers extends Component {
     this.changeLimit = this.changeLimit.bind(this);
   }
 
+  
+  /**
+   * 
+   * 
+   * @return {void}
+   * @memberof ViewAllUsers
+   */
   componentWillMount() {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
@@ -46,23 +67,62 @@ export class ViewAllUsers extends Component {
     $('.pag').children().click( event => event.preventDefault());
   }
 
+
+  /**
+   * 
+   * 
+   * @param {any} event 
+   * @return {void}
+   * @memberof ViewAllUsers
+   */
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+
+  /**
+   * 
+   * 
+   * @param {any} newRoleId 
+   * @param {any} userId 
+   * @return {void}
+   * @memberof ViewAllUsers
+   */
   updateUserRole(newRoleId, userId) {
     this.props.editUserRole(this.token, { RoleId: newRoleId }, userId);
   }
 
+  
+  /**
+   * 
+   * 
+   * @param {any} value 
+   * @return {void}
+   * @memberof ViewAllUsers
+   */
   changeLimit(value) {
     this.setState({ limit: value });
     this.refreshUsers();
   }
 
+
+  /**
+   * 
+   * 
+   * @return {void}
+   * @memberof ViewAllUsers
+   */
   searchUser() {
     this.props.searchUser(this.token, this.state.searchTerms);
   }
 
+
+  /**
+   * 
+   * 
+   * @return {void}
+   * @memberof ViewAllUsers
+   */
   refreshUsers() {
     const offset = 0;
     this.props.paginateUsers(this.token, offset, this.state.limit);
@@ -71,6 +131,14 @@ export class ViewAllUsers extends Component {
     });
   }
 
+
+  /**
+   * 
+   * 
+   * @returns {jsx}:
+   * 
+   * @memberof ViewAllUsers
+   */
   render() {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
@@ -91,7 +159,12 @@ export class ViewAllUsers extends Component {
                 value={this.state.searchTerms}
                 placeholder="Search..."
                 onChange={this.handleChange} />
+<<<<<<< Updated upstream
               <button className="btn col s2" onClick={this.searchUser}>
+=======
+              <button className="btn col s2 blue darken-2"
+               onClick={this.searchUser}>
+>>>>>>> Stashed changes
                 <i className="material-icons">search</i>
               </button>
             </div>
@@ -137,7 +210,7 @@ export class ViewAllUsers extends Component {
 }
 
 
-ViewAllUsers.PropTypes = {
+ViewAllUsers.propTypes = {
   users: React.PropTypes.array.isRequired,
   paginateUsers: React.PropTypes.func.isRequired,
   roles: React.PropTypes.array.isRequired
@@ -154,12 +227,17 @@ const mapStoreToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteUser: (usertoken, userid) => dispatch(deleteUserAction(usertoken, userid)),
+    deleteUser: (usertoken, userid) => 
+      dispatch(deleteUserAction(usertoken, userid)),
     viewUsers: usertoken => dispatch(viewAllUsersAction(usertoken)),
-    paginateUsers: (usertoken, offset, limit) => dispatch(paginateUserAction(usertoken, offset, limit)),
-    searchUser: (usertoken, userNames) => dispatch(searchUserAction(usertoken, userNames)),
-    editUserRole: (usertoken, userData, userId) => dispatch(editUserRoleAction(usertoken, userData, userId)),
-    getRoles: usertoken => dispatch(viewAllRolesAction(usertoken)),
+    paginateUsers: (usertoken, offset, limit) => 
+      dispatch(paginateUserAction(usertoken, offset, limit)),
+    searchUser: (usertoken, userNames) => 
+      dispatch(searchUserAction(usertoken, userNames)),
+    editUserRole: (usertoken, userData, userId) => 
+      dispatch(editUserRoleAction(usertoken, userData, userId)),
+    getRoles: usertoken => 
+      dispatch(viewAllRolesAction(usertoken)),
   };
 };
 

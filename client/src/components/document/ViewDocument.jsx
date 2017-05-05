@@ -8,12 +8,32 @@ import Sidebar from '../common/Sidebar.jsx';
 import viewDocumentAction from '../../actions/documentManagement/viewDocument';
 import cardimage from '../../images/cardimage.jpeg';
 
+
+/**
+ * 
+ * 
+ * @export
+ * @class ViewDocument
+ * @extends {Component}
+ */
 export class ViewDocument extends Component {
+  
+  /**
+   * Creates an instance of ViewDocument.
+   * @param {any} props 
+   * 
+   * @memberof ViewDocument
+   */
   constructor(props) {
     super(props);
     this.parseHtml = this.parseHtml.bind(this);
   }
 
+  /**
+   * 
+   * @memberof ViewDocument
+   * @return {void}
+   */
   componentWillMount() {
     const token = window.localStorage.getItem('token');
     if (token) {
@@ -22,11 +42,25 @@ export class ViewDocument extends Component {
     }
   }
 
+
+  /** 
+   * @param {any} content 
+   * @return {void}
+   * @memberof ViewDocument
+   */
   parseHtml(content){
     const html = $.parseHTML(content);
     $('#content').append(html);
   }
 
+
+  /**
+   * 
+   * 
+   * @returns {jsx}:
+   * 
+   * @memberof ViewDocument
+   */
   render() {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');

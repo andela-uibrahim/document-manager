@@ -27,7 +27,9 @@ class RoleController {
       return Roles
         .create({
           role: request.body.role
-        }).then(role => response.status(201).send(role));
+        })
+        .then(role => {
+          return response.status(201).send(role)});
     }
     response.status(500).send({
       success: false,
@@ -56,6 +58,13 @@ class RoleController {
    * @return{Void} - Returns void
    */
   static deleteRole(request, response) {
+    if(!parseInt(request.params.id)){
+      return response.status(400)
+      .send({ 
+        success: false,
+        message: 'Invalid query params'
+      });
+    }
     Roles.findOne({ where: { id: request.params.id } })
       .then((role) => {
         if (role) {

@@ -39,7 +39,7 @@ describe('ViewAllUsers component', () => {
     expect(wrapper.find('UserList').length).toBe(1);
     expect(wrapper.find('Pagination').length).toBe(1);
     expect(wrapper.find('input').length).toBe(1);
-    expect(wrapper.find('button').length).toBe(1);
+    expect(wrapper.find('button').length).toBe(2);
   });
 
   it(`should have input field with id ="searchTerm" and an onChange property` ,

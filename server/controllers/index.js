@@ -1,6 +1,6 @@
-import user from './UserContrl';
-import role from './RoleContrl';
-import document from './DocContrl';
+import user from './UserController';
+import role from './RoleController';
+import document from './DocumentController';
 
 const controllers =
   {

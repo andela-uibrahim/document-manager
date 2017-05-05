@@ -11,7 +11,6 @@ import Validation from '../../helper/validation';
 
 const validate = new Validation();
 
-
 const confirmChangePassword = (callback, token, state, userId) => {
   swal({
     title: 'Are you sure?',
@@ -38,7 +37,21 @@ const confirmChangePassword = (callback, token, state, userId) => {
     });
 };
 
+/**
+ * 
+ * 
+ * @export
+ * @class ChangePassword
+ * @extends {Component}
+ */
 export class ChangePassword extends Component {
+  
+  /**
+   * Creates an instance of ChangePassword.
+   * @param {any} props 
+   * 
+   * @memberof ChangePassword
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -50,10 +63,26 @@ export class ChangePassword extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+
+  /**
+   * 
+   * @param {any} event 
+   * @return {void}
+   * 
+   * @memberof ChangePassword
+   */
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+
+  /**
+   * 
+   * 
+   * @returns {jsx}:
+   * 
+   * @memberof ChangePassword
+   */
   render() {
     return (
       <div className="row">
