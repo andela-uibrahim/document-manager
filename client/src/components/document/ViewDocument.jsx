@@ -86,6 +86,7 @@ export class ViewDocument extends Component {
                   </span>
                 </div>
               </div>
+               <div><button onClick={browserHistory.goBack}>Go Back</button></div>
             </div> 
           </div>   
             :

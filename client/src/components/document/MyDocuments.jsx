@@ -68,6 +68,7 @@ import ViewMyDocuments from '../../actions/documentManagement/viewMyDocuments';
                 this.props.viewDocuments(this.state.userid, offset);
               }}
             />
+            <button onClick={browserHistory.goBack}>Go Back</button>
           </center>
       </div>
     );

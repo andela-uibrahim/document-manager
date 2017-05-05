@@ -221,7 +221,7 @@ class DocumentController {
  * @return{Void} - return Void
  */
   static fetchUserDocument(req, res) {
-    let queryBuilder ={};
+    let query ={};
     const queryId = req.params.id;
     const UserId = req.decoded.UserId;
     const RoleId = req.decoded.RoleId;
@@ -232,19 +232,19 @@ class DocumentController {
         message: 'Invalid query params'
       });
     }
-    queryBuilder.offset = (req.query.offset > 0) ? req.query.offset : 0;
-    queryBuilder.limit = (req.query.limit > 0) ? req.query.limit : 9;
+    query.offset = (req.query.offset > 0) ? req.query.offset : 0;
+    query.limit = (req.query.limit > 0) ? req.query.limit : 9;
     if (UserId === queryId || RoleId === 1) {
-      queryBuilder.where = {
+      query.where = {
         UserId: queryId,
       } 
     } else {
-      queryBuilder.where = {
+      query.where = {
         UserId: queryId,
         access: 'public'
       }
     }
-      Documents.findAndCountAll( queryBuilder)
+      Documents.findAndCountAll( query)
       .then((results) => {
         if (results.length < 1) {
           return res.status(404).send({
@@ -252,8 +252,8 @@ class DocumentController {
             message: 'No documents found'
           });
         }
-        const offset = queryBuilder.offset;
-        const limit = queryBuilder.limit;
+        const offset = query.offset;
+        const limit = query.limit;
         const pagination = DocumentHelper
          .paginateResult(results, offset, limit);
         return res.status(200).send({
@@ -281,7 +281,7 @@ class DocumentController {
     const UserId = req.decoded.UserId;
     const RoleId = req.decoded.RoleId;
 
-    const queryBuilder = {
+    const query = {
       attributes: ['id', 'UserId', 'access', 'title', 'content', 'createdAt'],
       order: '"createdAt" DESC',
       include: [{
@@ -289,15 +289,15 @@ class DocumentController {
         attributes: ['RoleId']
       }]
     };
-    queryBuilder.offset = (req.query.offset > 0) ? req.query.offset : 0;
+    query.offset = (req.query.offset > 0) ? req.query.offset : 0;
     if (searchLimit) {
-      queryBuilder.limit = searchLimit;
+      query.limit = searchLimit;
     }
 
     if (searchQuery) {
       if (RoleId === 1 ) {
         searchQuery = DocumentHelper.sanitizeString(searchQuery);
-        queryBuilder.where = {
+        query.where = {
           $or:
           [
             {
@@ -313,7 +313,7 @@ class DocumentController {
             ]
           }
         };
-        Documents.findAndCountAll(queryBuilder)
+        Documents.findAndCountAll(query)
         .then((results) => {
           if (results.count < 1) {
             res.status(404).send({
@@ -321,8 +321,8 @@ class DocumentController {
               message: 'No Document Found'
             });
           } else {
-            const offset = queryBuilder.offset;
-            const limit = queryBuilder.limit;
+            const offset = query.offset;
+            const limit = query.limit;
             const pagination = DocumentHelper
              .paginateResult(results, offset, limit);
             res.status(200).send({
@@ -334,7 +334,7 @@ class DocumentController {
         });
       } else {
         searchQuery = DocumentHelper.sanitizeString(searchQuery);
-        queryBuilder.where = {
+        query.where = {
           $or:
           [
             {
@@ -342,7 +342,7 @@ class DocumentController {
             }
           ],
         };
-        Documents.findAndCountAll(queryBuilder).then((results) => {
+        Documents.findAndCountAll(query).then((results) => {
         results.rows = results.rows.filter((document) => {
           if ((document.access === 'public') ||
                (document.User.RoleId === RoleId &&
@@ -355,8 +355,8 @@ class DocumentController {
           return false;
         });
 
-        const offset = queryBuilder.offset;
-        const limit = queryBuilder.limit;
+        const offset = query.offset;
+        const limit = query.limit;
         results.count = results.rows.length;
         const pagination = DocumentHelper
           .paginateResult(results, offset, limit);
@@ -389,7 +389,7 @@ class DocumentController {
   static fetchDocuments(req, res) {
     const UserId = req.decoded.UserId;
     const RoleId = req.decoded.RoleId;
-    const queryBuilder = {
+    const query = {
       attributes: ['id', 'UserId', 'access', 'title', 'content', 'createdAt'],
       order: '"createdAt" DESC',
       include: [{
@@ -397,11 +397,11 @@ class DocumentController {
         attributes: ['RoleId']
       }]
     };
-    queryBuilder.offset = (req.query.offset > 0) ? req.query.offset : 0;
-    queryBuilder.limit = (req.query.limit > 0) ? req.query.limit : 10;
+    query.offset = (req.query.offset > 0) ? req.query.offset : 0;
+    query.limit = (req.query.limit > 0) ? req.query.limit : 10;
 
     if (RoleId === 1) {
-        queryBuilder.where = {   
+        query.where = {   
           $or:
           [
             { access: 'public' },
@@ -409,7 +409,7 @@ class DocumentController {
             { UserId, }
           ]
         };
-      Documents.findAndCountAll(queryBuilder)
+      Documents.findAndCountAll(query)
         .then((results) => {
           if (results.count < 1) {
             res.status(404).send({
@@ -417,8 +417,8 @@ class DocumentController {
               message: 'No Document Found'
             });
           } else {
-            const offset = queryBuilder.offset;
-            const limit = queryBuilder.limit;
+            const offset = query.offset;
+            const limit = query.limit;
             const pagination = DocumentHelper
              .paginateResult(results, offset, limit);
             res.status(200).send({
@@ -429,7 +429,7 @@ class DocumentController {
           }
         });
     } else {  
-      Documents.findAndCountAll(queryBuilder).then((results) => {
+      Documents.findAndCountAll(query).then((results) => {
         results.rows = results.rows.filter((document) => {
           if ((document.access === 'public') ||
                (document.User.RoleId === RoleId &&
@@ -443,8 +443,8 @@ class DocumentController {
         });
         results.count = results.rows.length;
 
-        const offset = queryBuilder.offset;
-        const limit = queryBuilder.limit;
+        const offset = query.offset;
+        const limit = query.limit;
 
         const pagination = DocumentHelper
           .paginateResult(results, offset, limit);

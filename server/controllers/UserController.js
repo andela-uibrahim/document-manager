@@ -308,13 +308,13 @@ class UserController {
  * @return {Void} - returns Void
  */
   static searchUsers(req, res) {
-    let queryBuilder = {
+    let query = {
       limit: 10,
       offset: 0
     };
     
     if (req.query.limit || req.query.offset) {
-       queryBuilder = {
+       query = {
          limit: req.query.limit,
          offset: req.query.offset || 0
        };
@@ -322,7 +322,7 @@ class UserController {
     if (req.query.search) {
         let searchQuery = req.query.search;
         searchQuery = DocumentHelper.sanitizeString(searchQuery);
-        queryBuilder.where = {
+        query.where = {
           $or:
           [
             {
@@ -336,14 +336,14 @@ class UserController {
             }
           ]
         };
-      Users.findAndCountAll(queryBuilder)
+      Users.findAndCountAll(query)
         .then((users) => {
           users.rows = users.rows.map(user => {
             delete user.dataValues.password;
             return user.dataValues;
          })
         const paginateResult = DocumentHelper
-          .paginateResult(users, queryBuilder.offset, queryBuilder.limit);
+          .paginateResult(users, query.offset, query.limit);
           res.status(200).send({
             success: true,
             users: users.rows,

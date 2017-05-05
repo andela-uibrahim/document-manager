@@ -15,8 +15,8 @@ const MyDocumentList = ({documents}) => {
           <div className="col s6 m4" key={document.id}>
             <div className="card blue-grey darken-1">
               <div className="card-content white-text">
-                <span className="card-title">{document.access}</span>
                 <h3>{document.title}</h3>
+                <span className="card-title">Access: {document.access}</span>
                 <div className="card-action">
                   <Link to={`/view-document/${document.id}`}>Content</Link>
                   <Link to={`/edit-document/${document.id}`}>Edit</Link>
