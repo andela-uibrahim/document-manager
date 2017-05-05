@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
-import logOutAction from '../../actions/authentication/logOutAction';
+import logOutAction from '../../actions/authentication/logoutAction';
 import logo from '../../images/file.jpeg';
 
 export class Header extends Component {
