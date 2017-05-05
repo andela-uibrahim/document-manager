@@ -37,7 +37,21 @@ const confirmUpdateUser = (callback,token, userData, userId) => {
     });
 };
 
+/**
+ * 
+ * 
+ * @export
+ * @class EditUser
+ * @extends {Component}
+ */
 export class EditUser extends Component {
+  
+  /**
+   * Creates an instance of EditUser.
+   * @param {any} props 
+   * 
+   * @memberof EditUser
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -53,10 +67,25 @@ export class EditUser extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  /**
+   * 
+   * 
+   * @param {any} event 
+   * @return {void}
+   * @memberof EditUser
+   */
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+
+  /**
+   * 
+   * 
+   * 
+   * @memberof EditUser
+   * @return {void}
+   */
   componentWillMount() {
     const token = window.localStorage.getItem('token');
     if (token) {
@@ -64,6 +93,14 @@ export class EditUser extends Component {
     }
   }
 
+
+  /**
+   * 
+   * 
+   * @param {any} nextProps 
+   * @return {void}
+   * @memberof EditUser
+   */
   componentWillReceiveProps(nextProps) {
     this.setState({
       username: nextProps.user.username,
@@ -73,6 +110,14 @@ export class EditUser extends Component {
     });
    }
 
+  
+  /**
+   * 
+   * 
+   * @returns {jsx}:
+   * 
+   * @memberof EditUser
+   */
   render() {
     if (!this.token) {
       browserHistory.push('/');

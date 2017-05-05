@@ -74,7 +74,8 @@ const UserList = ({ users, deleteUser, roles, updateUserRole, roleId }) => {
                 { user.RoleId !== 1 ?
                   <select
                     className="userRoleSelect browser-default"
-                    onChange={event => confirmUpdateRole(updateUserRole, event.target.value, user.id)}
+                    onChange={event => confirmUpdateRole(updateUserRole,
+                     event.target.value, user.id)}
                     value={user.RoleId}
                   >
                     {roles.map(role =>

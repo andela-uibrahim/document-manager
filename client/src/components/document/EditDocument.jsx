@@ -14,7 +14,21 @@ import Validation from '../../helper/validation';
 const validate = new Validation();
 
 
+/**
+ * 
+ * 
+ * @export
+ * @class EditDocument
+ * @extends {Component}
+ */
 export class EditDocument extends Component {
+  
+  /**
+   * Creates an instance of EditDocument.
+   * @param {any} props 
+   * 
+   * @memberof EditDocument
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -29,6 +43,12 @@ export class EditDocument extends Component {
     this.handleEditorChange = this.handleEditorChange.bind(this);
   }
 
+
+  /**
+   * 
+   * @memberof EditDocument
+   * @return {void}
+   */
   componentWillMount() {
     const token = window.localStorage.getItem('token');
     if (token) {
@@ -36,10 +56,22 @@ export class EditDocument extends Component {
     }
   }
 
+  /**
+   * 
+   * @memberof EditDocument
+   * @return {void}
+   */
   componentDidMount() {
-    //$('#access').material_select(this.handleChange.bind(this));
+    $('#access').material_select(this.handleChange.bind(this));
   }
 
+
+  /**
+   * @param {any} nextProps 
+   * 
+   * @memberof EditDocument
+   * @return {void}
+   */
   componentWillReceiveProps(nextProps) {
     this.setState({
       title: nextProps.document.title,
@@ -49,13 +81,34 @@ export class EditDocument extends Component {
     $('#access').val(nextProps.document.access);
   }
 
+
+  /**
+   * @param {any} event 
+   * 
+   * @memberof EditDocument
+   * @return {void}
+   */
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+
+  /** 
+   * @param {any} event 
+   * 
+   * @memberof EditDocument
+   * @return {void}
+   */
   handleEditorChange(event) {
     this.setState({ content : event.target.getContent() }); 
   }
 
+
+  /** 
+   * @param {any} event 
+   * @returns {void}
+   * 
+   * @memberof EditDocument
+   */
   handleSubmit(event) {
     const token = localStorage.getItem('token');
     event.preventDefault();
@@ -69,6 +122,14 @@ export class EditDocument extends Component {
     this.props.editDocument(this.state, token, this.props.params.id);
   }
 
+
+  /**
+   * 
+   * 
+   * @returns {jsx}:
+   * 
+   * @memberof EditDocument
+   */
   render() {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
@@ -112,8 +173,13 @@ export class EditDocument extends Component {
                 id="content"
                 content={this.state.content}
                 config={{
-                  plugins: 'link image code',
-                  toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+                  menu: {
+                          edit: {title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall'},
+                          view: {title: 'View', items: 'visualaid'},
+                          format: {title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats | removeformat'},
+                          table: {title: 'Table', items: 'inserttable tableprops deletetable | cell row column'},
+                          tools: {title: 'Tools', items: 'spellchecker code'}
+                       }
                   }}
                 onChange={this.handleEditorChange}
               />: <span/> }
@@ -130,7 +196,7 @@ export class EditDocument extends Component {
 }
 
 
-EditDocument.PropTypes = {
+EditDocument.propTypes = {
   document: PropTypes.object.isRequired
 };
 

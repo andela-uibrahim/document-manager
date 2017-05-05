@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
-import logoutAction from '../../actions/authentication/logoutAction';
+import logOutAction from '../../actions/authentication/logOutAction';
 import logo from '../../images/file.jpeg';
 
 export class Header extends Component {
@@ -106,7 +106,7 @@ export class Header extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logout: () => dispatch(logoutAction())
+    logout: () => dispatch(logOutAction())
   };
 };
 

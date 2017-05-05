@@ -2,12 +2,25 @@
 import { browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import signupAction from '../../actions/authentication/signUpAction';
+import signUpAction from '../../actions/authentication/signUpAction';
 import Header from '../common/Header.jsx';
 
 
+/**
+ * 
+ * 
+ * @export
+ * @class SignUpPage
+ * @extends {Component}
+ */
 export class SignUpPage extends Component {
 
+  /**
+   * Creates an instance of SignUpPage.
+   * @param {any} props 
+   * 
+   * @memberof SignUpPage
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -24,15 +37,36 @@ export class SignUpPage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  /**
+   * 
+   * 
+   * @param {any} nextProps 
+   * @return {void}
+   * @memberof SignUpPage
+   */
   componentWillReceiveProps(nextProps) {
     this.state.error = nextProps.signUpError;
     this.state.success = nextProps.signUpSuccess;
   }
 
+  /**
+   * 
+   * 
+   * @param {any} event 
+   * @return {void}
+   * @memberof SignUpPage
+   */
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  /**
+   * 
+   * 
+   * @param {any} event 
+   * @return {void}
+   * @memberof SignUpPage
+   */
   handleSubmit(event) {
     event.preventDefault();
     // clear any error or success messages showing
@@ -43,11 +77,16 @@ export class SignUpPage extends Component {
     this.props.Signup(this.state)
   }
 
+  /**
+   * 
+   * 
+   * @returns {jsx}:
+   * 
+   * @memberof SignUpPage
+   */
   render() {
     if (window.localStorage.getItem('token')) {
-      setTimeout(() => {
-        browserHistory.push('/dashboard');
-      }, 1000);
+      browserHistory.push('/dashboard');
     }
     return (
        <div>
@@ -59,13 +98,6 @@ export class SignUpPage extends Component {
         { this.state.error ?
             <div className="login-feedback error">
               { this.state.error }
-            </div>
-            : <span />
-          }
-
-          { this.state.success ?
-            <div className="login-feedback success">
-              { this.state.success }
             </div>
             : <span />
           }
@@ -176,7 +208,7 @@ const mapStoreToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    Signup: userDetails => dispatch(signupAction(userDetails))
+    Signup: userDetails => dispatch(signUpAction(userDetails))
   };
 };
 

@@ -2,8 +2,8 @@
 /* eslint import/no-unresolved: 0 */
 
 import express from 'express';
-import DocumentController from '../controllers/DocContrl';
-import Authenticate from '../middleware/authenticator';
+import DocumentController from '../controllers/DocumentController';
+import Authenticator from '../middleware/authenticator';
 
 const router = express.Router();
 
@@ -56,7 +56,7 @@ router.route('/')
      *          items:
      *            $ref: '#/definitions/Document'
      */
-    .get(Authenticate.authenticateUser, DocumentController.fetchDocuments)
+    .get(Authenticator.authenticateUser, DocumentController.fetchDocuments)
     /**
      * @swagger
      * /api/documents:
@@ -87,7 +87,7 @@ router.route('/')
      *          items:
      *            $ref: '#/definitions/Document'
      */
-    .post(Authenticate.authenticateUser, DocumentController.createDocument);
+    .post(Authenticator.authenticateUser, DocumentController.createDocument);
 
 router.route('/:id')
     /** @swagger
@@ -112,7 +112,7 @@ router.route('/:id')
       *            items:
       *              $ref: '#/definitions/Document'
       */
-    .get(Authenticate.authenticateUser, DocumentController.fetchDocument)
+    .get(Authenticator.authenticateUser, DocumentController.fetchDocument)
      /**
      * @swagger
      * /api/documents/:id:
@@ -143,7 +143,7 @@ router.route('/:id')
      *          items:
      *            $ref: '#/definitions/Document'
      */
-    .put(Authenticate.authenticateUser, DocumentController.updateDocument)
+    .put(Authenticator.authenticateUser, DocumentController.updateDocument)
         /**
      * @swagger
      * /api/documents/1:
@@ -167,7 +167,7 @@ router.route('/:id')
      *            items:
      *              $ref: '#/definitions/Document'
      */
-    .delete(Authenticate.authenticateUser, DocumentController.deleteDocument);
+    .delete(Authenticator.authenticateUser, DocumentController.deleteDocument);
 
 
 export default router;

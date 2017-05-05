@@ -1,6 +1,14 @@
 import actionTypes from '../actions/actionTypes';
 import initialState from '../store/initialState';
 
+/**
+ * 
+ * 
+ * @export
+ * @param {any} [state=initialState] 
+ * @param {any} action 
+ * @returns  {state}:
+ */
 export default function allDocumentsReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.ALL_DOCUMENTS:

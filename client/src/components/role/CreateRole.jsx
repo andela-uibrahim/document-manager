@@ -5,13 +5,26 @@ import { browserHistory } from 'react-router';
 import React, { Component, PropTypes } from 'react';
 import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
-import createRoleAction from '../../actions/roleManagement/newRole';
+import newRole from '../../actions/roleManagement/newRole';
 import Validation from '../../helper/validation';
 
 const validate = new Validation();
 
-
+/**
+ * 
+ * 
+ * @export
+ * @class CreateRole
+ * @extends {Component}
+ */
 export class CreateRole extends Component {
+  
+  /**
+   * Creates an instance of CreateRole.
+   * @param {any} props 
+   * 
+   * @memberof CreateRole
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -22,16 +35,36 @@ export class CreateRole extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  /**
+   * 
+   * @memberof CreateRole
+   * @return {void}
+   */
   componentWillMount() {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
     }
   }
 
+
+  /**
+   * @param {any} event 
+   * @return {void}
+   * @memberof CreateRole
+   */
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  
+  /**
+   * 
+   * 
+   * @param {any} event 
+   * @returns {void}
+   * 
+   * @memberof CreateRole
+   */
   handleSubmit(event) {
     event.preventDefault();
     if(validate.isEmpty(this.state.role)){
@@ -41,6 +74,12 @@ export class CreateRole extends Component {
     this.props.CreateRole(this.state);
   }
 
+
+  /**
+   * @returns {jsx}:
+   * 
+   * @memberof CreateRole
+   */
   render() {
     return (
       <div className="row dashboardContainer col s12">
@@ -70,7 +109,7 @@ export class CreateRole extends Component {
 }
 
 
-CreateRole.PropTypes = {
+CreateRole.propTypes = {
   role: PropTypes.object.isRequired,
 };
 
@@ -80,7 +119,7 @@ CreateRole.contextTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    CreateRole: roleDetails => dispatch(createRoleAction(roleDetails)),
+    CreateRole: roleDetails => dispatch(newRole(roleDetails)),
   };
 };
 

@@ -5,6 +5,13 @@ import rootReducer from '../reducers';
 
 const middlewares = [thunk, reduxImmutableStateInvariant()];
 
+/**
+ * 
+ * 
+ * @export
+ * @param {any} initialState 
+ * @returns {void}
+ */
 export default function configureStore(initialState) {
   return createStore(
     rootReducer,

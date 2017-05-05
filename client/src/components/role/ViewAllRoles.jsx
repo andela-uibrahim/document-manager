@@ -10,7 +10,21 @@ import RoleList from './RoleList.jsx';
 import viewAllRolesAction from '../../actions/roleManagement/viewAllRoles';
 import deleteRoleAction from '../../actions/roleManagement/deleteRole';
 
+/**
+ * 
+ * 
+ * @export
+ * @class ViewAllRoles
+ * @extends {Component}
+ */
 export class ViewAllRoles extends Component {
+  
+  /**
+   * Creates an instance of ViewAllRoles.
+   * @param {any} props 
+   * 
+   * @memberof ViewAllRoles
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -18,6 +32,12 @@ export class ViewAllRoles extends Component {
     };
   }
 
+  /**
+   * 
+   * @return {void}
+   * 
+   * @memberof ViewAllRoles
+   */
   componentWillMount() {
     if (this.state.token) {
       this.props.viewRoles(this.state.token);
@@ -25,6 +45,13 @@ export class ViewAllRoles extends Component {
   }
 
 
+  /**
+   * 
+   * 
+   * @returns {jsx}:
+   * 
+   * @memberof ViewAllRoles
+   */
   render() {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
@@ -47,7 +74,7 @@ export class ViewAllRoles extends Component {
 }
 
 
-ViewAllRoles.PropTypes = {
+ViewAllRoles.propTypes = {
   roles: React.PropTypes.array.isRequired,
 };
 

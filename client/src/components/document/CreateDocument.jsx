@@ -11,7 +11,21 @@ import Validation from '../../helper/validation';
 
 const validate = new Validation();
 
+/**
+ * 
+ * 
+ * @export
+ * @class CreateDocument
+ * @extends {Component}
+ */
 export class CreateDocument extends Component {
+
+  /**
+   * Creates an instance of CreateDocument.
+   * @param {any} props 
+   * 
+   * @memberof CreateDocument
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -26,10 +40,24 @@ export class CreateDocument extends Component {
     this.handleEditorChange = this.handleEditorChange.bind(this);
   }
 
+  /**
+   * 
+   * 
+   * @memberof CreateDocument
+   * @return {void}
+   */
   componentDidMount(){
-     //$('#access').material_select(this.handleChange.bind(this));
+     $('#access').material_select(this.handleChange.bind(this));
   }
 
+
+  /**
+   * 
+   * @param {any} nextProps 
+   * @returns {void}
+   * 
+   * @memberof CreateDocument
+   */
   componentWillReceiveProps(nextProps) {
     if (nextProps.status === 'success') { 
       toastr.info('Document successfully created ');
@@ -39,13 +67,34 @@ export class CreateDocument extends Component {
     toastr.error('title already exist');
   }
 
+
+  /**
+   * 
+   * @param {any} event 
+   * @return {void}
+   * @memberof CreateDocument
+   */
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+
+  /**
+   * 
+   * @param {any} event 
+   * @return {void}
+   * @memberof CreateDocument
+   */
   handleEditorChange(event) {
     this.setState({ content : event.target.getContent() }); 
   }
 
+  
+  /** 
+   * @param {any} event 
+   * @returns {void}
+   * 
+   * @memberof CreateDocument
+   */
   handleSubmit(event) {
     event.preventDefault();
     if(validate.isEmpty(this.state.title)){
@@ -58,6 +107,14 @@ export class CreateDocument extends Component {
     this.props.CreateDocument(this.state);
   }
 
+
+  /**
+   * 
+   * 
+   * @returns {jsx}: the page mockup
+   * 
+   * @memberof CreateDocument
+   */
   render() {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
@@ -99,8 +156,13 @@ export class CreateDocument extends Component {
                 id="content"
                 content="Type your content here..."
                 config={{
-                  plugins: 'link image code',
-                  toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+                  menu: {
+                          edit: {title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall'},
+                          view: {title: 'View', items: 'visualaid'},
+                          format: {title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats | removeformat'},
+                          table: {title: 'Table', items: 'inserttable tableprops deletetable | cell row column'},
+                          tools: {title: 'Tools', items: 'spellchecker code'}
+                        }
                   }}
                 onChange={this.handleEditorChange}
               />

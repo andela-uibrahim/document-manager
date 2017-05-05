@@ -9,7 +9,21 @@ import Header from '../common/Header.jsx';
 
 const ADMIN_ROLE_ID = 1;
 
+/**
+ * 
+ * 
+ * @export
+ * @class LoginPage
+ * @extends {Component}
+ */
 export class LoginPage extends Component {
+  
+  /**
+   * Creates an instance of LoginPage.
+   * @param {any} props 
+   * 
+   * @memberof LoginPage
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -25,22 +39,51 @@ export class LoginPage extends Component {
   }
 
 
+
+  /**
+   * 
+   * 
+   * @return {void}
+   * @memberof LoginPage
+   */
   componentWillMount() {
     this.redirectIfLoggedIn();
   }
+
+
+  /**
+   * 
+   * 
+   * @param {any} nextProps 
+   * @return {void}
+   * @memberof LoginPage
+   */
   componentWillReceiveProps(nextProps) {
     this.state.error = nextProps.loginError;
     this.state.success = nextProps.loginSuccess;
-    setTimeout(() => {
-      this.redirectIfLoggedIn();
-    }, 1000);
+    this.redirectIfLoggedIn();
   }
+  
 
+   /**
+    * 
+    * 
+    * @param {any} event 
+    * @return {void}
+    * @memberof LoginPage
+    */
    handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  redirectIfLoggedIn (){
+
+  /**
+   * 
+   * @return {void}
+   * 
+   * @memberof LoginPage
+   */
+  redirectIfLoggedIn(){
     const token = window.localStorage.getItem('token');
     if (token) {
       const decodedUser = jwtDecode(token);
@@ -53,6 +96,14 @@ export class LoginPage extends Component {
     }
   }
 
+
+  /**
+   * 
+   * 
+   * @param {any} event 
+   * @return {void}
+   * @memberof LoginPage
+   */
   handleSubmit(event) {
     // prevent default submit action
     event.preventDefault();
@@ -65,6 +116,14 @@ export class LoginPage extends Component {
     this.props.login(this.state);
   }
 
+
+  /**
+   * 
+   * 
+   * @returns {jsx}:
+   * 
+   * @memberof LoginPage
+   */
   render() {
     return (
       <div>
@@ -76,13 +135,6 @@ export class LoginPage extends Component {
           { this.state.error ?
             <div className="login-feedback error">
               { this.state.error }
-            </div>
-            : <span />
-          }
-
-          { this.state.success ?
-            <div className="login-feedback success">
-              { this.state.success }
             </div>
             : <span />
           }
@@ -139,7 +191,7 @@ export class LoginPage extends Component {
   }
 }
 
-LoginPage.PropTypes = {
+LoginPage.propTypes = {
   loginThings: PropTypes.func.isRequired
 };
 

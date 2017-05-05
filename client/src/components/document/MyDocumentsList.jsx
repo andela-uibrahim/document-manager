@@ -52,7 +52,7 @@ const MyDocumentList = ({documents}) => {
         );
       }
 
-MyDocumentList.PropTypes = {
+MyDocumentList.propTypes = {
   documents: PropTypes.array.isRequired,
 };
 

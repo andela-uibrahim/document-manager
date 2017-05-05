@@ -2,9 +2,9 @@
 /* eslint import/no-unresolved: 0 */
 
 import express from 'express';
-import DocumentController from '../controllers/DocContrl';
-import UserController from '../controllers/UserContrl';
-import Authenticate from '../middleware/authenticator';
+import DocumentController from '../controllers/DocumentController';
+import UserController from '../controllers/UserController';
+import Authenticator from '../middleware/authenticator';
 
 const router = express.Router();
 
@@ -32,7 +32,7 @@ router.route('/documents/')
       *            items:
       *              $ref: '#/definitions/Document'
       */
-    .get(Authenticate.authenticateUser, DocumentController.searchDocuments)
+    .get(Authenticator.authenticateUser, DocumentController.searchDocuments)
 
 router.route('/users/')
     /** @swagger
@@ -57,6 +57,6 @@ router.route('/users/')
       *            items:
       *              $ref: '#/definitions/Document'
       */
-   .get(Authenticate.authenticateUser, UserController.searchUsers)
+   .get(Authenticator.authenticateUser, UserController.searchUsers)
 
 export default router;
