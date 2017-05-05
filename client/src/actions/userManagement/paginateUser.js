@@ -3,7 +3,7 @@ import actionTypes from '../actionTypes';
 
 export default (token, offset, limit) => {
   return (dispatch) => {
-    return axios.get(`/api/search/users?limit=${limit}&offset=${offset}`, {
+    return axios.get(`/api/users?limit=${limit}&offset=${offset}`, {
       headers: {
         Authorization: token
       }
@@ -12,7 +12,7 @@ export default (token, offset, limit) => {
         dispatch({
           type: actionTypes.PAGINATED_USERS,
           users: response.data.users,
-          pageCount: response.data.pageCount
+          pageCount: response.data.pagination.pageCount
         });
       }).catch((err) => {
         dispatch({

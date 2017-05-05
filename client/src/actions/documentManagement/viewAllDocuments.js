@@ -5,7 +5,7 @@ import actionTypes from '../actionTypes';
 
 export default (token) => {
   return (dispatch) => {
-    return axios.get('/api/search/documents', {
+    return axios.get('/api/documents', {
       headers: {
         Authorization: token
       }

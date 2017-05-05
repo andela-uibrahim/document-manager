@@ -32,7 +32,11 @@ router.route('/documents/')
       *            items:
       *              $ref: '#/definitions/Document'
       */
+<<<<<<< HEAD
     .get(Authenticator.authenticateUser, DocumentController.searchDocuments)
+=======
+    .get(Authenticate.authenticateUser, DocumentController.searchDocuments)
+>>>>>>> 9ff95dfaad21812046663097799073be7f6fc412
 
 router.route('/users/')
     /** @swagger
@@ -57,6 +61,10 @@ router.route('/users/')
       *            items:
       *              $ref: '#/definitions/Document'
       */
+<<<<<<< HEAD
    .get(Authenticator.authenticateUser, UserController.searchUsers)
+=======
+   .get(Authenticate.authenticateUser, UserController.searchUsers)
+>>>>>>> 9ff95dfaad21812046663097799073be7f6fc412
 
 export default router;

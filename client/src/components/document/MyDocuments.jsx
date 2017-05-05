@@ -29,6 +29,7 @@ import ViewMyDocuments from '../../actions/documentManagement/viewMyDocuments';
     this.token = window.localStorage.getItem('token');
     this.state = {
       userid: jwtDecode(this.token).UserId,
+      offset: 0
     };
   }
 
@@ -38,7 +39,7 @@ import ViewMyDocuments from '../../actions/documentManagement/viewMyDocuments';
    * @return {void}
    */
   componentWillMount() {
-    this.props.viewDocuments(this.state.userid);
+    this.props.viewDocuments(this.state.userid,this.state.offset);
   }
   
 
@@ -59,6 +60,15 @@ import ViewMyDocuments from '../../actions/documentManagement/viewMyDocuments';
           <Header/>
           <Sidebar/>
           {this.props.documents ? <MyDocumentList documents={this.props.documents}/> : <div/> }
+          <center>
+            <Pagination className="pag"
+              items={this.props.pageCount}
+              onSelect={(page) => {
+                const offset = (page - 1) * 9;
+                this.props.viewDocuments(this.state.userid, offset);
+              }}
+            />
+          </center>
       </div>
     );
   }
@@ -74,8 +84,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    viewDocuments: userid =>
-    dispatch(ViewMyDocuments(userid)),
+    viewDocuments: (userid, offset) =>
+    dispatch(ViewMyDocuments(userid, offset)),
   };
 };
 

@@ -56,7 +56,11 @@ router.route('/')
      *          items:
      *            $ref: '#/definitions/Document'
      */
+<<<<<<< HEAD
     .get(Authenticator.authenticateUser, DocumentController.fetchDocuments)
+=======
+    .get(Authenticate.authenticateUser, DocumentController.fetchDocuments)
+>>>>>>> 9ff95dfaad21812046663097799073be7f6fc412
     /**
      * @swagger
      * /api/documents:

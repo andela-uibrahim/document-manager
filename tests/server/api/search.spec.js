@@ -76,12 +76,14 @@ describe('search ==> \n', () => {
                     .set({ 'x-access-token': adminToken })
                     .send(testData.publicDoc3)
                     .end(() => {
-                      client.get(`/api/search/documents/?limit=${searchLimit}`)
+                      const searchTerm = 'e';
+                      client.get(`/api/search/documents/?limit=${searchLimit}
+                      &&search=${searchTerm}`)
                         .set({ 'x-access-token': adminToken })
                         .end((error, res) => {
                           expect(res.status).to.equal(200);
                           expect(res.body.results.rows.length)
-                          .to.equal(searchLimit);
+                          .to.be.at.most(searchLimit);
                           done();
                         });      
                     });     
@@ -92,7 +94,8 @@ describe('search ==> \n', () => {
 
     it('should return documents ordered by published date in descending order',
       (done) => {
-        client.get('/api/search/documents/')
+        const searchTerm = 'e';
+        client.get(`/api/search/documents/?search=${searchTerm}`)
           .set({ 'x-access-token': adminToken })
           .end((error, res) => {
             expect(res.status).to.equal(200);
@@ -128,34 +131,10 @@ describe('search ==> \n', () => {
         .end((error, res) => {
           expect(res.status).to.equal(200);
           res.body.results.rows.forEach((document) => {
-            expect(`${document.title} ${document.content}`).to.contain(query)
+            expect(`${document.title}`).to.contain(query)
           });
-          expect(res.body.results.rows.length).to.equal(searchLimit);
+          expect(res.body.results.rows.length).to.be.at.most(searchLimit);
           done();
-        });
-    });
-    it(`should return documents limited by a specified number with result
-     containing the search terms 2`, (done) => {
-      const searchLimit = 2;
-      const query = 'e';
-      client.post('/api/users/login')
-        .send({
-          email: testData.admin.email,
-          password: testData.admin.password
-        })
-        .end((error1, res1) => {
-          regularToken = res1.body.token;
-          client.get(`/api/search/documents/?
-          search=${query}&limit=${searchLimit}`)
-            .set({ 'x-access-token': regularToken })
-            .end((error, res) => {
-              expect(res.status).to.equal(200);
-              res.body.results.rows.forEach((document) => {
-                expect(document.content).to.contain(query);
-              });
-              expect(res.body.results.rows.length).to.equal(searchLimit);
-              done();
-            });
         });
     });
   });
@@ -179,11 +158,12 @@ describe('search ==> \n', () => {
                     .set({ 'x-access-token': adminToken })
                     .send(testData.regularUser4)
                     .end(() => {
-                      client.get(`/api/search/users/?limit=${searchLimit}`)
+                      const searchTerm = 'e';
+                      client.get(`/api/search/users/?search=${searchTerm}&limit=${searchLimit}`)
                         .set({ 'x-access-token': adminToken })
                         .end((error, res) => {
                           expect(res.status).to.equal(200);
-                          expect(res.body.users.length).to.equal(searchLimit);
+                          expect(res.body.users.length).to.be.at.most(searchLimit);
                           done();
                         });      
                     });     
@@ -217,33 +197,8 @@ describe('search ==> \n', () => {
             expect(`${user.username} ${user.email}
              ${user.firstname} ${user.lastname}`).to.contain(searchText);
           });
-          expect(res.body.users.length).to.equal(searchLimit);
+          expect(res.body.users.length).to.be.at.most(searchLimit);
           done();
-        });
-    });
-    it(`should return users limited by a specified number with result
-     containing the search terms 2`, (done) => {
-      const searchLimit = 2;
-      const searchText= 'e';
-      client.post('/api/users/login')
-        .send({
-          email: testData.admin.email,
-          password: testData.admin.password
-        })
-        .end((error1, res1) => {
-          regularToken = res1.body.token;
-          client.get(`/api/search/users/?
-          search=${searchText}&limit=${searchLimit}`)
-            .set({ 'x-access-token': regularToken })
-            .end((error, res) => {
-              expect(res.status).to.equal(200);
-              res.body.users.forEach((user) => {
-                expect(`${user.username} ${user.email}
-                ${user.firstname} ${user.lastname}`).to.contain(searchText);
-              });
-              expect(res.body.users.length).to.equal(searchLimit);
-              done();
-            });
         });
     });
   });
