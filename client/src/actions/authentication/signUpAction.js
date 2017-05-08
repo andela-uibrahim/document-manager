@@ -20,7 +20,7 @@ export default (userData) => {
       }).catch(() => {
         dispatch({
           type: actionTypes.SIGN_UP_ERROR,
-          message: 'Invalid credentials'
+          message: 'Email already exist'
         });
       });
   };
