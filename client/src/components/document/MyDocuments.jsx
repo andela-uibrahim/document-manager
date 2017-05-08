@@ -61,17 +61,61 @@ import verifyToken from '../../actions/authentication/verifyToken';
       <div className='user_doc row workspace col s12'>
           <Header/>
           <Sidebar/>
-          {this.props.documents ? <MyDocumentList documents={this.props.documents}/> : <div/> }
-          <center>
-            <Pagination className="pag"
-              items={this.props.pageCount}
-              onSelect={(page) => {
-                const offset = (page - 1) * 9;
-                this.props.viewDocuments(this.state.userid, offset);
-              }}
-            />
-            <button onClick={browserHistory.goBack}>Go Back</button>
-          </center>
+          {this.props.documents ?
+          <div>
+            <MyDocumentList documents={this.props.documents}/> 
+            <center>
+              <Pagination className="pag"
+                items={this.props.pageCount}
+                onSelect={(page) => {
+                  const offset = (page - 1) * 9;
+                  this.props.viewDocuments(this.state.userid, offset);
+                }}
+              />
+              <button onClick={browserHistory.goBack}>Go Back</button>
+            </center>
+          </div>
+          :  <div class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>}
       </div>
     );
   }
