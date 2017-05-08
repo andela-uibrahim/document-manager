@@ -65,7 +65,9 @@ export class CreateDocument extends Component {
       browserHistory.push('/dashboard');
       return null
     }
-    toastr.error('title already exist');
+    if (nextProps.status === 'failed') { 
+      toastr.error('title already exist');
+    }
   }
 
 
