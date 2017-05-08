@@ -7,7 +7,7 @@ module.exports = {
       title: faker.random.word(),
       content: faker.lorem.paragraph(),
       access: 'public',
-      UserId: 2,
+      UserId: 1,
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
@@ -15,7 +15,7 @@ module.exports = {
       title: faker.random.word(),
       content: faker.lorem.paragraph(),
       access: 'private',
-      UserId: 3,
+      UserId: 2,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -24,7 +24,7 @@ module.exports = {
       title: faker.random.word(),
       content: faker.lorem.paragraph(),
       access: 'role',
-      UserId: 4,
+      UserId: 1,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -33,7 +33,7 @@ module.exports = {
       title: faker.random.word(),
       content: faker.lorem.paragraph(),
       access: 'public',
-      UserId: 5,
+      UserId: 2,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -42,7 +42,7 @@ module.exports = {
       title: faker.random.word(),
       content: faker.lorem.paragraph(),
       access: 'private',
-      UserId: 2,
+      UserId: 1,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -51,7 +51,7 @@ module.exports = {
       title: faker.random.word(),
       content: faker.lorem.paragraph(),
       access: 'role',
-      UserId: 3,
+      UserId: 2,
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});
