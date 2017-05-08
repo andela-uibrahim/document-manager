@@ -47,8 +47,10 @@ export class Header extends Component {
                 <li><Link to="/about-us">About Us</Link></li>
                 <li>
                     <Link to="/" className="dropdown-button" data-activates="dropdown1">
-                      {this.state.username}<i className="material-icons right">arrow_drop_down</i>
+                      usman<i className="material-icons right"
+                       data-activates="dropdown1">arrow_drop_down</i>
                     </Link>
+                  </li>
                     <ul id="dropdown1" className="dropdown-content">
                       <li>
                         <Link to={`/change-password/${jwtDecode(this.token).UserId}`}>
@@ -74,7 +76,6 @@ export class Header extends Component {
                         </Link>
                       </li>
                     </ul>
-                </li>
               </ul>
             </div>
             <Link data-activates="slide-out" className="btn blue darken-2" id="collapse_btn">
