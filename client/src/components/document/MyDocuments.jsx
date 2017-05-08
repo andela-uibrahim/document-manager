@@ -61,49 +61,7 @@ import verifyToken from '../../actions/authentication/verifyToken';
       <div className='user_doc row workspace col s12'>
           <Header/>
           <Sidebar/>
-          {this.props.documents ? <MyDocumentList documents={this.props.documents}/> : 
-           <div class="preloader-wrapper big active">
-            <div class="spinner-layer spinner-blue">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div><div class="gap-patch">
-                <div class="circle"></div>
-              </div><div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
-            </div>
-
-            <div class="spinner-layer spinner-red">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div><div class="gap-patch">
-                <div class="circle"></div>
-              </div><div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
-            </div>
-
-            <div class="spinner-layer spinner-yellow">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div><div class="gap-patch">
-                <div class="circle"></div>
-              </div><div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
-            </div>
-
-            <div class="spinner-layer spinner-green">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div><div class="gap-patch">
-                <div class="circle"></div>
-              </div><div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
-            </div>
-          </div>
-          }
+          {this.props.documents ? <MyDocumentList documents={this.props.documents}/> : <div/> }
           <center>
             <Pagination className="pag"
               items={this.props.pageCount}
@@ -122,7 +80,7 @@ import verifyToken from '../../actions/authentication/verifyToken';
 
 const mapStateToProps = (state) => {
   return {
-    documents: state.allDocumentsReducer.documents,
+    documents: state.allDocumentsReducer.myDocuments,
     pageCount: state.allDocumentsReducer.pageCount
   };
 };
