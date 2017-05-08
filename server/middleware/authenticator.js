@@ -69,5 +69,24 @@ class Authenticator {
       });
     }
   }
+
+  /**
+   * isTokenActive - get current information of active user i.e from token
+   * sent with the request
+   * @param {Object} req - all properties of the request made to the server
+   * @param {Object} res - server response object
+   * @return {Object} - status of the processed request and a json object
+   * to pass further information of the response
+   */
+  static isTokenActive(req, res) { 
+    jwt.verify(req.body.token, SECRET_KEY, (err) => {
+      if(err){
+        return res.status(401).send({ message: 'Token expired' })
+       }
+       return res.status(200).send({
+         message: 'valid token' 
+       }); 
+    });
+  }
 }
 export default Authenticator;

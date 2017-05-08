@@ -7,7 +7,7 @@ import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import newRole from '../../actions/roleManagement/newRole';
 import Validation from '../../helper/validation';
-
+import verifyToken from '../../actions/authentication/verifyToken';
 const validate = new Validation();
 
 /**
@@ -45,7 +45,10 @@ export class CreateRole extends Component {
       browserHistory.push('/');
     }
   }
-
+  
+  componentWillMount() {
+    this.props.verifyToken();
+  }
 
   /**
    * @param {any} event 
@@ -81,6 +84,9 @@ export class CreateRole extends Component {
    * @memberof CreateRole
    */
   render() {
+     if (!window.localStorage.getItem('token')) {
+      browserHistory.push('/');
+    }
     return (
       <div className="row dashboardContainer col s12">
         <Header />
@@ -119,6 +125,7 @@ CreateRole.contextTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyToken: () => dispatch(verifyToken()),
     CreateRole: roleDetails => dispatch(newRole(roleDetails)),
   };
 };

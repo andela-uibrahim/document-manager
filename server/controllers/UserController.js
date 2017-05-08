@@ -1,7 +1,7 @@
 /* eslint import/no-extraneous-dependencies: 0 */
 /* eslint import/no-unresolved: 0 */
 import model from '../models';
-import Authenticate from '../middleware/authenticator';
+import Authenticator from '../middleware/authenticator';
 import DocumentHelper from './helper/DocumentHelper';
 
 const Users = model.User;
@@ -25,6 +25,7 @@ class UserController {
         req.body.email
     );
   }
+
   /**
    * Method used to create new user
    * @param{Object} req - Server req
@@ -45,7 +46,7 @@ class UserController {
           success: true,
           message: 'User successfully signed up',
           RoleId: user.RoleId,
-          token: Authenticate.generateToken(user)
+          token: Authenticator.generateToken(user)
         })).catch(error => res.status(409).send({
           success: UserController.postreq(req),
           message: error.message,
@@ -72,7 +73,7 @@ class UserController {
     })
       .then((user) => {
         if (user && user.passwordMatched(req.body.password)) {
-          const token = Authenticate.generateToken(user);
+          const token = Authenticator.generateToken(user);
           res.status(200).send({
             message: 'login successfully',
             token,
@@ -81,7 +82,7 @@ class UserController {
         } else {
           res.status(401).send({
             success: false,
-            message: 'Failed to Authenticate User, Invalid Credentials'
+            message: 'Failed to Authenticator User, Invalid Credentials'
           });
         }
       });
@@ -108,7 +109,7 @@ class UserController {
  * @returns{Void} return Void
  */
   static fetchAllUsers(req, res) {
-    let queryParams = {
+    let query = {
       limit: 10,
       offset: 0
     };
@@ -120,19 +121,20 @@ class UserController {
           message: 'Invalid query params'
          });
       }
-      queryParams = {
+      query = {
         limit: req.query.limit,
-        offset: req.query.offset
+        offset: req.query.offset,
+        order: '"createdAt" DESC',
       };
     }
-    Users.findAndCountAll(queryParams)
+    Users.findAndCountAll(query)
       .then((users) => {
         users.rows = users.rows.map(user => {
           delete user.dataValues.password;
           return user.dataValues;
         })
         const paginateResult = DocumentHelper
-        .paginateResult(users, queryParams.offset, queryParams.limit);
+        .paginateResult(users, query.offset, query.limit);
         res.status(200).send({
           success: true,
           users: users.rows,
@@ -287,7 +289,7 @@ class UserController {
         success: false,
         message: 'Admin user successfully created',
         RoleId: adminUser.RoleId,
-        token: Authenticate.generateToken(adminUser)
+        token: Authenticator.generateToken(adminUser)
       });
     }).catch((error) => {
       res.status(409).send({

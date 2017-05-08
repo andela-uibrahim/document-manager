@@ -24,6 +24,15 @@ export default function allUsersReducer(state = initialState, action) {
           return user.id !== action.userid;
         }) 
       });
+     case actionTypes.USER_UPGRADED:
+       return Object.assign({}, state, { users:
+          state.users.map(user => {
+            if(user.id === action.user.id) {
+              user = action.user;
+            }
+          return user;
+          })
+        });
     case actionTypes.CLEAR_ALL:
       return Object.assign({}, state, { users: action.users });
     case actionTypes.FIND_USER:

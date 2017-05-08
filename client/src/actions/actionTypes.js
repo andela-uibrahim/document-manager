@@ -33,5 +33,9 @@ export default keymirror({
   ROLE_CREATED: null,
   ROLE_DELETED: null,
   ROLE_DELETION_FAILED: null,
-  ROLE_CREATE_FAILED: null
+  ROLE_CREATE_FAILED: null,
+  USER_UPGRADED: null,
+  USER_UPGRADE_FAILED: null,
+  IS_ACTIVE_USER: null,
+  IS_NOT_ACTIVE_USER: null,
 });

@@ -9,6 +9,7 @@ import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import viewDocument from '../../actions/documentManagement/viewDocument';
 import editDocument from '../../actions/documentManagement/editDocument';
+import verifyToken from '../../actions/authentication/verifyToken';
 import Validation from '../../helper/validation';
 
 const validate = new Validation();
@@ -50,6 +51,7 @@ export class EditDocument extends Component {
    * @return {void}
    */
   componentWillMount() {
+    this.props.verifyToken();
     const token = window.localStorage.getItem('token');
     if (token) {
       this.props.viewDocument(token, this.props.params.id);
@@ -214,6 +216,7 @@ const mapStoreToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyToken: () => dispatch(verifyToken()),
     viewDocument: (token, documentid) => dispatch(viewDocument(token, documentid)),
     editDocument: (documentDetails, token, documentid) =>
     dispatch(editDocument(documentDetails, token, documentid)),

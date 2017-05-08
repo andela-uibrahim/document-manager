@@ -287,7 +287,9 @@ router.route('/admin')
   .post(Authenticator.authenticateUser,
   Authenticator.authenticateAdmin, UserController.createAdmin);
 
-
+router.route('/verify')
+  .post(Authenticator.isTokenActive)
+  
 router.route('/:id/documents')
 /**
    * @swagger

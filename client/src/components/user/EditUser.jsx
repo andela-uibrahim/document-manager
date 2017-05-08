@@ -9,6 +9,7 @@ import Sidebar from '../common/Sidebar.jsx';
 import editUserAction from '../../actions/userManagement/editUser';
 import viewUserAction from '../../actions/userManagement/viewUser';
 import Validation from '../../helper/validation';
+import verifyToken from '../../actions/authentication/verifyToken';
 
 const validate = new Validation();
 const confirmUpdateUser = (callback,token, userData, userId) => {
@@ -78,7 +79,6 @@ export class EditUser extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-
   /**
    * 
    * 
@@ -87,6 +87,7 @@ export class EditUser extends Component {
    * @return {void}
    */
   componentWillMount() {
+    this.props.verifyToken();
     const token = window.localStorage.getItem('token');
     if (token) {
       this.props.viewUser(token, this.props.params.id);
@@ -109,7 +110,6 @@ export class EditUser extends Component {
       lastname: nextProps.user.lastname,
     });
    }
-
   
   /**
    * 
@@ -212,8 +212,8 @@ export class EditUser extends Component {
 }
 
 const mapStoreToProps = (state) => {
-
     return {
+      isLoggedIn: state.verifyTokenReducer.isLoggedIn,
       user: state.allUsersReducer.user ? state.allUsersReducer.user: '' , 
       status: state.allUsersReducer.status
     };  
@@ -221,6 +221,7 @@ const mapStoreToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyToken: () => dispatch(verifyToken()),
     editUser: (token, state, userId) =>
       dispatch(editUserAction(token, state, userId)),
     viewUser: (token, userId) => 

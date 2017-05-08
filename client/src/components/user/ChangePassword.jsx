@@ -8,6 +8,7 @@ import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import editUserAction from '../../actions/userManagement/editUser';
 import Validation from '../../helper/validation';
+import verifyToken from '../../actions/authentication/verifyToken';
 
 const validate = new Validation();
 
@@ -75,6 +76,9 @@ export class ChangePassword extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  componentWillMount() {
+    this.props.verifyToken();
+  }
 
   /**
    * 
@@ -126,12 +130,17 @@ export class ChangePassword extends Component {
   }
 }
 
-
+const mapStoreToProps = (state) => {
+  return {
+    isLoggedIn: state.verifyTokenReducer.isLoggedIn,
+  };
+};
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyToken: () => dispatch(verifyToken()),
     changePassword: (token, state, userId) =>
       dispatch(editUserAction(token, state, userId)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(ChangePassword);
+export default connect(mapStoreToProps, mapDispatchToProps)(ChangePassword);

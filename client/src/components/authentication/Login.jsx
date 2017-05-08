@@ -1,4 +1,5 @@
 /*eslint-disable no-unused-vars*/
+/*eslint-disable no-undef*/
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import jwtDecode from 'jwt-decode';
@@ -76,7 +77,6 @@ export class LoginPage extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-
   /**
    * 
    * @return {void}
@@ -132,12 +132,6 @@ export class LoginPage extends Component {
         <div className="col s4 l6 homePage"/>
         <div className="col l1" />
         <form className="col s8 l4 loginForm" onSubmit={this.handleSubmit}>
-          { this.state.error ?
-            <div className="login-feedback error">
-              { this.state.error }
-            </div>
-            : <span />
-          }
           <div className="row">
             <div className="input-field col s12">
               <input
@@ -164,7 +158,8 @@ export class LoginPage extends Component {
             </div>
 
             <div>
-              <span className="changeLogin">New User? <Link to="/register">Register Here</Link></span>
+              <span className="changeLogin">New User? <Link to="/register">
+              Register Here</Link></span>
             </div>
           </div>
           <label className="loginError" id="loginError"></label>

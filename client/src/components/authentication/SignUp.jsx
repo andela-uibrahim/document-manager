@@ -1,4 +1,5 @@
 /*eslint-disable no-unused-vars*/
+/*eslint-disable no-undef*/
 import { browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
@@ -95,12 +96,6 @@ export class SignUpPage extends Component {
           <div className="col s4 l6 homePage"/>
           <div className="col l1" />
         <form className="col s8 l4 loginForm" onSubmit={this.handleSubmit} >
-        { this.state.error ?
-            <div className="login-feedback error">
-              { this.state.error }
-            </div>
-            : <span />
-          }
           <div className="row">
             <div className="input-field col s12">
               <input

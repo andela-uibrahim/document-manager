@@ -8,6 +8,7 @@ import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import newDocument from '../../actions/documentManagement/newDocument';
 import Validation from '../../helper/validation';
+import verifyToken from '../../actions/authentication/verifyToken';
 
 const validate = new Validation();
 
@@ -107,6 +108,9 @@ export class CreateDocument extends Component {
     this.props.CreateDocument(this.state);
   }
 
+  componentWillMount() {
+    this.props.verifyToken();
+  }
 
   /**
    * 
@@ -191,6 +195,7 @@ const mapStoreToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+     verifyToken: () => dispatch(verifyToken()),
     CreateDocument: documentDetails => dispatch(newDocument(documentDetails)),
   };
 };

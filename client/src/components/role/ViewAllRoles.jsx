@@ -9,6 +9,7 @@ import Sidebar from '../common/Sidebar.jsx';
 import RoleList from './RoleList.jsx';
 import viewAllRolesAction from '../../actions/roleManagement/viewAllRoles';
 import deleteRoleAction from '../../actions/roleManagement/deleteRole';
+import verifyToken from '../../actions/authentication/verifyToken';
 
 /**
  * 
@@ -39,11 +40,11 @@ export class ViewAllRoles extends Component {
    * @memberof ViewAllRoles
    */
   componentWillMount() {
+    this.props.verifyToken();
     if (this.state.token) {
       this.props.viewRoles(this.state.token);
     }
   }
-
 
   /**
    * 
@@ -86,6 +87,7 @@ const mapStoreToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyToken: () => dispatch(verifyToken()),
     deleteRole: roleid => dispatch(deleteRoleAction(roleid)),
     viewRoles: usertoken => dispatch(viewAllRolesAction(usertoken))
   };

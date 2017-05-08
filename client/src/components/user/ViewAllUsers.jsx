@@ -13,7 +13,8 @@ import viewAllRolesAction from '../../actions/roleManagement/viewAllRoles';
 import deleteUserAction from '../../actions/userManagement/deleteUser';
 import paginateUserAction from '../../actions/userManagement/paginateUser';
 import searchUserAction from '../../actions/userManagement/searchUser';
-import editUserRoleAction from '../../actions/userManagement/editUser';
+import ugradeUserAction from '../../actions/userManagement/upgradeUser';
+import verifyToken from '../../actions/authentication/verifyToken';
 
 
 
@@ -55,10 +56,9 @@ export class ViewAllUsers extends Component {
    * @memberof ViewAllUsers
    */
   componentWillMount() {
-    if (!window.localStorage.getItem('token')) {
-      browserHistory.push('/');
-    }
+    this.props.verifyToken();
     if (this.token) {
+      let refreshUsers;
       this.setState({ userid: jwtDecode(this.token).UserId });
       const offset = 0;
       this.props.paginateUsers(this.token, offset, this.state.limit);
@@ -66,7 +66,6 @@ export class ViewAllUsers extends Component {
     }
     $('.pag').children().click( event => event.preventDefault());
   }
-
 
   /**
    * 
@@ -208,6 +207,7 @@ ViewAllUsers.propTypes = {
 
 const mapStoreToProps = (state) => {
   return {
+    isLoggedIn: state.verifyTokenReducer.isLoggedIn,
     users: state.allUsersReducer.users,
     pageCount: state.allUsersReducer.pageCount | 1,
     paginated: state.allUsersReducer.paginated,
@@ -217,6 +217,7 @@ const mapStoreToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyToken: () => dispatch(verifyToken()),
     deleteUser: (usertoken, userid) => 
       dispatch(deleteUserAction(usertoken, userid)),
     viewUsers: usertoken => dispatch(viewAllUsersAction(usertoken)),
@@ -225,7 +226,7 @@ const mapDispatchToProps = (dispatch) => {
     searchUser: (usertoken, userNames) => 
       dispatch(searchUserAction(usertoken, userNames)),
     editUserRole: (usertoken, userData, userId) => 
-      dispatch(editUserRoleAction(usertoken, userData, userId)),
+      dispatch(ugradeUserAction(usertoken, userData, userId)),
     getRoles: usertoken => 
       dispatch(viewAllRolesAction(usertoken)),
   };

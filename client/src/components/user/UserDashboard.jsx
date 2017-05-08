@@ -15,6 +15,7 @@ import paginateDocumentAction from
 import searchDocumentAction from
  '../../actions/documentManagement/searchDocument';
 import Validation from '../../helper/validation';
+import verifyToken from '../../actions/authentication/verifyToken';
 
 const validate = new Validation();
 
@@ -49,6 +50,7 @@ class ViewAllDocuments extends Component {
    * @return {void}
    */
   componentWillMount() {
+    this.props.verifyToken();
     if (this.state.token) {
       this.setState({ 
         userid: jwtDecode(this.state.token).UserId ,
@@ -166,9 +168,9 @@ ViewAllDocuments.propTypes = {
   paginateDocuments: React.PropTypes.func.isRequired
 };
 
-const mapStoreToProps = (state) => {
-  
+const mapStoreToProps = (state) => { 
   return {
+    isLoggedIn: state.verifyTokenReducer.isLoggedIn,
     documents: state.allDocumentsReducer.documents,
     pageCount: state.allDocumentsReducer.pageCount
   };
@@ -176,6 +178,7 @@ const mapStoreToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyToken: () => dispatch(verifyToken()),
     deleteDocument: documentid =>
     dispatch(deleteDocumentAction(documentid)),
     paginateDocuments: (usertoken, offset, limit) =>

@@ -42,7 +42,7 @@ const confirmUpdateRole = (callback, roleId, userId) => {
       swal('Updated!', 'The user\'s role has been updated.', 'success');
     } else {
       swal('Cancelled!', 'The user\'s role was not changed.', 'error');
-    }
+    } 
   });
 };
 const UserList = ({ users, deleteUser, roles, updateUserRole, roleId }) => {

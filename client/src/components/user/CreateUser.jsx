@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import CreateUserAction from '../../actions/userManagement/createUser';
 import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
+import verifyToken from '../../actions/authentication/verifyToken';
 
 
 /**
@@ -37,6 +38,9 @@ export class CreateUser extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillMount() {
+    this.props.verifyToken();
+    }
   /**
    * @param {any} event 
    * @return {void}
@@ -168,10 +172,16 @@ CreateUser.contextTypes = {
   router: React.PropTypes.object
 };
 
+const mapStoreToProps = (state) => {
+  return {
+    isLoggedIn: state.verifyTokenReducer.isLoggedIn,
+  };
+};
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyToken: () => dispatch(verifyToken()),
     createUser: userDetails => dispatch(CreateUserAction(userDetails))
   };
 };
 
-export default connect(null, mapDispatchToProps)(CreateUser);
+export default connect(mapStoreToProps, mapDispatchToProps)(CreateUser);

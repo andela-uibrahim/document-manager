@@ -7,6 +7,7 @@ import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import viewDocumentAction from '../../actions/documentManagement/viewDocument';
 import cardimage from '../../images/cardimage.jpeg';
+import verifyToken from '../../actions/authentication/verifyToken';
 
 
 /**
@@ -35,6 +36,7 @@ export class ViewDocument extends Component {
    * @return {void}
    */
   componentWillMount() {
+    this.props.verifyToken();
     const token = window.localStorage.getItem('token');
     if (token) {
       this.setState({ userid: jwtDecode(token).UserId });
@@ -113,6 +115,7 @@ const mapStoreToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyToken: () => dispatch(verifyToken()),
     viewDocument: (usertoken, documentid) =>
      dispatch(viewDocumentAction(usertoken, documentid))
   };

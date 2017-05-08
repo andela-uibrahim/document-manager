@@ -8,6 +8,7 @@ import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import MyDocumentList from "./MyDocumentsList.jsx"
 import ViewMyDocuments from '../../actions/documentManagement/viewMyDocuments';
+import verifyToken from '../../actions/authentication/verifyToken';
 
  /**
   * 
@@ -39,6 +40,7 @@ import ViewMyDocuments from '../../actions/documentManagement/viewMyDocuments';
    * @return {void}
    */
   componentWillMount() {
+    this.props.verifyToken();
     this.props.viewDocuments(this.state.userid,this.state.offset);
   }
   
@@ -85,6 +87,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyToken: () => dispatch(verifyToken()),
     viewDocuments: (userid, offset) =>
     dispatch(ViewMyDocuments(userid, offset)),
   };
