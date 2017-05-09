@@ -92,9 +92,15 @@ export class ViewDocument extends Component {
             </div> 
           </div>   
             :
-            <div>
-              Document not Found
+            <div className= "row">
+              <div className="col s2 m2">
+              </div>
+              <div className="col s8 m8">
+                <div className="progress">
+                  <div className="indeterminate"></div>
                 </div>
+               </div>
+            </div>
           }
         </div>
 

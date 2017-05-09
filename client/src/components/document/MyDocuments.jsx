@@ -78,8 +78,7 @@ import verifyToken from '../../actions/authentication/verifyToken';
           : <div className= "row">
               <div className="col s2 m2">
               </div>
-              <div className="col s6 m6">
-                <div className="preloader-wrapper big active">
+                <div className="col s6 m6 preloader-wrapper big active">
                   <div className="spinner-layer spinner-blue">
                     <div className="circle-clipper left">
                       <div className="circle"></div>
@@ -128,7 +127,6 @@ import verifyToken from '../../actions/authentication/verifyToken';
                     </div>
                   </div>
                 </div>
-              </div>
             </div>}
       </div>
     );
