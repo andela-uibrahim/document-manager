@@ -44,7 +44,6 @@ export class Header extends Component {
               <li><h3>Docman</h3></li>
             </ul>
               <ul id="loggedinNav">
-                <li><Link to="/about-us">About Us</Link></li>
                 <li>
                     <Link id="dropbtn" className="dropdown-button" data-activates="dropdown1">
                       {this.state.username}
