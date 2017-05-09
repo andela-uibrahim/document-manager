@@ -46,9 +46,8 @@ export class Header extends Component {
               <ul id="loggedinNav">
                 <li><Link to="/about-us">About Us</Link></li>
                 <li>
-                    <Link to="/" className="dropdown-button" data-activates="dropdown1">
-                      usman<i className="material-icons right"
-                       data-activates="dropdown1">arrow_drop_down</i>
+                    <Link id="dropbtn" to="/" className="dropdown-button" data-activates="dropdown1">
+                      {this.state.username}
                     </Link>
                   </li>
                     <ul id="dropdown1" className="dropdown-content">
