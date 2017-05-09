@@ -11,7 +11,7 @@ export default (token, userid) => {
       .then((response) => {
         dispatch({
           type: actionTypes.VIEW_USER,
-          user: response.data
+          user: response.data.user
         });
       }).catch((err) => {
         dispatch({

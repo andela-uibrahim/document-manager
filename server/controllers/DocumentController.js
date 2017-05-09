@@ -234,7 +234,7 @@ class DocumentController {
     }
     query.offset = (req.query.offset > 0) ? req.query.offset : 0;
     query.limit = (req.query.limit > 0) ? req.query.limit : 9;
-    if (UserId === queryId || RoleId === 1) {
+    if (UserId == queryId || RoleId === 1) {
       query.where = {
         UserId: queryId,
       } 

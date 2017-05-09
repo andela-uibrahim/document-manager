@@ -145,7 +145,7 @@ export class EditUser extends Component {
                 onChange={this.handleChange}
                 value={this.state.username}
               />
-              <label htmlFor="username">Username</label>
+              <label className='active' htmlFor="username">Username</label>
             </div>
           </div>
           <div className="row">
@@ -158,7 +158,7 @@ export class EditUser extends Component {
                 onChange={this.handleChange}
                 value={this.state.firstname}    
               />
-              <label htmlFor="firstname">Firstname</label>
+              <label className='active' htmlFor="firstname">Firstname</label>
               
             </div>
           </div>
@@ -173,7 +173,7 @@ export class EditUser extends Component {
                 onChange={this.handleChange}
                 value={this.state.lastname}
               />
-              <label htmlFor="lastname">Lastname</label>
+              <label className='active' htmlFor="lastname">Lastname</label>
             </div>
           </div>
 
@@ -188,7 +188,7 @@ export class EditUser extends Component {
                 value={this.state.email}
 
               />
-              <label htmlFor="email">Enter your email</label>
+              <label className='active' htmlFor="email">Enter your email</label>
             </div>
           </div>
 
@@ -212,6 +212,7 @@ export class EditUser extends Component {
 }
 
 const mapStoreToProps = (state) => {
+  console.log(state.user);
     return {
       isLoggedIn: state.verifyTokenReducer.isLoggedIn,
       user: state.allUsersReducer.user ? state.allUsersReducer.user: '' , 
