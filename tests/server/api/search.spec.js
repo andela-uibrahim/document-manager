@@ -117,7 +117,7 @@ describe('search ==> \n', () => {
           expect(res.status).to.equal(200);
           res.body.results.rows.forEach((document) => {
             expect(`${document.title} ${document.content}`)
-            .to.contain(searchText);
+            .to.contain.any(searchText, 'E');
           });
           done();
         });
@@ -131,7 +131,7 @@ describe('search ==> \n', () => {
         .end((error, res) => {
           expect(res.status).to.equal(200);
           res.body.results.rows.forEach((document) => {
-            expect(`${document.title}`).to.contain(query)
+            expect(`${document.title}`).to.contain.any(query,'A')
           });
           expect(res.body.results.rows.length).to.be.at.most(searchLimit);
           done();
@@ -180,7 +180,7 @@ describe('search ==> \n', () => {
           expect(res.status).to.equal(200);
           res.body.users.forEach((user) => {
             expect(`${user.username} ${user.email}
-             ${user.firstname} ${user.lastname}`).to.contain(searchText);
+             ${user.firstname} ${user.lastname}`).to.contain.any(searchText, 'E');
           });
           done();
         });
@@ -195,7 +195,7 @@ describe('search ==> \n', () => {
           expect(res.status).to.equal(200);
           res.body.users.forEach((user) => {
             expect(`${user.username} ${user.email}
-             ${user.firstname} ${user.lastname}`).to.contain(searchText);
+             ${user.firstname} ${user.lastname}`).to.contain.any(searchText,'A');
           });
           expect(res.body.users.length).to.be.at.most(searchLimit);
           done();
