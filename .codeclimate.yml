@@ -17,6 +17,6 @@ engines:
     enabled: true
 ratings:
   paths:
-  - "server/test/**/*.js"
+  - "tests/server/**/*.js"
 exclude_paths:
 - node_modules/

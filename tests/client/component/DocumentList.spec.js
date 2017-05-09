@@ -6,6 +6,9 @@ import React from 'react';
 import DocumentList from 
 '../../../client/src/components/document/DocumentList.jsx';
 
+const verifyToken = ()=>{
+  return null
+}
 const wrapper = shallow(<DocumentList documents={[{
 title: 'document list',
 access: 'public',

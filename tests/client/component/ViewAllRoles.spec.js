@@ -11,7 +11,9 @@ import configureStore from '../../../client/src/store/configureStore';
 
 const store = configureStore(initialState);
 
-
+const verifyToken = ()=>{
+  return null
+}
 const viewRoles = ()=> {
     return null
 }
@@ -19,7 +21,7 @@ const viewRoles = ()=> {
 const wrapper = mount(
  <Provider store={store}>
     <ViewAllRoles 
-        viewRoles={viewRoles}/>
+        viewRoles={viewRoles} verifyToken={verifyToken}/>
   </Provider>
 );
 

@@ -11,10 +11,9 @@ import configureStore from '../../../client/src/store/configureStore';
 
 const store = configureStore(initialState);
 
-
 const wrapper = mount(
  <Provider store={store}>
-    <LoginPage />
+    <LoginPage/>
   </Provider>
 );
 

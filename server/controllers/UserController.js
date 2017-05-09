@@ -328,13 +328,13 @@ class UserController {
           $or:
           [
             {
-              username: { $like: `%${searchQuery}%` }
+              username: { $iLike: `%${searchQuery}%` }
             }, {
-              firstname: { $like: `%${searchQuery}%` }
+              firstname: { $iLike: `%${searchQuery}%` }
             }, {
-              lastname: { $like: `%${searchQuery}%` }
+              lastname: { $iLike: `%${searchQuery}%` }
             }, {
-              email: { $like: `%${searchQuery}%` }
+              email: { $iLike: `%${searchQuery}%` }
             }
           ]
         };

@@ -301,7 +301,7 @@ class DocumentController {
           $or:
           [
             {
-              title: { $like: `%${searchQuery}%` }
+              title: { $iLike: `%${searchQuery}%` }
             }
           ],
           $and: {
@@ -338,7 +338,7 @@ class DocumentController {
           $or:
           [
             {
-              title: { $like: `%${searchQuery}%` }
+              title: { $iLike: `%${searchQuery}%` }
             }
           ],
         };

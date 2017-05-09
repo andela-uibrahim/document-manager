@@ -10,11 +10,13 @@ import initialState from '../../../client/src/store/initialState';
 import configureStore from '../../../client/src/store/configureStore';
 
 const store = configureStore(initialState);
-
+const verifyToken = ()=>{
+  return null
+}
 
 const wrapper = mount(
  <Provider store={store}>
-    <CreateUser />
+    <CreateUser verifyToken={verifyToken} />
   </Provider>
 );
 

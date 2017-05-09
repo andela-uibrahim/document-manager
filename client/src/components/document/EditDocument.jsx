@@ -190,7 +190,6 @@ export class EditDocument extends Component {
               <button className="btn" type="submit">Save</button>
             </div>
           </form>
-          <div><button onClick={browserHistory.goBack}>Go Back</button></div>
         </div>
       </div>
 

@@ -11,10 +11,12 @@ import configureStore from '../../../client/src/store/configureStore';
 
 const store = configureStore(initialState);
 
-
+const verifyToken = ()=>{
+  return null
+}
 const wrapper = mount(
  <Provider store={store}>
-    <UserDashboard/>
+    <UserDashboard verifyToken={verifyToken}/>
   </Provider>
 );
 

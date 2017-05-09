@@ -9,6 +9,9 @@ import { EditUser } from
 import initialState from '../../../client/src/store/initialState';
 import configureStore from '../../../client/src/store/configureStore';
 
+const verifyToken = ()=>{
+  return null
+}
 const store = configureStore(initialState);
 const params = {
     id: "1"
@@ -19,7 +22,7 @@ const viewUser = ()=> {
 
 const wrapper = mount(
  <Provider store={store}>
-    <EditUser params={params} viewUser={viewUser} />
+    <EditUser params={params} viewUser={viewUser} verifyToken={verifyToken}/>
   </Provider>
 );
 

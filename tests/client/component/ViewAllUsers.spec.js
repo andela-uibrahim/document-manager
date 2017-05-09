@@ -18,10 +18,14 @@ const paginateUsers = ()=> {
 const getRoles = ()=> {
     return null
 }
-
+const verifyToken = ()=>{
+  return null
+}
 const wrapper = mount(
  <Provider store={store}>
-    <ViewAllUsers users={[{
+    <ViewAllUsers
+    verifyToken={verifyToken} 
+    users={[{
         username: 'document list',
         firstname: 'public'
         }]} 

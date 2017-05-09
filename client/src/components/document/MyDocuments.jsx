@@ -72,7 +72,6 @@ import verifyToken from '../../actions/authentication/verifyToken';
                   this.props.viewDocuments(this.state.userid, offset);
                 }}
               />
-              <button onClick={browserHistory.goBack}>Go Back</button>
             </center>
           </div>
           : <div className= "row">

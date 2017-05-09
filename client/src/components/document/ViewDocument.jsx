@@ -9,16 +9,6 @@ import viewDocumentAction from '../../actions/documentManagement/viewDocument';
 import cardimage from '../../images/cardimage.jpeg';
 import verifyToken from '../../actions/authentication/verifyToken';
 
-// Require Editor JS files.
-require("froala-editor/js/froala_editor.pkgd.min.js");
-
-// Require Editor CSS files.
-require("froala-editor/css/froala_style.min.css");
-require("froala-editor/css/froala_editor.pkgd.min.css");
-
-// Require Font Awesome.
-require('font-awesome/css/font-awesome.css');
-
 let FroalaEditorView = require('react-froala-wysiwyg/FroalaEditorView'); 
 
 
