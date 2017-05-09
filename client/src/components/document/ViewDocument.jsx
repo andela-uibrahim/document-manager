@@ -9,6 +9,18 @@ import viewDocumentAction from '../../actions/documentManagement/viewDocument';
 import cardimage from '../../images/cardimage.jpeg';
 import verifyToken from '../../actions/authentication/verifyToken';
 
+// Require Editor JS files.
+require("froala-editor/js/froala_editor.pkgd.min.js");
+
+// Require Editor CSS files.
+require("froala-editor/css/froala_style.min.css");
+require("froala-editor/css/froala_editor.pkgd.min.css");
+
+// Require Font Awesome.
+require('font-awesome/css/font-awesome.css');
+
+let FroalaEditorView = require('react-froala-wysiwyg/FroalaEditorView'); 
+
 
 /**
  * 
@@ -27,7 +39,6 @@ export class ViewDocument extends Component {
    */
   constructor(props) {
     super(props);
-    this.parseHtml = this.parseHtml.bind(this);
   }
 
   /**
@@ -43,18 +54,6 @@ export class ViewDocument extends Component {
       this.props.viewDocument(token, this.props.params.id);
     }
   }
-
-
-  /** 
-   * @param {any} content 
-   * @return {void}
-   * @memberof ViewDocument
-   */
-  parseHtml(content){
-    const html = $.parseHTML(content);
-    $('#content').append(html);
-  }
-
 
   /**
    * 
@@ -72,23 +71,21 @@ export class ViewDocument extends Component {
         <Header />
         <Sidebar />
         {(this.props.document) ?
+        
         <div className= "row">
          <br/> <br/>
           <div className="col s2 m2">
           </div>
-          <div className="col s8 m8">
-              <div className="card">
-                <div className="card-panel white">
-                   <div className="teal-text left">Access: {` ${this.props.document.access || ''}`}</div>
-                  <span className="black-text"> 
-                    <h4 className="center">{this.props.document.title || ''}</h4>
-                    <br/> 
-                    <p id="content" className="black-text">{ this.parseHtml(this.props.document.content ) }</p>
-                    <br/>
-                  </span>
-                </div>
-              </div>
-               <div><button onClick={browserHistory.goBack}>Go Back</button></div>
+          <div className="col s10 m10">
+              <div className="teal-text right access">Access: {` ${this.props.document.access || ''}`}</div>
+                <span className="black-text"> 
+                  <h4 className="center">{this.props.document.title || ''}</h4>
+                  <br/>              
+                  <FroalaEditorView
+                    model={this.props.document.content}
+                  /> 
+                  <br/>
+                </span>
             </div> 
           </div>   
             :
