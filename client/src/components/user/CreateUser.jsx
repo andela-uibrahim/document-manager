@@ -65,7 +65,7 @@ export class CreateUser extends Component {
    */
   handleSubmit(event) {
     event.preventDefault();
-    if(validate.isValidUserData(userData)){
+    if(validate.isValidUserData(this.state)){
       this.props.createUser(this.state)
         .then(() => {
           browserHistory.push('/users');
