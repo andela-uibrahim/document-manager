@@ -31,13 +31,13 @@ export default {
     content: faker.lorem.paragraph(),
     access: 'public',
   },
-   publicDoc4: {
+   badDoc4: {
     title: faker.random.word(),
     content: faker.lorem.paragraph(),
-    access: 'public',
+    access: 'nigeria',
   },
   privateDoc: {
-    title: faker.random.word(),
+    title: 'first document',
     content: faker.lorem.paragraph(),
     access: 'private'
   },

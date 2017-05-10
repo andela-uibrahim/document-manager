@@ -92,11 +92,19 @@ describe('Role ==> \n', () => {
         });
     });
     
-    it('should return params 404 for invalid request params', (done) => {
+    it('should return 404 if role does not exist ', (done) => {
       client.delete('/api/roles/400')
         .set({ 'x-access-token': adminToken })
         .end((error, res) => {
           expect(res.status).to.equal(404);
+          done();
+        });
+    });
+    it('should return params 400 for invalid request params', (done) => {
+      client.delete('/api/roles/ii')
+        .set({ 'x-access-token': adminToken })
+        .end((error, res) => {
+          expect(res.status).to.equal(400);
           done();
         });
     });

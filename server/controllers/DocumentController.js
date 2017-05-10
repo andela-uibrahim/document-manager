@@ -246,7 +246,7 @@ class DocumentController {
     }
       Documents.findAndCountAll( query)
       .then((results) => {
-        if (results.length < 1) {
+        if (results.rows.length < 1) {
           return res.status(404).send({
             success: false,
             message: 'No documents found'

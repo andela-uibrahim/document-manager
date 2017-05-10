@@ -149,6 +149,14 @@ describe('Users ==> \n', () => {
           done();
         });
     });
+    it('Should return 400 when deleting invalid user', (done) => {
+      client.delete('/api/users/f')
+        .set({ 'x-access-token': adminToken })
+        .end((error, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
     it(`should return a status code of 404 for invalid delete parameter
      or if user not found`, (done) => {
       client.delete('/api/users/100')
@@ -168,6 +176,19 @@ describe('Users ==> \n', () => {
         })
         .end((error, res) => {
           expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('should return 409 for invalid limit', (done) => {
+      client.get('/api/users/?limit=e&offset=2')
+        .set({ 'x-access-token': adminToken })
+        .send({
+          email: testData.admin.email,
+          password: testData.admin.password
+        })
+        .end((error, res) => {
+          expect(res.status).to.equal(400);
           done();
         });
     });

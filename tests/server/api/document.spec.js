@@ -68,6 +68,24 @@ describe('document ==> \n', () => {
           done();
         });
     });
+    it('should return 409 if title already exist', (done) => {
+      client.post('/api/documents')
+        .send(testData.privateDoc)
+        .set({ 'x-access-token': adminToken })
+        .end((error, res) => {
+          expect(res.status).to.equal(409);
+          done();
+        });
+    });
+    it('should return 400 for invalid access', (done) => {
+      client.post('/api/documents')
+        .send(testData.badDoc4)
+        .set({ 'x-access-token': adminToken })
+        .end((error, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
     it('User should create a new document',
       (done) => {
         const document = testData.publicDoc;
@@ -169,13 +187,36 @@ describe('document ==> \n', () => {
             });
         });
     });
+    it('Should return 400 for invalid param', (done) => {
+      client.get('/api/documents/e')
+        .set({ 'x-access-token': adminToken })
+        .end((error, res) => {
+          expect(res.status).to.equal(400);
+          client.get('/api/documents/..')
+            .set({ 'x-access-token': adminToken })
+            .end((error1, res1) => {
+              expect(res1.status).to.equal(400);
+              done();
+            });
+        });
+    });
   });
   describe('Update: ==>\n', () => {
     it(`User should be able to update their document
      information`, (done) => {
       client.put('/api/documents/3')
         .set({ 'x-access-token': regularToken })
-        .send(testData.privateDoc)
+        .send(testData.publicDoc3)
+        .end((error, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+    it(`Admin should be able to update other users document
+     information`, (done) => {
+      client.put('/api/documents/3')
+        .set({ 'x-access-token': adminToken })
+        .send(testData.publicDoc3)
         .end((error, res) => {
           expect(res.status).to.equal(200);
           done();
@@ -197,6 +238,15 @@ describe('document ==> \n', () => {
         .set({ 'x-access-token': regularToken })
         .end((error, res) => {
           expect(res.status).to.equal(400);
+          done();
+        });
+    });
+    it('should return 409 for invalid access', (done) => {
+      client.put('/api/documents/2')
+        .send(testData.badDoc4)
+        .set({ 'x-access-token': adminToken })
+        .end((error, res) => {
+          expect(res.status).to.equal(409);
           done();
         });
     });
@@ -254,15 +304,24 @@ describe('document ==> \n', () => {
             });
         });
     });
-    // it(`Admin should receive a 404 status res if the
-    //  user has no documents`, (done) => {
-    //   client.get('/api/users/9/documents')
-    //     .set({ 'x-access-token': adminToken })
-    //     .end((error, res) => {
-    //       expect(res.status).to.equal(404);
-    //       done();
-    //     });
-    // });
+    it(`Admin should receive a 404 status res if the
+     user has no documents`, (done) => {
+      client.get('/api/users/20/documents')
+        .set({ 'x-access-token': adminToken })
+        .end((error, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+    it(`Admin should receive a 400 status res if the
+     user has no documents`, (done) => {
+      client.get('/api/users/e/documents')
+        .set({ 'x-access-token': adminToken })
+        .end((error, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
     it(`Regular Users should be able to access their own documents
     `, (done) => {
       client.get('/api/users/2/documents')
@@ -272,14 +331,14 @@ describe('document ==> \n', () => {
           done();
         });
     });
-    // it(`Regular Users should be able to access public
-    //  documents only`, (done) => {
-    //   client.get('/api/users/1/documents')
-    //     .set({ 'x-access-token': regularToken })
-    //     .end((error, res) => {
-    //       expect(res.status).to.equal(404);
-    //       done();
-    //     });
-    // });
+    it(`Regular Users should be able to access public
+     documents only`, (done) => {
+      client.get('/api/users/1/documents')
+        .set({ 'x-access-token': regularToken })
+        .end((error, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
   });
 });
