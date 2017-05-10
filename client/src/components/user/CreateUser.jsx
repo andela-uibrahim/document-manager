@@ -8,6 +8,9 @@ import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import verifyToken from '../../actions/authentication/verifyToken';
 import CircularProgressBar from '../common/progress.jsx';
+import Validation from '../../helper/validation';
+
+const validate = new Validation();
 
 
 /**
@@ -62,10 +65,13 @@ export class CreateUser extends Component {
    */
   handleSubmit(event) {
     event.preventDefault();
-    this.props.createUser(this.state)
-      .then(() => {
-        browserHistory.push('/users');
-      });
+    if(validate.isValidUserData(userData)){
+      this.props.createUser(this.state)
+        .then(() => {
+          browserHistory.push('/users');
+        });
+    }
+    return null
   }
 
 

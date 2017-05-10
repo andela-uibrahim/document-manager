@@ -60,6 +60,10 @@ class Validation {
     toastr.error('Please enter a lastname', 'Error!')
     return false
   }
+  if(this.isValidPassword(userData.password)){
+    toastr.error('Please enter a lastname', 'Error!')
+    return false
+  }
   return true;
 }
 
