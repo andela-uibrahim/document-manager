@@ -13,4 +13,12 @@ ratings:
   paths:
   - "tests/server/**/*.js"
 exclude_paths:
-- node_modules/
+- "client/src/components/"
+- "server/tests/"
+- "server/seeders/"
+- "migrations/"
+- "node_modules/"
+- "client/src/actions/"
+- "tests/client"
+- "client/src/reducers/"
+- "client/src/font-awesome/"

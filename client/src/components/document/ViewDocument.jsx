@@ -66,7 +66,7 @@ export class ViewDocument extends Component {
          <br/> <br/>
           <div className="col s2 m2">
           </div>
-          <div className="col s10 m10">
+          <div className="col s8 m8">
               <div className="teal-text right access">Access: {` ${this.props.document.access || ''}`}</div>
                 <span className="black-text"> 
                   <h4 className="center">{this.props.document.title || ''}</h4>
