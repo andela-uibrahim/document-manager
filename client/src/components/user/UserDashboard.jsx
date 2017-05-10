@@ -43,6 +43,7 @@ class ViewAllDocuments extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.searchDocument = this.searchDocument.bind(this);
     this.refreshDocuments = this.refreshDocuments.bind(this);
+    this.props.isLoading = true;
   }
 
   /**

@@ -31,6 +31,7 @@ export class CreateRole extends Component {
     this.state = {
       role: ''
     };
+    this.props.isLoading = true;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

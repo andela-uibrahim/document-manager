@@ -30,6 +30,7 @@ export class ViewDocument extends Component {
    */
   constructor(props) {
     super(props);
+    this.props.isLoading = true;
   }
 
   /**

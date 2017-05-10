@@ -63,6 +63,7 @@ export class EditUser extends Component {
       lastname: '',
       status: '',
     };
+    this.props.isLoading = true;
     this.token = window.localStorage.getItem('token');
     this.userId = jwtDecode(this.token).UserId;
     this.roleId = jwtDecode(this.token).RoleId;
