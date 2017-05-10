@@ -61,7 +61,7 @@ class Validation {
     return false
   }
   if(userData.password){
-    if(this.isValidPassword(userData.password)){
+    if(!this.isValidPassword(userData.password)){
       toastr.error('password minimum is 8 char', 'Error!')
       return false
     }

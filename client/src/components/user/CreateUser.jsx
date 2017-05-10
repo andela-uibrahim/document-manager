@@ -35,7 +35,7 @@ export class CreateUser extends Component {
       username: '',
       lastname: '',
       email: '',
-      password: '',
+      password: '0',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
