@@ -217,7 +217,6 @@ export class EditUser extends Component {
 }
 
 const mapStoreToProps = (state) => {
-  console.log(state.user);
     return {
       isLoading: state.loadingReducer.isLoading,
       isLoggedIn: state.verifyTokenReducer.isLoggedIn,
