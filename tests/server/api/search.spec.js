@@ -131,7 +131,7 @@ describe('search ==> \n', () => {
         .end((error, res) => {
           expect(res.status).to.equal(200);
           res.body.results.rows.forEach((document) => {
-            expect(`${document.title}`).to.contain.any(query,'A')
+            expect(`${(document.title).toLowerCase()}`).to.contain.any(query,'A')
           });
           expect(res.body.results.rows.length).to.be.at.most(searchLimit);
           done();
