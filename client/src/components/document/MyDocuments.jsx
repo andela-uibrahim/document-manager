@@ -34,6 +34,7 @@ import verifyToken from '../../actions/authentication/verifyToken';
       userid: jwtDecode(this.token).UserId,
       offset: 0,
     };
+    this.props.isLoading = true;
   }
 
   /**
@@ -43,7 +44,7 @@ import verifyToken from '../../actions/authentication/verifyToken';
    */
   componentWillMount() {
     this.props.verifyToken();
-    this.props.viewDocuments(this.state.userid,this.state.offset);      
+    this.props.viewDocuments(this.state.userid,this.state.offset);
   }
   
 
