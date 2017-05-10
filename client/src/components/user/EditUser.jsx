@@ -10,6 +10,7 @@ import editUserAction from '../../actions/userManagement/editUser';
 import viewUserAction from '../../actions/userManagement/viewUser';
 import Validation from '../../helper/validation';
 import verifyToken from '../../actions/authentication/verifyToken';
+import CircularProgressBar from '../common/progress.jsx';
 
 const validate = new Validation();
 const confirmUpdateUser = (callback,token, userData, userId) => {
@@ -125,6 +126,9 @@ export class EditUser extends Component {
      && (this.roleId !==1)){
       browserHistory.push('/users');
     }
+    if(this.props.isLoading) {
+      return (<div id="progress"><CircularProgressBar /></div>)
+    }
 
     return (
       <div className="row">
@@ -214,6 +218,7 @@ export class EditUser extends Component {
 const mapStoreToProps = (state) => {
   console.log(state.user);
     return {
+      isLoading: state.loadingReducer.isLoading,
       isLoggedIn: state.verifyTokenReducer.isLoggedIn,
       user: state.allUsersReducer.user ? state.allUsersReducer.user: '' , 
       status: state.allUsersReducer.status

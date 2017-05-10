@@ -6,6 +6,7 @@ import allRolesReducer from './allRolesReducer';
 import allUsersReducer from './allUsersReducer';
 import viewUserReducer from './viewUserReducer';
 import verifyTokenReducer from './verifyTokenReducer';
+import loadingReducer from './loadingReducer';
 
 const rootReducer = combineReducers({
   loginReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   allUsersReducer,
   viewUserReducer,
   verifyTokenReducer,
+  loadingReducer
 });
 
 export default rootReducer;

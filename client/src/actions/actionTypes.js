@@ -38,4 +38,6 @@ export default keymirror({
   USER_UPGRADE_FAILED: null,
   IS_ACTIVE_USER: null,
   IS_NOT_ACTIVE_USER: null,
+  LOADING: null,
+  NOT_LOADING: null
 });

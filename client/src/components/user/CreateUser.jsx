@@ -7,6 +7,7 @@ import CreateUserAction from '../../actions/userManagement/createUser';
 import Header from '../common/Header.jsx';
 import Sidebar from '../common/Sidebar.jsx';
 import verifyToken from '../../actions/authentication/verifyToken';
+import CircularProgressBar from '../common/progress.jsx';
 
 
 /**
@@ -77,6 +78,9 @@ export class CreateUser extends Component {
    * @memberof CreateUser
    */
   render() {
+    if(this.props.isLoading) {
+      return (<div id="progress"><CircularProgressBar /></div>)
+    }
     return (
       <div className="row">
         <Header />
@@ -174,6 +178,7 @@ CreateUser.contextTypes = {
 
 const mapStoreToProps = (state) => {
   return {
+    isLoading: state.loadingReducer.isLoading,
     isLoggedIn: state.verifyTokenReducer.isLoggedIn,
   };
 };

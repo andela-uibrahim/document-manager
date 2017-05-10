@@ -16,6 +16,7 @@ import searchDocumentAction from
  '../../actions/documentManagement/searchDocument';
 import Validation from '../../helper/validation';
 import verifyToken from '../../actions/authentication/verifyToken';
+import CircularProgressBar from '../common/progress.jsx';
 
 const validate = new Validation();
 
@@ -113,6 +114,9 @@ class ViewAllDocuments extends Component {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
     }
+    if(this.props.isLoading) {
+      return (<div id="progress"><CircularProgressBar /></div>)
+    }
     return (
       <div className="row dashboardContainer col s12">
         <Header/>
@@ -140,22 +144,25 @@ class ViewAllDocuments extends Component {
               </button>
             </div>
           </div>
-          <DocumentList
-            deleteDocument={this.props.deleteDocument}
-            userid={this.state.userid}
-            roleId={this.state.roleId}
-            documents={this.props.paginated || this.props.documents || []}
-          />
-          <center>
-            <Pagination className="pag"
-              items={this.props.pageCount}
-              onSelect={(page) => {
-                const offset = (page - 1) * this.state.limit;
-                this.props.paginateDocuments(this.state.token,
-                 offset, this.state.limit);
-              }}
-            />
-          </center>
+          {this.props.documents?
+          <div>
+              <DocumentList
+                deleteDocument={this.props.deleteDocument}
+                userid={this.state.userid}
+                roleId={this.state.roleId}
+                documents={this.props.documents || []}
+              />
+              <center>
+                <Pagination className="pag"
+                  items={this.props.pageCount}
+                  onSelect={(page) => {
+                    const offset = (page - 1) * this.state.limit;
+                    this.props.paginateDocuments(this.state.token,
+                    offset, this.state.limit);
+                  }}
+                />
+              </center>
+            </div>:<div>{swal("Oops!", "No document found", "error")} </div> }
         </div>
       </div>
     );
@@ -170,6 +177,7 @@ ViewAllDocuments.propTypes = {
 
 const mapStoreToProps = (state) => { 
   return {
+    isLoading: state.loadingReducer.isLoading,
     isLoggedIn: state.verifyTokenReducer.isLoggedIn,
     documents: state.allDocumentsReducer.documents,
     pageCount: state.allDocumentsReducer.pageCount

@@ -9,6 +9,7 @@ import Sidebar from '../common/Sidebar.jsx';
 import editUserAction from '../../actions/userManagement/editUser';
 import Validation from '../../helper/validation';
 import verifyToken from '../../actions/authentication/verifyToken';
+import CircularProgressBar from '../common/progress.jsx';
 
 const validate = new Validation();
 
@@ -88,6 +89,9 @@ export class ChangePassword extends Component {
    * @memberof ChangePassword
    */
   render() {
+    if(this.props.isLoading) {
+      return (<div id="progress"><CircularProgressBar /></div>)
+    }
     return (
       <div className="row">
         <Header />
@@ -132,6 +136,7 @@ export class ChangePassword extends Component {
 
 const mapStoreToProps = (state) => {
   return {
+    isLoading: state.loadingReducer.isLoading,
     isLoggedIn: state.verifyTokenReducer.isLoggedIn,
   };
 };

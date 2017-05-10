@@ -11,6 +11,7 @@ import viewDocument from '../../actions/documentManagement/viewDocument';
 import editDocument from '../../actions/documentManagement/editDocument';
 import verifyToken from '../../actions/authentication/verifyToken';
 import Validation from '../../helper/validation';
+import CircularProgressBar from '../common/progress.jsx';
 
 const validate = new Validation();
 
@@ -136,6 +137,9 @@ export class EditDocument extends Component {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
     }
+    if(this.props.isLoading) {
+      return (<div id="progress"><CircularProgressBar /></div>)
+    }
     return (
       <div className="row dashboardContainer col s12">
         <Header />
@@ -183,7 +187,7 @@ export class EditDocument extends Component {
                           tools: {title: 'Tools', items: 'spellchecker code'}
                        }
                   }}
-                onChange={this.handleEditorChange}
+                onSetContent={this.handleEditorChange}
               />: <span/> }
             </div>
             <div className="field row">
@@ -208,6 +212,7 @@ EditDocument.contextTypes = {
 
 const mapStoreToProps = (state, ownProps) => {
   return {
+    isLoading: state.loadingReducer.isLoading,
     document: state.allDocumentsReducer.document,
     status: state.allDocumentsReducer.status
   };

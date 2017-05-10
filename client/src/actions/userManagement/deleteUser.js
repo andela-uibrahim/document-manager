@@ -2,10 +2,12 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import actionTypes from '../actionTypes';
+import setLoading from '../helper/setLoading';
 
 export default (userid) => {
   const token = window.localStorage.getItem('token');
   return function (dispatch) {
+    setLoading.isLoading(dispatch,actionTypes);
     return axios.delete(`/api/users/${userid}`, {
       headers: {
         Authorization: token
@@ -17,6 +19,7 @@ export default (userid) => {
           userid,
           status: 'success'
         });
+        setLoading.isNotLoading(dispatch,actionTypes);
         browserHistory.push('/users');
       }).catch((err) => {
         dispatch({
@@ -24,6 +27,7 @@ export default (userid) => {
           status: 'failed',
           error: err.message
         });
+        setLoading.isNotLoading(dispatch,actionTypes);
       });
   };
 };

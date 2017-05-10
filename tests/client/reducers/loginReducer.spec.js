@@ -24,20 +24,6 @@ describe('loginReducer', () => {
     expect(newState.success).toEqual(loginDispatch.message);
   });
 
-  it('should set error state when login is not successful', () => {
-    const initialState = {};
-    const loginDispatch = {
-        type: types.LOGIN_ERROR,  
-        message: 'Invalid credentials',
-    };
-
-    const action = loginDispatch;
-    const newState = loginReducer(initialState, action);
-
-    expect(newState.error).toEqual(loginDispatch.message);
-    expect(newState.success).toEqual(null);
-  });
-
   it('should return initial state if no action is passed', () => {
     const initialState = {};
     const action = {};

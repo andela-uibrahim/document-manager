@@ -9,6 +9,7 @@ import Sidebar from '../common/Sidebar.jsx';
 import newDocument from '../../actions/documentManagement/newDocument';
 import Validation from '../../helper/validation';
 import verifyToken from '../../actions/authentication/verifyToken';
+import CircularProgressBar from '../common/progress.jsx';
 
 const validate = new Validation();
 
@@ -125,6 +126,9 @@ export class CreateDocument extends Component {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
     }
+    if(this.props.isLoading) {
+      return (<div id="progress"><CircularProgressBar /></div>)
+    }
     return (
       <div className="row dashboardContainer col s12">
         <Header />
@@ -191,6 +195,7 @@ CreateDocument.contextTypes = {
 
 const mapStoreToProps = (state) => {
   return {
+    isLoading: state.loadingReducer.isLoading,
     status: state.allDocumentsReducer.status
   };
 };

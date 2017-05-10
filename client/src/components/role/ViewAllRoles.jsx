@@ -10,6 +10,7 @@ import RoleList from './RoleList.jsx';
 import viewAllRolesAction from '../../actions/roleManagement/viewAllRoles';
 import deleteRoleAction from '../../actions/roleManagement/deleteRole';
 import verifyToken from '../../actions/authentication/verifyToken';
+import CircularProgressBar from '../common/progress.jsx';
 
 /**
  * 
@@ -57,6 +58,9 @@ export class ViewAllRoles extends Component {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
     }
+    if(this.props.isLoading) {
+      return (<div id="progress"><CircularProgressBar /></div>)
+    }
     return (
       <div className="row dashboardContainer col s12">
         <Header />
@@ -81,6 +85,7 @@ ViewAllRoles.propTypes = {
 
 const mapStoreToProps = (state) => {
   return {
+    isLoading: state.loadingReducer.isLoading,
     roles: state.allRolesReducer.roles,
   };
 };

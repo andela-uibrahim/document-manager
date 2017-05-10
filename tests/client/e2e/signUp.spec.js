@@ -5,6 +5,7 @@ import db from '../../../server/models';
 
 
 export default {
+  '@disable': true,
   before : function() {
     db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY');
   },

@@ -57,6 +57,7 @@ module.exports = {
   },
   plugins: [
     HtmlWebpackPluginConfig,
+    new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('stylesheet.css')
   ]
 };

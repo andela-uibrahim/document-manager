@@ -2,9 +2,11 @@
 import axios from 'axios';
 import browserHistory from 'react-router';
 import actionTypes from '../actionTypes';
+import setLoading from '../helper/setLoading';
 
 export default (token, userData, userid) => {
   return (dispatch) => {
+    setLoading.isLoading(dispatch,actionTypes);
     return axios.put(`/api/users/${userid}`, userData, {
       headers: {
         Authorization: token
@@ -15,6 +17,7 @@ export default (token, userData, userid) => {
           type: actionTypes.USER_UPGRADED,
           user: user.data,
         });
+        setLoading.isNotLoading(dispatch,actionTypes);
         if (userData.RoleId){
           browserHistory.push('/users');
         }
@@ -24,6 +27,7 @@ export default (token, userData, userid) => {
           status: 'failed',
           error: err.message
         });
+        setLoading.isNotLoading(dispatch,actionTypes);
       });
   };
 };

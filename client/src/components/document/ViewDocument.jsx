@@ -8,6 +8,7 @@ import Sidebar from '../common/Sidebar.jsx';
 import viewDocumentAction from '../../actions/documentManagement/viewDocument';
 import cardimage from '../../images/cardimage.jpeg';
 import verifyToken from '../../actions/authentication/verifyToken';
+import CircularProgressBar from '../common/progress.jsx';
 
 let FroalaEditorView = require('react-froala-wysiwyg/FroalaEditorView'); 
 
@@ -56,6 +57,9 @@ export class ViewDocument extends Component {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
     }
+    if(this.props.isLoading) {
+      return (<div id="progress"><CircularProgressBar /></div>)
+    }
     return (
       <div className="user_doc row col s12">
         <Header />
@@ -102,6 +106,7 @@ ViewDocument.propTypes = {
 
 const mapStoreToProps = (state) => {
   return {
+    isLoading: state.loadingReducer.isLoading,
     document: state.allDocumentsReducer.document
   };
 };

@@ -1,8 +1,10 @@
 import axios from 'axios';
 import actionTypes from '../actionTypes';
+import setLoading from '../helper/setLoading';
 
 export default (token, offset, limit) => {
   return (dispatch) => {
+    setLoading.isLoading(dispatch,actionTypes);
     return axios.get(`/api/documents/?limit=${limit}&offset=${offset}`, {
       headers: {
         Authorization: token
@@ -14,12 +16,14 @@ export default (token, offset, limit) => {
           documents: response.data.results.rows,
           pageCount: response.data.pagination.pageCount
         });
+        setLoading.isNotLoading(dispatch,actionTypes);
       }).catch((err) => {
         dispatch({
           type: actionTypes.DOCUMENT_RETRIEVAL_FAILED,
           status: 'failed',
           error: err.message
         });
+        setLoading.isNotLoading(dispatch,actionTypes);
       });
   };
 };

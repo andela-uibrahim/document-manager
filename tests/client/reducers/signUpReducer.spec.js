@@ -19,20 +19,6 @@ describe('signUpReducer', () => {
     expect(newState.user).toEqual(signUpDispatch.user);
   });
 
-  it('should set error state when signUp is not successful', () => {
-    const initialState = {};
-    const signUpDispatch = {
-      type: types.SIGN_UP_ERROR,
-      message: 'Invalid credentials'
-    };
-
-    const action = signUpDispatch;
-    const newState = signUpReducer(initialState, action);
-
-    expect(newState.error).toEqual(signUpDispatch.message);
-    expect(newState.success).toEqual(null);
-  });
-
    it('should return initial state if no action is passed', () => {
     const initialState = {};
     const action = {};

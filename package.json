@@ -87,6 +87,7 @@
     "jsonwebtoken": "^7.3.0",
     "jwt-decode": "^2.2.0",
     "keymirror": "^0.1.1",
+    "material-ui": "^0.18.0",
     "moment": "^2.18.0",
     "morgan": "^1.8.1",
     "nightwatch": "^0.9.14",

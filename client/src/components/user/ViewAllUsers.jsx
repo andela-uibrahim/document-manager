@@ -15,6 +15,7 @@ import paginateUserAction from '../../actions/userManagement/paginateUser';
 import searchUserAction from '../../actions/userManagement/searchUser';
 import ugradeUserAction from '../../actions/userManagement/upgradeUser';
 import verifyToken from '../../actions/authentication/verifyToken';
+import CircularProgressBar from '../common/progress.jsx';
 
 
 
@@ -142,6 +143,9 @@ export class ViewAllUsers extends Component {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
     }
+    if(this.props.isLoading) {
+      return (<div id="progress"><CircularProgressBar /></div>)
+    }
     return (
       <div className="row dashboardContainer col s12">
         <Header />
@@ -189,7 +193,8 @@ export class ViewAllUsers extends Component {
                 />
                 </center>
               </div>
-              : <div>{swal("Oops!", "No user found", "error")} </div> 
+              : <div>{swal("Oops!", "No user found", "error")}
+                {browserHistory.goBack()} </div> 
             : <div/> 
         }              
         </div>
@@ -207,6 +212,7 @@ ViewAllUsers.propTypes = {
 
 const mapStoreToProps = (state) => {
   return {
+    isLoading: state.loadingReducer.isLoading,
     isLoggedIn: state.verifyTokenReducer.isLoggedIn,
     users: state.allUsersReducer.users,
     pageCount: state.allUsersReducer.pageCount | 1,
