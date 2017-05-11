@@ -6,7 +6,7 @@
 
 ## document-management
 
-Document Management System is a react redux application that allows users to create, track, manage and store documents.
+Document Management System is a react redux application that allows users to create, track, manage and store documents .
 
 
 ## Application Features
