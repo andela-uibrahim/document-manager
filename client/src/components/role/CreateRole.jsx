@@ -87,9 +87,6 @@ export class CreateRole extends Component {
      if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
     }
-     if(this.props.isLoading) {
-      return (<div id="progress"><CircularProgressBar /></div>)
-    }
     return (
       <div className="row dashboardContainer col s12">
         <Header />

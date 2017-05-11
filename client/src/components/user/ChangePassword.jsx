@@ -61,7 +61,7 @@ export class ChangePassword extends Component {
       status: '',
       token: window.localStorage.getItem('token')
     };
-    this.props.isLoading = true;
+    //this.props.isLoading = true;
 
     this.handleChange = this.handleChange.bind(this);
   }

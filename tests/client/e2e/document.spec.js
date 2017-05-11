@@ -5,7 +5,6 @@ import testData from '../../server/helper/helper';
 
 
 export default {
-  '@disable': true,
   before : function() {
     db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
     .then(() => {
@@ -29,7 +28,8 @@ export default {
       .pause(1500)
       .assert.urlEquals('http://localhost:3000/admindashboard')
       .url('http://localhost:3000/create-document')
-      .waitForElementVisible('body')
+      .pause(2000)
+      .waitForElementVisible('h4')
       .assert.containsText('h4', 'Create A Document')
       .waitForElementVisible('body')
       .assert.title('Docman system')
@@ -74,12 +74,12 @@ export default {
       .setValue('input[type=email]', 'admin@admin.com')
       .setValue('input[type=password]', 'Kratus043')
       .click('button[type="submit"]')
-      .pause(1000)
+      .pause(2000)
       .assert.urlEquals('http://localhost:3000/admindashboard')
       .click('table#document-list tbody tr:first-of-type i.edit-btn')
       .waitForElementVisible('body')
       .clearValue('input#title')
-      .setValue('input#title', 'Chosen One')
+      .execute('tinyMCE.activeEditor.setContent("Chosen One")')
       .click('button[type="submit"]')
       .pause(1000)
       .assert.urlEquals('http://localhost:3000/admindashboard')

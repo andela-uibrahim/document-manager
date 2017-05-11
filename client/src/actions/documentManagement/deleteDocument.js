@@ -1,13 +1,11 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import actionTypes from '../actionTypes';
-import setLoading from '../helper/setLoading';
 /*eslint-disable no-undef*/
 
 export default (documentid) => {
   const token = window.localStorage.getItem('token');
   return (dispatch) => {
-    setLoading.isLoading(dispatch,actionTypes);
     return axios.delete(`/api/documents/${documentid}`, {
       headers: {
         Authorization: token

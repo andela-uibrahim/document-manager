@@ -126,9 +126,6 @@ export class CreateDocument extends Component {
     if (!window.localStorage.getItem('token')) {
       browserHistory.push('/');
     }
-    if(this.props.isLoading) {
-      return (<div id="progress"><CircularProgressBar /></div>)
-    }
     return (
       <div className="row dashboardContainer col s12">
         <Header />
@@ -189,13 +186,16 @@ export class CreateDocument extends Component {
 }
 
 
+CreateDocument.defaultProps = {
+  isLoading: false
+}
+
 CreateDocument.contextTypes = {
   router: PropTypes.object
 };
 
 const mapStoreToProps = (state) => {
   return {
-    isLoading: state.loadingReducer.isLoading,
     status: state.allDocumentsReducer.status
   };
 };

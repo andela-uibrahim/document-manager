@@ -6,7 +6,6 @@ import testData from '../../server/helper/helper';
 
 
 export default {
-   '@disable': true,
   before : function() {
     db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
     .then(() => {
@@ -27,11 +26,11 @@ export default {
       .setValue('input[type=email]', 'admin@admin.com')
       .setValue('input[type=password]', 'Kratus043')
       .click('button[type="submit"]')
-      .saveScreenshot('screenshots/loginPage.png')
       .pause(1500)
       .assert.urlEquals('http://localhost:3000/admindashboard')
       .url('http://localhost:3000/create-role')
-      .waitForElementVisible('body')
+      .pause(2000)
+      .waitForElementVisible('h4')
       .assert.containsText('h4', 'Create A Role')
       .waitForElementVisible('body')
       .assert.title('Docman system')

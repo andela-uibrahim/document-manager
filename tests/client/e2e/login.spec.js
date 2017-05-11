@@ -6,7 +6,6 @@ import testData from '../../server/helper/helper';
 
 
 export default {
-  '@disable': true,
   before : function() {
     db.sequelize.query('TRUNCATE "Users" RESTART IDENTITY')
     .then(() => {

@@ -39,7 +39,6 @@ export class EditDocument extends Component {
       access: '',
       status: ''
     };
-    this.props.isLoading = true;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -188,7 +187,7 @@ export class EditDocument extends Component {
                           tools: {title: 'Tools', items: 'spellchecker code'}
                        }
                   }}
-                onSetContent={this.handleEditorChange}
+                onChange={this.handleEditorChange}
               />: <span/> }
             </div>
             <div className="field row">
