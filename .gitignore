@@ -1,0 +1,13 @@
+/node_modules
+/coverage
+/.nyc_output
+/.env
+npm-debug.log
+**/*.DS_Store
+/client/.DS_Store
+/client/dist/bundle.js
+/client/src/.DS_Store
+/client/src/images/file.png
+/doc/
+/reports/
+/screenshots/
