@@ -15,7 +15,8 @@ export default function allDocumentsReducer(state = initialState, action) {
       return Object.assign({}, state, { documents: action.documents });
     case actionTypes.PAGINATED_DOCUMENTS:
       return  Object.assign({}, state, {
-         documents: action.documents, pageCount: action.pageCount }); 
+         documents: action.documents, pageCount: action.pageCount,
+          currentPage: action.currentPage }); 
     case actionTypes.FIND_DOCUMENT:
       return Object.assign({}, state, {
          documents: action.documents, pageCount: action.pageCount }); 

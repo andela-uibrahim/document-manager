@@ -156,6 +156,7 @@ class ViewAllDocuments extends Component {
               <center>
                 <Pagination className="pag"
                   items={this.props.pageCount}
+                  activePage={currentPage}
                   onSelect={(page) => {
                     const offset = (page - 1) * this.state.limit;
                     this.props.paginateDocuments(this.state.token,
@@ -181,7 +182,8 @@ const mapStoreToProps = (state) => {
     isLoading: state.loadingReducer.isLoading,
     isLoggedIn: state.verifyTokenReducer.isLoggedIn,
     documents: state.allDocumentsReducer.documents,
-    pageCount: state.allDocumentsReducer.pageCount
+    pageCount: state.allDocumentsReducer.pageCount,
+    currentPage: state.allDocumentsReducer.currentPage,
   };
 };
 

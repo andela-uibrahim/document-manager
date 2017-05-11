@@ -12,7 +12,8 @@ export default function allUsersReducer(state = initialState, action) {
   switch (action.type) {     
     case actionTypes.PAGINATED_USERS:
       return Object.assign({}, state,
-       {  users: action.users, pageCount: action.pageCount });
+       {  users: action.users, pageCount: action.pageCount,
+       currentPage: action.currentPage });
     case actionTypes.USER_RETRIEVAL_FAILED:
       return Object.assign({},state,{ status: action.status});
     case actionTypes.VIEW_USER:

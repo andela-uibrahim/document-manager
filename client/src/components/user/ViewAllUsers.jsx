@@ -186,6 +186,7 @@ export class ViewAllUsers extends Component {
                 <center>
                 <Pagination className="pag"
                   items={this.props.pageCount}
+                  activePage={currentPage}
                   onSelect={(page) => {
                     const token = window.localStorage.getItem('token');
                     const offset = (page - 1) * this.state.limit;
@@ -217,6 +218,7 @@ const mapStoreToProps = (state) => {
     isLoggedIn: state.verifyTokenReducer.isLoggedIn,
     users: state.allUsersReducer.users,
     pageCount: state.allUsersReducer.pageCount | 1,
+    currentPage: state.allDocumentsReducer.currentPage,
     paginated: state.allUsersReducer.paginated,
     roles: state.allRolesReducer.roles
   };

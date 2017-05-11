@@ -14,7 +14,8 @@ export default (token) => {
         dispatch({
           type: actionTypes.ALL_ROLES,
           roles: response.data,
-          pageCount: response.data.pageCount
+          pageCount: response.data.pageCount,
+          currentPage: response.data.currentPage,
         });
         setLoading.isNotLoading(dispatch,actionTypes);
       }).catch((err) => {

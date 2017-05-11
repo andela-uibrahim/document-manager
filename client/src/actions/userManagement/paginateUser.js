@@ -14,7 +14,8 @@ export default (token, offset, limit) => {
         dispatch({
           type: actionTypes.PAGINATED_USERS,
           users: response.data.users,
-          pageCount: response.data.pagination.pageCount
+          pageCount: response.data.pagination.pageCount,
+          currentPage: response.data.pagination.currentPage,
         });
         setLoading.isNotLoading(dispatch,actionTypes);
       }).catch((err) => {

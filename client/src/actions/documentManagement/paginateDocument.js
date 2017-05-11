@@ -14,7 +14,8 @@ export default (token, offset, limit) => {
         dispatch({
           type: actionTypes.PAGINATED_DOCUMENTS,
           documents: response.data.results.rows,
-          pageCount: response.data.pagination.pageCount
+          pageCount: response.data.pagination.pageCount,
+          currentPage: response.data.pagination.currentPage,
         });
         setLoading.isNotLoading(dispatch,actionTypes);
       }).catch((err) => {

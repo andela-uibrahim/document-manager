@@ -17,7 +17,8 @@ export default (userid, offset) => {
         type: actionTypes.USER_DOCUMENTS_FOUND,
         status: 'success',
         documents: response.data.results.rows,
-        pageCount: response.data.pagination.pageCount
+        pageCount: response.data.pagination.pageCount,
+        currentPage: response.data.pagination.currentPage,
       });
       setLoading.isNotLoading(dispatch,actionTypes);
       

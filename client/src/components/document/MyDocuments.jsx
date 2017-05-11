@@ -74,6 +74,7 @@ import verifyToken from '../../actions/authentication/verifyToken';
               <Pagination className="pag"
                 items={this.props.pageCount}
                 onSelect={(page) => {
+                  activePage={currentPage}
                   const offset = (page - 1) * 9;
                   this.props.viewDocuments(this.state.userid, offset);
                 }}
@@ -93,7 +94,8 @@ const mapStateToProps = (state) => {
   return {
     isLoading: state.loadingReducer.isLoading,
     documents: state.allDocumentsReducer.myDocuments,
-    pageCount: state.allDocumentsReducer.pageCount
+    pageCount: state.allDocumentsReducer.pageCount,
+    currentPage: state.allDocumentsReducer.currentPage,
   };
 };
 
