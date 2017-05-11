@@ -87,11 +87,20 @@ describe('Users ==> \n', () => {
           done();
         });
     });
-    it('should return status code 400 for login incorrect input', (done) => {
+    it('should return status code 400 for incorrect input', (done) => {
       client.post('/api/users')
         .send({})
         .end((error, res) => {
           expect(res.status).to.equal(400);
+          done();
+        });
+    });
+
+    it('should return status code 409 for for short password', (done) => {
+      client.post('/api/users')
+        .send(testData.invalid.shortPassword)
+        .end((error, res) => {
+          expect(res.status).to.equal(409);
           done();
         });
     });

@@ -126,6 +126,44 @@ describe('document ==> \n', () => {
     });
   });
   describe('GET: ==>\n', () => {
+    it(`Admin should be able to get all documents accessible document
+    `, (done) => {
+      client.get('/api/documents')
+        .set({ 'x-access-token': adminToken })
+        .end((error, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+    it(`Admin should be able to get all documents accessible document
+    with limit and offset`, (done) => {
+      client.get('/api/documents/?limit=9&offset=0')
+        .set({ 'x-access-token': adminToken })
+        .end((error, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.results.rows.length).to.be.at.most(9);
+          done();
+        });
+    });
+    it(`Regular user should be able to get all documents accessible document
+    `, (done) => {
+      client.get('/api/documents')
+        .set({ 'x-access-token': regularToken })
+        .end((error, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+    it(`Regular User should be able to get all documents accessible document
+    with limit and offset`, (done) => {
+      client.get('/api/documents/?limit=9&offset=0')
+        .set({ 'x-access-token': regularToken })
+        .end((error, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body.results.rows.length).to.be.at.most(9);
+          done();
+        });
+    });
     it('should be able to get documents by id', (done) => {
       client.get('/api/documents/3')
         .set({ 'x-access-token': regularToken })

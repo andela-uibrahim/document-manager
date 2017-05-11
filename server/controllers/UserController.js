@@ -141,9 +141,6 @@ class UserController {
           pagination: paginateResult
          });
       })
-      .catch((err) => {
-        res.status(500).send({ error: err.message });
-      });
   }
 
   /**
