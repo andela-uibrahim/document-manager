@@ -6,7 +6,6 @@ import setLoading from '../helper/setLoading';
 
 export default (token, userData, userid) => {
   return (dispatch) => {
-    setLoading.isLoading(dispatch,actionTypes);
     return axios.put(`/api/users/${userid}`, userData, {
       headers: {
         Authorization: token
@@ -19,7 +18,6 @@ export default (token, userData, userid) => {
         });
         if (userData.RoleId){
           window.location.reload();
-          setLoading.isNotLoading(dispatch,actionTypes);
         }
       }).catch((err) => {
         dispatch({
@@ -27,7 +25,6 @@ export default (token, userData, userid) => {
           status: 'failed',
           error: err.message
         });
-        setLoading.isNotLoading(dispatch,actionTypes);
       });
   };
 };
