@@ -156,7 +156,7 @@ class ViewAllDocuments extends Component {
               <center>
                 <Pagination className="pag"
                   items={this.props.pageCount}
-                  activePage={currentPage}
+                  activePage={this.props.currentPage}
                   onSelect={(page) => {
                     const offset = (page - 1) * this.state.limit;
                     this.props.paginateDocuments(this.state.token,

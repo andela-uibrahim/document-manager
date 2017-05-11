@@ -186,7 +186,7 @@ export class ViewAllUsers extends Component {
                 <center>
                 <Pagination className="pag"
                   items={this.props.pageCount}
-                  activePage={currentPage}
+                  activePage={this.props.currentPage}
                   onSelect={(page) => {
                     const token = window.localStorage.getItem('token');
                     const offset = (page - 1) * this.state.limit;
