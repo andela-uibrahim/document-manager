@@ -26,8 +26,6 @@ describe('UserDashboard component', () => {
     expect(wrapper.containsMatchingElement(<UserDashboard />));
     expect(wrapper.find('Header').length).toBe(1);
     expect(wrapper.find('Sidebar').length).toBe(1);
-    expect(wrapper.find('DocumentList').length).toBe(1);
-    expect(wrapper.find('Pagination').length).toBe(1);
     expect(wrapper.find('input').length).toBe(1);
     expect(wrapper.find('button').length).toBe(2);
   });

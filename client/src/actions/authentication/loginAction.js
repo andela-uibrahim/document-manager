@@ -7,11 +7,22 @@ export default (credentials) => {
   return (dispatch) => {
     return axios.post('/api/users/login', credentials)
       .then((response) => {
-        const token = response.data.token;
-        const userId = jwtDecode(token).UserId;
-        const roleId = jwtDecode(token).RoleId;
-        const username =  jwtDecode(token).username;
-        window.localStorage.setItem('token', token);
+        let userId;
+        let roleId;
+        let username;
+        let token;
+        if(window.localStorage){
+          token = response.data.token;
+          userId = jwtDecode(token).UserId;
+          roleId = jwtDecode(token).RoleId;
+          username =  jwtDecode(token).username;
+          window.localStorage.setItem('token', token);
+        } else {
+          userId = credentials.userId;
+          roleId = credentials.roleId;
+          username = credentials.username;
+          token = credentials.token;
+        }
         dispatch({
           type: actionTypes.LOGIN_SUCCESSFUL,
           userId,

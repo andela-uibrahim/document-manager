@@ -32,7 +32,7 @@ export class ViewAllRoles extends Component {
     this.state = {
       token: window.localStorage.getItem('token')
     };
-    this.props.isLoading = true;
+    
   }
 
   /**

@@ -1,3 +1,10 @@
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import nock from 'nock';
+import sinon from 'sinon';
+import moxios from 'moxios';
+import chai from 'chai';
+
 const $ = require('jquery');
 const jsdom = require('jsdom');
 const m = require('module');
@@ -27,6 +34,9 @@ global.window.localStorage = {
   },
   setItem: () => {
     // do nothing
+  },
+  clear: () => {
+    // do nothing
   }
 };
 
@@ -36,6 +46,12 @@ Object.keys(doc.defaultView).forEach((property) => {
   }
 });
 
+global.sinon = sinon;
+global.expect = chai.expect;
+global.thunk = thunk;
+global.configureMockStore = configureMockStore;
+global.nock = nock;
+global.moxios = moxios;
 global.navigator = {
   userAgent: 'node.js'
 };

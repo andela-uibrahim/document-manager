@@ -42,7 +42,7 @@ export class ViewAllUsers extends Component {
       limit: 10,
       searchTerms: '',
     };
-    this.props.isLoading = true;
+    
     this.handleChange = this.handleChange.bind(this);
     this.searchUser = this.searchUser.bind(this);
     this.refreshUsers = this.refreshUsers.bind(this);

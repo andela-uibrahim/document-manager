@@ -34,7 +34,7 @@ import verifyToken from '../../actions/authentication/verifyToken';
       userid: jwtDecode(this.token).UserId,
       offset: 0,
     };
-    this.props.isLoading = true;
+    
   }
 
   /**
