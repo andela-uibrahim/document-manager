@@ -163,7 +163,7 @@ class ViewAllDocuments extends Component {
                   }}
                 />
               </center>
-            </div>:<div>{swal("Oops!", "No document found", "error")} </div> }
+            </div>:<span/> }
         </div>
       </div>
     );

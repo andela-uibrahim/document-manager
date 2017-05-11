@@ -185,11 +185,6 @@ export class CreateDocument extends Component {
   }
 }
 
-
-CreateDocument.defaultProps = {
-  isLoading: false
-}
-
 CreateDocument.contextTypes = {
   router: PropTypes.object
 };
