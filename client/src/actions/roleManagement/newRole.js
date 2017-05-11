@@ -13,6 +13,7 @@ export default (details) => {
       }
     })
       .then((role) => {
+        toastr.info('Role successfully created ');
         dispatch({
           type: actionTypes.ROLE_CREATED,
           role,

@@ -17,9 +17,9 @@ export default (token, userData, userid) => {
           type: actionTypes.USER_UPGRADED,
           user: user.data,
         });
-        setLoading.isNotLoading(dispatch,actionTypes);
         if (userData.RoleId){
-          browserHistory.push('/users');
+          window.location.reload();
+          setLoading.isNotLoading(dispatch,actionTypes);
         }
       }).catch((err) => {
         dispatch({

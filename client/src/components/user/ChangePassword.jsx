@@ -61,7 +61,6 @@ export class ChangePassword extends Component {
       status: '',
       token: window.localStorage.getItem('token')
     };
-    //this.props.isLoading = true;
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -90,9 +89,6 @@ export class ChangePassword extends Component {
    * @memberof ChangePassword
    */
   render() {
-    if(this.props.isLoading) {
-      return (<div id="progress"><CircularProgressBar /></div>)
-    }
     return (
       <div className="row">
         <Header />
