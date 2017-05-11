@@ -217,8 +217,8 @@ const mapStoreToProps = (state) => {
     isLoading: state.loadingReducer.isLoading,
     isLoggedIn: state.verifyTokenReducer.isLoggedIn,
     users: state.allUsersReducer.users,
-    pageCount: state.allUsersReducer.pageCount | 1,
-    currentPage: state.allDocumentsReducer.currentPage,
+    pageCount: state.allUsersReducer.pageCount,
+    currentPage: state.allUsersReducer.currentPage,
     paginated: state.allUsersReducer.paginated,
     roles: state.allRolesReducer.roles
   };
